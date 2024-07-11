@@ -22,6 +22,7 @@
 
     <!-- icons -->
     <link href="{{ $asset }}/css/icons.min.css" rel="stylesheet" type="text/css" />
+    @yield('css')
 </head>
 
 <body class="loading"
@@ -48,6 +49,7 @@
     <script src="{{ $asset }}/js/pages/dashboard.init.js"></script>
 
     <script src="{{ $asset }}/js/app.min.js"></script>
+    @yield('script')
 </body>
 
 </html>

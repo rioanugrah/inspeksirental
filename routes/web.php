@@ -19,4 +19,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::resource('users', App\Http\Controllers\UserController::class)->middleware('verified');
+    Route::resource('roles', App\Http\Controllers\RolesController::class)->middleware('verified');
+    Route::prefix('permissions')->group(function(){
+        Route::get('/', [App\Http\Controllers\PermissionsController::class, 'index'])->name('permissions')->middleware('verified');
+        Route::post('simpan', [App\Http\Controllers\PermissionsController::class, 'simpan'])->name('permissions.simpan')->middleware('verified');
+
+    });
+    Route::prefix('cars')->group(function(){
+        Route::get('/', [App\Http\Controllers\CarsController::class, 'index'])->name('cars')->middleware('verified');
+        Route::get('create', [App\Http\Controllers\CarsController::class, 'create'])->name('cars.create')->middleware('verified');
+        Route::post('simpan', [App\Http\Controllers\CarsController::class, 'store'])->name('cars.store')->middleware('verified');
+    });
+});

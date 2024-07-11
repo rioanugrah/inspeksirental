@@ -46,6 +46,33 @@
                     </a>
                 </li>
 
+                <li class="menu-title">Inspeksi</li>
+                <li>
+                    <a href="{{ route('cars') }}">
+                        <i data-feather="home"></i>
+                        <span>Mobil</span>
+                    </a>
+                </li>
+
+                <li class="menu-title">User Management</li>
+                <li>
+                    <a href="{{ route('users.index') }}">
+                        <i data-feather="home"></i>
+                        <span> Users </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('roles.index') }}">
+                        <i data-feather="home"></i>
+                        <span> Roles </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('permissions') }}">
+                        <i data-feather="home"></i>
+                        <span> Permissions </span>
+                    </a>
+                </li>
             </ul>
 
         </div>

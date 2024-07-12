@@ -39,7 +39,7 @@
             <ul id="side-menu">
 
                 <!-- <li class="menu-title">Navigation</li> -->
-                <li>
+                <li class="{{ request()->is('home/*') ? 'menuitem-active' : null }}">
                     <a href="{{ route('home') }}">
                         <i data-feather="home"></i>
                         <span> Dashboard </span>
@@ -47,32 +47,38 @@
                 </li>
 
                 <li class="menu-title">Inspeksi</li>
-                <li>
+                <li class="{{ request()->is('cars/*') ? 'menuitem-active' : null }}">
                     <a href="{{ route('cars') }}">
-                        <i data-feather="home"></i>
+                        <i data-feather="truck"></i>
                         <span>Mobil</span>
                     </a>
                 </li>
 
+                @can('User List')
                 <li class="menu-title">User Management</li>
-                <li>
+                <li class="{{ request()->is('users/*') ? 'menuitem-active' : null }}">
                     <a href="{{ route('users.index') }}">
-                        <i data-feather="home"></i>
+                        <i data-feather="users"></i>
                         <span> Users </span>
                     </a>
                 </li>
-                <li>
+                @endcan
+                @can('Role List')
+                <li class="{{ request()->is('roles/*') ? 'menuitem-active' : null }}">
                     <a href="{{ route('roles.index') }}">
-                        <i data-feather="home"></i>
+                        <i data-feather="sliders"></i>
                         <span> Roles </span>
                     </a>
                 </li>
-                <li>
+                @endcan
+                @can('Permission List')
+                <li class="{{ request()->is('permissions/*') ? 'menuitem-active' : null }}">
                     <a href="{{ route('permissions') }}">
-                        <i data-feather="home"></i>
+                        <i data-feather="unlock"></i>
                         <span> Permissions </span>
                     </a>
                 </li>
+                @endcan
             </ul>
 
         </div>

@@ -30,6 +30,6 @@ class Cars extends Model
         'foto_sisi_kanan',
         'foto_sisi_kiri',
         'foto_sisi_interior',
-        // 'foto_full_body',
+        'status',
     ];
 }

@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="button-list mt-1 mb-1">
-                        <a href="javascript:void(0)" class="btn btn-primary btn-rounded"><i class="uil-plus"></i> Buat Baru</a>
+                        <a href="javascript:void(0)" onclick="window.location.href='{{ route('users.create') }}'" class="btn btn-primary btn-rounded"><i class="uil-plus"></i> Buat Baru</a>
                         <a href="javascript:void(0)" onclick="reload()" class="btn btn-primary btn-rounded"><i class="uil-refresh"></i> Reload</a>
                     </div>
                     <div class="table-responsive">

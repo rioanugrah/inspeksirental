@@ -27,11 +27,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('permissions')->group(function(){
         Route::get('/', [App\Http\Controllers\PermissionsController::class, 'index'])->name('permissions')->middleware('verified');
         Route::post('simpan', [App\Http\Controllers\PermissionsController::class, 'simpan'])->name('permissions.simpan')->middleware('verified');
+        Route::get('{id}', [App\Http\Controllers\PermissionsController::class, 'show'])->name('permissions.show')->middleware('verified');
+        Route::get('{id}/edit', [App\Http\Controllers\PermissionsController::class, 'edit'])->name('permissions.edit')->middleware('verified');
 
     });
     Route::prefix('cars')->group(function(){
         Route::get('/', [App\Http\Controllers\CarsController::class, 'index'])->name('cars')->middleware('verified');
         Route::get('create', [App\Http\Controllers\CarsController::class, 'create'])->name('cars.create')->middleware('verified');
         Route::post('simpan', [App\Http\Controllers\CarsController::class, 'store'])->name('cars.store')->middleware('verified');
+        Route::get('{id}/edit', [App\Http\Controllers\CarsController::class, 'edit'])->name('cars.edit')->middleware('verified');
+        Route::post('{id}/update', [App\Http\Controllers\CarsController::class, 'update'])->name('cars.update')->middleware('verified');
     });
 });

@@ -31,13 +31,13 @@
                                         <td>{{ $role->name }}</td>
                                         <td>{{ $role->guard_name }}</td>
                                         <td>
-                                            @can('role-detail')
+                                            @can('Role Detail')
                                                 <a class="btn btn-info" href="{{ route('roles.show', $role->id) }}">Show</a>
                                             @endcan
-                                            @can('role-edit')
+                                            @can('Role Edit')
                                                 <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Edit</a>
                                             @endcan
-                                            @can('role-delete')
+                                            @can('Role Delete')
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
                                                 {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                                 {!! Form::close() !!}

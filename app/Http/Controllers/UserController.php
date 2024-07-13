@@ -18,6 +18,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct(
+
+    ){
+        $this->middleware('permission:User List', ['only' => ['index']]);
+        $this->middleware('permission:User Create', ['only' => ['create','store']]);
+        $this->middleware('permission:User Detail', ['only' => ['show']]);
+        $this->middleware('permission:User Edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:User Delete', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax()) {

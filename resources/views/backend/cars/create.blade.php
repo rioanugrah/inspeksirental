@@ -26,7 +26,6 @@
                                         <input type="text" name="plat_nomor_belakang" class="form-control"
                                             placeholder="XX" required id="">
                                     </div>
-                                    {{-- <input type="text" name="plat_nomor" class="form-control" id="plat_nomor" placeholder="Plat Nomor"> --}}
                                 </div>
                             </div>
                             <div class="col-md-4">

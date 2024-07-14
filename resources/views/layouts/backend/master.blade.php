@@ -43,10 +43,10 @@
     <script src="{{ $asset }}/js/vendor.min.js"></script>
 
     <script src="{{ $asset }}/libs/moment/min/moment.min.js"></script>
-    <script src="{{ $asset }}/libs/apexcharts/apexcharts.min.js"></script>
+    {{-- <script src="{{ $asset }}/libs/apexcharts/apexcharts.min.js"></script> --}}
     <script src="{{ $asset }}/libs/flatpickr/flatpickr.min.js"></script>
 
-    <script src="{{ $asset }}/js/pages/dashboard.init.js"></script>
+    {{-- <script src="{{ $asset }}/js/pages/dashboard.init.js"></script> --}}
 
     <script src="{{ $asset }}/js/app.min.js"></script>
     @yield('script')

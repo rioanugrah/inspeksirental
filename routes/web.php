@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', [App\Http\Controllers\CarsController::class, 'index'])->name('cars')->middleware('verified');
         Route::get('create', [App\Http\Controllers\CarsController::class, 'create'])->name('cars.create')->middleware('verified');
         Route::post('simpan', [App\Http\Controllers\CarsController::class, 'store'])->name('cars.store')->middleware('verified');
+        Route::get('{id}/inspeksi', [App\Http\Controllers\CarsController::class, 'buat_inspeksi'])->name('cars.buat_inspeksi')->middleware('verified');
+        Route::post('{id}/simpan_inspeksi', [App\Http\Controllers\CarsController::class, 'simpan_inspeksi'])->name('cars.simpan_inspeksi')->middleware('verified');
         Route::get('{id}/edit', [App\Http\Controllers\CarsController::class, 'edit'])->name('cars.edit')->middleware('verified');
         Route::post('{id}/update', [App\Http\Controllers\CarsController::class, 'update'])->name('cars.update')->middleware('verified');
     });

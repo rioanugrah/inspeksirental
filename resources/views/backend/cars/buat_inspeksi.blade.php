@@ -83,7 +83,6 @@
         </div>
         <form method="post" id="upload-simpan" enctype="multipart/form-data">
             @csrf
-
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -488,6 +487,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-footer">
+                    <button type="button" onclick="window.location.href='{{ route('cars') }}'" class="btn btn-secondary">Back</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
             </div>
         </form>
     </div>
@@ -495,7 +498,14 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('backend/assets/js/pages/sweetalert2@11.js') }}"></script>
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $('input[type=radio][name=kaca_depan]').on('change',function(){
             if (this.value == 'Rusak') {
                 document.getElementById('view_kaca_depan').innerHTML = '<div class="mt-2 mb-2">'+
@@ -736,6 +746,51 @@
             }else{
                 document.getElementById('view_fender_belakang_kanan').innerHTML = null;
             }
+        });
+
+        $('#upload-simpan').submit(function(e) {
+            // alert('coba');
+            e.preventDefault();
+            let formData = new FormData(this);
+            // $('#image-input-error').text('');
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('cars.simpan_inspeksi',['id' => $car->id]) }}",
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: () => {
+                    Swal.fire({
+                        icon: "info",
+                        title: "Data Sedang Diproses, Silahkan Tunggu",
+                        showConfirmButton: false,
+                    });
+                },
+                success: (result) => {
+                    if (result.success != false) {
+                        Swal.fire({
+                            icon: result.message_type,
+                            title: result.message_title,
+                            text: result.message_content,
+                            showConfirmButton: false,
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: result.message_type,
+                            title: result.message_title,
+                            text: result.message_content,
+                            showConfirmButton: false,
+                        });
+                    }
+                },
+                error: function(request, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: error,
+                        // showConfirmButton: false,
+                    });
+                }
+            });
         });
     </script>
 @endsection

@@ -176,7 +176,7 @@ class CarsController extends Controller
         return view('backend.cars.detail',$data);
     }
 
-    public function buat_inspeks($id)
+    public function buat_inspeksi($id)
     {
         $data['car'] = $this->cars->where('id',$id)
                                     ->where('status', 'Waiting')
@@ -185,6 +185,13 @@ class CarsController extends Controller
         if (empty($data['car'])) {
             return redirect()->back()->with('error','Data Tidak Ditemukan');
         }
+
+        return view('backend.cars.buat_inspeksi',$data);
+    }
+
+    public function simpan_inspeksi(Request $request,$id)
+    {
+        dd($request->all());
     }
 
     public function edit($id)

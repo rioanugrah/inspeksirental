@@ -64,7 +64,7 @@
                                     <td>
                                         <div class="btn-group">
                                             <!--<a href="#" class="btn btn-primary"><i class="bi-eye"></i> Detail Inspeksi</a>-->
-                                            <a href="{{ route('cars.edit',['id' => $car->id]) }}" class="btn btn-warning"><i class="bi-pencil-square"></i> Mulai Inspeksi</a>
+                                            <a href="{{ route('cars.buat_inspeksi',['id' => $car->id]) }}" class="btn btn-warning"><i class="bi-pencil-square"></i> Mulai Inspeksi</a>
                                             <a href="#" class="btn btn-danger"><i class="bi-trash2"></i> Delete</a>
                                         </div>
                                     </td>

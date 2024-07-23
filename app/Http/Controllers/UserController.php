@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use DataTables;
+use Cache;
 
 class UserController extends Controller
 {
@@ -35,23 +36,49 @@ class UserController extends Controller
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('akses', function($row){
-                        if (!empty($row->roles)) {
-                            foreach ($row->roles as $v) {
-                                switch ($v->name) {
+                        if (!empty($row->getRoleNames())) {
+                            foreach ($row->getRoleNames() as $v) {
+                                switch ($v) {
                                     case 'Administrator':
-                                        return '<span class="badge bg-info">'.$v->name.'</span>';
+                                        return '<span class="badge bg-info">'.$v.'</span>';
                                         break;
                                     case 'Admin':
-                                        return '<span class="badge bg-info">'.$v->name.'</span>';
+                                        return '<span class="badge bg-info">'.$v.'</span>';
                                         break;
                                     case 'User':
-                                        return '<span class="badge bg-info">'.$v->name.'</span>';
+                                        return '<span class="badge bg-info">'.$v.'</span>';
                                         break;
                                     default:
                                         # code...
                                         break;
                                 }
                             }
+                        }
+                        // if (!empty($row->roles)) {
+                        //     foreach ($row->roles as $v) {
+                        //         switch ($v->name) {
+                        //             case 'Administrator':
+                        //                 return '<span class="badge bg-info">'.$v->name.'</span>';
+                        //                 break;
+                        //             case 'Admin':
+                        //                 return '<span class="badge bg-info">'.$v->name.'</span>';
+                        //                 break;
+                        //             case 'User':
+                        //                 return '<span class="badge bg-info">'.$v->name.'</span>';
+                        //                 break;
+                        //             default:
+                        //                 # code...
+                        //                 break;
+                        //         }
+                        //     }
+                        // }
+                        
+                    })
+                    ->addColumn('last_seen', function($row){
+                        if (Cache::has('is_online' . $row->id)) {
+                            return '<span class="text-success">Online</span>';
+                        }else{
+                            return '<span class="text-secondary">Offline</span>';
                         }
                     })
                     ->addColumn('action', function($row){
@@ -62,7 +89,7 @@ class UserController extends Controller
                         $btn = $btn.'</div>';
                         return $btn;
                     })
-                    ->rawColumns(['action','akses'])
+                    ->rawColumns(['action','akses','last_seen'])
                     ->make(true);
         }
         return view('backend.users.index');

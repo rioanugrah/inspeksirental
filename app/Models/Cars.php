@@ -16,6 +16,7 @@ class Cars extends Model
 
     public $fillable = [
         'id',
+        'no_reference',
         'plat_nomor',
         'warna',
         'merk',
@@ -32,4 +33,25 @@ class Cars extends Model
         'foto_sisi_interior',
         'status',
     ];
+
+    public function detail_inspeksi_depan()
+    {
+        return $this->belongsTo(\App\Models\InspeksiDepan::class, 'id','cars_id');
+    }
+    public function detail_inspeksi_kiri()
+    {
+        return $this->belongsTo(\App\Models\InspeksiKiri::class, 'id','cars_id');
+    }
+    public function detail_inspeksi_belakang()
+    {
+        return $this->belongsTo(\App\Models\InspeksiBelakang::class, 'id','cars_id');
+    }
+    public function detail_inspeksi_kanan()
+    {
+        return $this->belongsTo(\App\Models\InspeksiKanan::class, 'id','cars_id');
+    }
+    public function detail_inspeksi_interior()
+    {
+        return $this->belongsTo(\App\Models\InspeksiInterior::class, 'id','cars_id');
+    }
 }

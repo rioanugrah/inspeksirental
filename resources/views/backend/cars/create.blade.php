@@ -126,6 +126,13 @@
                                 <hr>
                             </div>
                             <div class="col-md-12">
+                                {{-- <div class="mb-3">
+                                    <div class="form-group">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div> --}}
                                 <div class="mb-3">
                                     <button class="btn btn-primary" type="submit">
                                         Simpan
@@ -171,14 +178,44 @@
                         title: "Data Sedang Diproses, Silahkan Tunggu",
                         showConfirmButton: false,
                     });
+                    // var percentage = '0';
                 },
+                // uploadProgress: function (event, position, total, percentComplete) {
+                //     var percentage = percentComplete;
+                //     $('.progress .progress-bar').css("width", percentage+'%', function() {
+                //         return $(this).attr("aria-valuenow", percentage) + "%";
+                //     })
+                // },
                 success: (result) => {
                     if (result.success != false) {
+                        // Swal.fire({
+                        //     icon: result.message_type,
+                        //     title: result.message_title,
+                        //     text: result.message_content,
+                        //     showConfirmButton: false,
+                        // });
                         Swal.fire({
-                            icon: result.message_type,
                             title: result.message_title,
-                            text: result.message_content,
-                            showConfirmButton: false,
+                            text: "Apakah ingin melanjutkan Inspeksi?",
+                            icon: result.message_type,
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Ya, Lanjut Inspeksi."
+                            }).then((results) => {
+                            if (results.isConfirmed) {
+                                Swal.fire({
+                                    title: "Okay",
+                                    text: "Silahkan ditunggu.",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                });
+                                setTimeout(function(){
+                                    window.location.href="{{ url('cars/') }}"+'/'+result.id+'/'+'inspeksi';
+                                }, 2000);
+                            }else{
+                                window.location.href="{{ route('cars') }}";
+                            }
                         });
                     } else {
                         Swal.fire({

@@ -33,6 +33,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Akses</th>
+                                    <th>Last Seen</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -113,6 +114,10 @@
                 {
                     data: 'akses',
                     name: 'akses'
+                },
+                {
+                    data: 'last_seen',
+                    name: 'last_seen'
                 },
                 {
                     data: 'action',

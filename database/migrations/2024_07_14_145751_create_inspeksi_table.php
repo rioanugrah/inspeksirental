@@ -22,8 +22,8 @@ class CreateInspeksiTable extends Migration
             $table->text('foto_kap_mesin')->nullable();
             $table->string('rangka_mobil',50);
             $table->text('foto_rangka_mobil')->nullable();
-            $table->string('kaki_depan',50);
-            $table->text('foto_kaki_depan')->nullable();
+            $table->string('aki',50);
+            $table->text('foto_aki')->nullable();
             $table->string('radiator',50);
             $table->text('foto_radiator')->nullable();
             $table->string('kondisi_mesin',50);
@@ -84,6 +84,42 @@ class CreateInspeksiTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::create('inspeksi_interior', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('cars_id');
+            $table->text('foto_speedometer')->nullable();
+            $table->text('keterangan_speedometer')->nullable();
+            $table->text('foto_setir')->nullable();
+            $table->text('keterangan_setir')->nullable();
+            $table->text('foto_dasboard')->nullable();
+            $table->text('keterangan_dasboard')->nullable();
+            $table->text('foto_plafon')->nullable();
+            $table->text('keterangan_plafon')->nullable();
+            $table->text('foto_ac')->nullable();
+            $table->text('keterangan_ac')->nullable();
+            $table->text('foto_audio')->nullable();
+            $table->text('keterangan_audio')->nullable();
+            $table->text('foto_jok')->nullable();
+            $table->text('keterangan_jok')->nullable();
+            $table->text('foto_electric_spion')->nullable();
+            $table->text('keterangan_electric_spion')->nullable();
+            $table->text('foto_power_window')->nullable();
+            $table->text('keterangan_power_window')->nullable();
+            $table->text('foto_lain_lain')->nullable();
+            $table->text('keterangan_lain_lain')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        // Schema::create('inspeksi_lain', function (Blueprint $table) {
+        //     $table->uuid('id')->primary();
+        //     $table->uuid('cars_id');
+        //     $table->text('foto_lain_lain')->nullable();
+        //     $table->text('keterangan_lain_lain')->nullable();
+        //     $table->timestamps();
+        //     $table->softDeletes();
+        // });
     }
 
     /**
@@ -97,5 +133,7 @@ class CreateInspeksiTable extends Migration
         Schema::dropIfExists('inspeksi_bagian_kiri');
         Schema::dropIfExists('inspeksi_bagian_belakang');
         Schema::dropIfExists('inspeksi_bagian_kanan');
+        Schema::dropIfExists('inspeksi_interior');
+        // Schema::dropIfExists('inspeksi_lain');
     }
 }

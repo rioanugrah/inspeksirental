@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -36,8 +37,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('create', [App\Http\Controllers\CarsController::class, 'create'])->name('cars.create')->middleware('verified');
         Route::post('simpan', [App\Http\Controllers\CarsController::class, 'store'])->name('cars.store')->middleware('verified');
         Route::get('{id}/inspeksi', [App\Http\Controllers\CarsController::class, 'buat_inspeksi'])->name('cars.buat_inspeksi')->middleware('verified');
-        Route::post('{id}/simpan_inspeksi', [App\Http\Controllers\CarsController::class, 'simpan_inspeksi'])->name('cars.simpan_inspeksi')->middleware('verified');
+        Route::post('{id}/simpan_inspeksi_depan', [App\Http\Controllers\CarsController::class, 'simpan_inspeksi_depan'])->name('cars.simpan_inspeksi_depan')->middleware('verified');
+        Route::post('{id}/simpan_inspeksi_kiri', [App\Http\Controllers\CarsController::class, 'simpan_inspeksi_kiri'])->name('cars.simpan_inspeksi_kiri')->middleware('verified');
+        Route::post('{id}/simpan_inspeksi_belakang', [App\Http\Controllers\CarsController::class, 'simpan_inspeksi_belakang'])->name('cars.simpan_inspeksi_belakang')->middleware('verified');
+        Route::post('{id}/simpan_inspeksi_kanan', [App\Http\Controllers\CarsController::class, 'simpan_inspeksi_kanan'])->name('cars.simpan_inspeksi_kanan')->middleware('verified');
+        Route::post('{id}/simpan_inspeksi_interior', [App\Http\Controllers\CarsController::class, 'simpan_inspeksi_interior'])->name('cars.simpan_inspeksi_interior')->middleware('verified');
         Route::get('{id}/edit', [App\Http\Controllers\CarsController::class, 'edit'])->name('cars.edit')->middleware('verified');
         Route::post('{id}/update', [App\Http\Controllers\CarsController::class, 'update'])->name('cars.update')->middleware('verified');
+        Route::get('{id}/download', [App\Http\Controllers\CarsController::class, 'download'])->name('cars.download')->middleware('verified');
+        Route::get('{id}/sendMailInspeksi', [App\Http\Controllers\CarsController::class, 'sendMailInspeksi'])->name('cars.sendMailInspeksi')->middleware('verified');
     });
 });

@@ -16,6 +16,7 @@ class CreateCarsTable extends Migration
         Schema::create('cars', function (Blueprint $table) {
             // $table->id();
             $table->uuid('id')->primary();
+            $table->string('no_reference');
             $table->string('plat_nomor');
             $table->string('warna');
             $table->string('merk');
@@ -30,6 +31,7 @@ class CreateCarsTable extends Migration
             $table->text('foto_sisi_kanan');
             $table->text('foto_sisi_kiri');
             $table->text('foto_sisi_interior');
+            $table->string('status');
             // $table->text('foto_full_body');
             $table->timestamps();
             $table->softDeletes();

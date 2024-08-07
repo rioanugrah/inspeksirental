@@ -31,16 +31,27 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
+        // dd(auth()->user()->can('User List'));
         if ($request->ajax()) {
-            $data = User::all();
+            if (auth()->user()->getRoleNames()[0] == 'Superadmin') {
+                $data = User::all();
+            }else{
+                $data = User::whereHas('roles', function($query){
+                            // $query->whereHas('name',['Administrator']);
+                            $query->where('name','!=','Superadmin');
+                })->get();
+            }
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('akses', function($row){
                         if (!empty($row->getRoleNames())) {
                             foreach ($row->getRoleNames() as $v) {
                                 switch ($v) {
+                                    case 'Superadmin':
+                                        return '<span class="badge bg-danger">'.$v.'</span>';
+                                        break;
                                     case 'Administrator':
-                                        return '<span class="badge bg-info">'.$v.'</span>';
+                                        return '<span class="badge bg-primary">'.$v.'</span>';
                                         break;
                                     case 'Admin':
                                         return '<span class="badge bg-info">'.$v.'</span>';
@@ -83,9 +94,15 @@ class UserController extends Controller
                     })
                     ->addColumn('action', function($row){
                         $btn = '<div class="btn-group">';
-                        $btn = $btn.'<a href='.route('users.show', $row->id).' class="btn btn-success">Detail</a>';
-                        $btn = $btn.'<a href='.route('users.edit', $row->id).' class="btn btn-warning">Edit</a>';
-                        $btn = $btn.'<a href="javascript:void(0)" class="btn btn-danger">Delete</a>';
+                        if (auth()->user()->can('User Detail') == true) {
+                            $btn = $btn.'<a href='.route('users.show', $row->id).' class="btn btn-success">Detail</a>';
+                        }
+                        if (auth()->user()->can('User Edit') == true) {
+                            $btn = $btn.'<a href='.route('users.edit', $row->id).' class="btn btn-warning">Edit</a>';
+                        }
+                        if (auth()->user()->can('User Delete') == true) {
+                            $btn = $btn.'<a href="javascript:void(0)" onclick="deleteUser('.$row->id.')" class="btn btn-danger">Delete</a>';
+                        }
                         $btn = $btn.'</div>';
                         return $btn;
                     })
@@ -173,6 +190,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
@@ -210,9 +228,24 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+        // dd('OK');
+        $user = User::find($id);
+        if (empty($user)) {
+            return response()->json([
+                'success' => false,
+                'message_title' => 'Gagal',
+                'message_content' => 'User Tidak Ditemukan'
+            ]);
+        }
+        $user->delete();
+        return response()->json([
+            'success' => true,
+            'message_title' => 'Berhasil',
+            'message_content' => 'User Berhasil Dihapus'
+        ]);
+        // User::find($id)->delete();
+        // return redirect()->route('users.index')
+        //                 ->with('success','User deleted successfully');
     }
 
     public function profile()

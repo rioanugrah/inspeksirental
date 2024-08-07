@@ -1,1 +1,2 @@
 [16-Jul-2024 15:01:30 UTC] PHP Fatal error:  Cannot declare class App\Models\InspeksiKiri, because the name is already in use in /home/sekawanh/laravel/inspeksirentaldev/app/Models/InspeksiKanan.php on line 9
+[24-Jul-2024 08:17:13 Asia/Jakarta] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/majutoko/laravel/inspeksirental/vendor/dompdf/dompdf/lib/Cpdf.php on line 5771

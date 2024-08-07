@@ -17,7 +17,12 @@ class RolesController extends Controller
      */
     function __construct()
     {
-        //  $this->middleware('permission:role-list', ['only' => ['index']]);
+         $this->middleware('permission:Role List', ['only' => ['index']]);
+         $this->middleware('permission:Role Create', ['only' => ['create','store']]);
+         $this->middleware('permission:Role Detail', ['only' => ['show']]);
+         $this->middleware('permission:Role Edit', ['only' => ['edit']]);
+         $this->middleware('permission:Role Update', ['only' => ['update']]);
+         $this->middleware('permission:Role Delete', ['only' => ['destroy']]);
         //  $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
         //  $this->middleware('permission:role-create', ['only' => ['create','store']]);
         //  $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
@@ -31,7 +36,7 @@ class RolesController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::orderBy('id','DESC')->paginate(5);
+        $roles = Role::orderBy('id','DESC')->where('name','!=','Superadmin')->paginate(5);
         return view('backend.roles.index',compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -43,8 +48,12 @@ class RolesController extends Controller
      */
     public function create()
     {
-        DB::statement("SET SQL_MODE=''");;
-        $role_permission = Permission::select('name','id')->groupBy('name')->get();
+        DB::statement("SET SQL_MODE=''");
+        if (auth()->user()->getRoleNames()[0] == 'Superadmin') {
+            $role_permission = Permission::select('name','id')->groupBy('name')->get();
+        }else{
+            $role_permission = Permission::select('name','id')->where('name','not like','%Permission%')->groupBy('name')->get();
+        }
         $data['custom_permission'] = array();
         foreach($role_permission as $per){
 
@@ -116,8 +125,12 @@ class RolesController extends Controller
 
         $data['role'] = Role::find($id);
         DB::statement("SET SQL_MODE=''");
-        $role_permission = Permission::select('name','id')->groupBy('name')->get();
-
+        // $role_permission = Permission::select('name','id')->groupBy('name')->get();
+        if (auth()->user()->getRoleNames()[0] == 'Superadmin') {
+            $role_permission = Permission::select('name','id')->groupBy('name')->get();
+        }else{
+            $role_permission = Permission::select('name','id')->where('name','not like','%Permission%')->groupBy('name')->get();
+        }
         $data['custom_permission'] = array();
 
         foreach($role_permission as $per){

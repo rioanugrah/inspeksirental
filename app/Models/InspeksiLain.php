@@ -17,8 +17,13 @@ class InspeksiLain extends Model
     public $fillable = [
         'id',
         'cars_id',
-        'foto_lain_lain',
-        'keterangan_lain_lain',
+        'body',
+        // 'keterangan_lain_lain',
     ];
+
+    public function cars()
+    {
+        return $this->belongsTo(\App\Models\Cars::class, 'cars_id', 'id');
+    }
 
 }

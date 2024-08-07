@@ -18,17 +18,28 @@ class InspeksiKiri extends Model
         'id',
         'cars_id',
         'fender_depan_kiri',
+        'keterangan_fender_depan_kiri',
         'foto_fender_depan_kiri',
         'kaki_depan_kiri',
+        'keterangan_kaki_depan_kiri',
         'foto_kaki_depan_kiri',
         'kaki_belakang_kiri',
+        'keterangan_kaki_belakang_kiri',
         'foto_kaki_belakang_kiri',
         'pintu_depan_kiri',
+        'keterangan_pintu_depan_kiri',
         'foto_pintu_depan_kiri',
         'pintu_belakang_kiri',
+        'keterangan_pintu_belakang_kiri',
         'foto_pintu_belakang_kiri',
         'fender_belakang_kiri',
+        'keterangan_fender_belakang_kiri',
         'foto_fender_belakang_kiri',
     ];
+
+    public function cars()
+    {
+        return $this->belongsTo(\App\Models\Cars::class, 'cars_id', 'id');
+    }
 
 }

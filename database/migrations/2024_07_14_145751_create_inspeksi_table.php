@@ -17,18 +17,25 @@ class CreateInspeksiTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('cars_id');
             $table->string('kaca_depan',50);
+            $table->text('keterangan_kaca_depan')->nullable();
             $table->text('foto_kaca_depan')->nullable();
             $table->string('kap_mesin',50);
+            $table->text('keterangan_kap_mesin')->nullable();
             $table->text('foto_kap_mesin')->nullable();
             $table->string('rangka_mobil',50);
+            $table->text('keterangan_rangka_mobil')->nullable();
             $table->text('foto_rangka_mobil')->nullable();
             $table->string('aki',50);
+            $table->text('keterangan_aki')->nullable();
             $table->text('foto_aki')->nullable();
             $table->string('radiator',50);
+            $table->text('keterangan_radiator')->nullable();
             $table->text('foto_radiator')->nullable();
             $table->string('kondisi_mesin',50);
+            $table->text('keterangan_kondisi_mesin')->nullable();
             $table->text('foto_kondisi_mesin')->nullable();
             $table->string('bumper_lampu',50);
+            $table->text('keterangan_bumper_lampu')->nullable();
             $table->text('foto_bumper_lampu')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -38,16 +45,22 @@ class CreateInspeksiTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('cars_id');
             $table->string('fender_depan_kiri',50);
+            $table->text('keterangan_fender_depan_kiri')->nullable();
             $table->text('foto_fender_depan_kiri')->nullable();
             $table->string('kaki_depan_kiri',50);
+            $table->text('keterangan_kaki_depan_kiri')->nullable();
             $table->text('foto_kaki_depan_kiri')->nullable();
             $table->string('kaki_belakang_kiri',50);
+            $table->text('keterangan_kaki_belakang_kiri')->nullable();
             $table->text('foto_kaki_belakang_kiri')->nullable();
             $table->string('pintu_depan_kiri',50);
+            $table->text('keterangan_pintu_depan_kiri')->nullable();
             $table->text('foto_pintu_depan_kiri')->nullable();
             $table->string('pintu_belakang_kiri',50);
+            $table->text('keterangan_pintu_belakang_kiri')->nullable();
             $table->text('foto_pintu_belakang_kiri')->nullable();
             $table->string('fender_belakang_kiri',50);
+            $table->text('keterangan_fender_belakang_kiri')->nullable();
             $table->text('foto_fender_belakang_kiri')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -57,10 +70,13 @@ class CreateInspeksiTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('cars_id');
             $table->string('lampu_belakang',50);
+            $table->text('keterangan_lampu_belakang')->nullable();
             $table->text('foto_lampu_belakang')->nullable();
             $table->string('pintu_bagasi_belakang',50);
+            $table->text('keterangan_pintu_bagasi_belakang')->nullable();
             $table->text('foto_pintu_bagasi_belakang')->nullable();
             $table->string('bumper_belakang',50);
+            $table->text('keterangan_bumper_belakang')->nullable();
             $table->text('foto_bumper_belakang')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -70,16 +86,22 @@ class CreateInspeksiTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('cars_id');
             $table->string('fender_depan_kanan',50);
+            $table->text('keterangan_fender_depan_kanan')->nullable();
             $table->text('foto_fender_depan_kanan')->nullable();
             $table->string('kaki_depan_kanan',50);
+            $table->text('keterangan_kaki_depan_kanan')->nullable();
             $table->text('foto_kaki_depan_kanan')->nullable();
             $table->string('kaki_belakang_kanan',50);
+            $table->text('keterangan_kaki_belakang_kanan')->nullable();
             $table->text('foto_kaki_belakang_kanan')->nullable();
             $table->string('pintu_depan_kanan',50);
+            $table->text('keterangan_pintu_depan_kanan')->nullable();
             $table->text('foto_pintu_depan_kanan')->nullable();
             $table->string('pintu_belakang_kanan',50);
+            $table->text('keterangan_pintu_belakang_kanan')->nullable();
             $table->text('foto_pintu_belakang_kanan')->nullable();
             $table->string('fender_belakang_kanan',50);
+            $table->text('keterangan_fender_belakang_kanan')->nullable();
             $table->text('foto_fender_belakang_kanan')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -112,14 +134,14 @@ class CreateInspeksiTable extends Migration
             $table->softDeletes();
         });
 
-        // Schema::create('inspeksi_lain', function (Blueprint $table) {
-        //     $table->uuid('id')->primary();
-        //     $table->uuid('cars_id');
-        //     $table->text('foto_lain_lain')->nullable();
-        //     $table->text('keterangan_lain_lain')->nullable();
-        //     $table->timestamps();
-        //     $table->softDeletes();
-        // });
+        Schema::create('inspeksi_lain', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('cars_id');
+            $table->text('body')->nullable();
+            // $table->text('keterangan_lain_lain')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -134,6 +156,6 @@ class CreateInspeksiTable extends Migration
         Schema::dropIfExists('inspeksi_bagian_belakang');
         Schema::dropIfExists('inspeksi_bagian_kanan');
         Schema::dropIfExists('inspeksi_interior');
-        // Schema::dropIfExists('inspeksi_lain');
+        Schema::dropIfExists('inspeksi_lain');
     }
 }

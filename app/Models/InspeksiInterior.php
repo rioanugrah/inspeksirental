@@ -39,4 +39,9 @@ class InspeksiInterior extends Model
         'keterangan_lain_lain',
     ];
 
+    public function cars()
+    {
+        return $this->belongsTo(\App\Models\Cars::class, 'cars_id', 'id');
+    }
+
 }

@@ -16,12 +16,8 @@
                         <h6 class="text-overflow m-0">Welcome !</h6>
                     </div>
 
-                    <a href="pages-profile.html" class="dropdown-item notify-item">
+                    <a href="javascript:void(0)" onclick="window.location.href='{{ route('profile') }}'" class="dropdown-item notify-item">
                         <i data-feather="user" class="icon-dual icon-xs me-1"></i><span>My Account</span>
-                    </a>
-
-                    <a href="pages-lock-screen.html" class="dropdown-item notify-item">
-                        <i data-feather="lock" class="icon-dual icon-xs me-1"></i><span>Lock Screen</span>
                     </a>
 
                     <div class="dropdown-divider"></div>

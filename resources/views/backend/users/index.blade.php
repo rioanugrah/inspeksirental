@@ -23,7 +23,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="button-list mt-1 mb-1">
+                        @can('User Create')
                         <a href="javascript:void(0)" onclick="window.location.href='{{ route('users.create') }}'" class="btn btn-primary btn-rounded"><i class="uil-plus"></i> Buat Baru</a>
+                        @endcan
                         <a href="javascript:void(0)" onclick="reload()" class="btn btn-primary btn-rounded"><i class="uil-refresh"></i> Reload</a>
                     </div>
                     <div class="table-responsive">
@@ -91,7 +93,7 @@
     <script src="{{ asset('backend/') }}/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-
+    <script src="{{ asset('backend/assets/js/pages/sweetalert2@11.js') }}"></script>
     <script>
         $.ajaxSetup({
             headers: {
@@ -132,6 +134,60 @@
         function reload()
         {
             table.ajax.reload();
+        }
+
+        function deleteUser(id)
+        {
+            Swal.fire({
+                title: "Konfirmasi!",
+                text: "Apakah ingin menghapus User ini?",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes"
+                }).then((results) => {
+                if (results.isConfirmed) {
+                    $.ajax({
+                        type: 'GET',
+                        url: "{{ url('users') }}"+"/"+id+"/"+"destroy",
+                        contentType: false,
+                        processData: false,
+                        beforeSend: () => {
+                            Swal.fire({
+                                icon: "info",
+                                title: "Data Sedang Diproses, Silahkan Tunggu",
+                                showConfirmButton: false,
+                            });
+                        },
+                        success: (result) => {
+                            if (result.success != false) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: result.message_title,
+                                    text: result.message_content,
+                                    showConfirmButton: true,
+                                });
+                                table.ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: result.message_title,
+                                    text: result.message_content,
+                                    showConfirmButton: true,
+                                });
+                            }
+                        },
+                        error: function(request, status, error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: error,
+                                // showConfirmButton: false,
+                            });
+                        }
+                    });
+                }
+            });
         }
     </script>
 @endsection

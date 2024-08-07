@@ -18,17 +18,28 @@ class InspeksiKanan extends Model
         'id',
         'cars_id',
         'fender_depan_kanan',
+        'keterangan_fender_depan_kanan',
         'foto_fender_depan_kanan',
         'kaki_depan_kanan',
+        'keterangan_kaki_depan_kanan',
         'foto_kaki_depan_kanan',
         'kaki_belakang_kanan',
+        'keterangan_kaki_belakang_kanan',
         'foto_kaki_belakang_kanan',
         'pintu_depan_kanan',
+        'keterangan_pintu_depan_kanan',
         'foto_pintu_depan_kanan',
         'pintu_belakang_kanan',
+        'keterangan_pintu_belakang_kanan',
         'foto_pintu_belakang_kanan',
         'fender_belakang_kanan',
+        'keterangan_fender_belakang_kanan',
         'foto_fender_belakang_kanan',
     ];
+
+    public function cars()
+    {
+        return $this->belongsTo(\App\Models\Cars::class, 'cars_id', 'id');
+    }
 
 }

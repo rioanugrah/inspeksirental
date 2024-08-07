@@ -18,11 +18,19 @@ class InspeksiBelakang extends Model
         'id',
         'cars_id',
         'lampu_belakang',
+        'keterangan_lampu_belakang',
         'foto_lampu_belakang',
         'pintu_bagasi_belakang',
+        'keterangan_pintu_bagasi_belakang',
         'foto_pintu_bagasi_belakang',
         'bumper_belakang',
+        'keterangan_bumper_belakang',
         'foto_bumper_belakang',
     ];
+
+    public function cars()
+    {
+        return $this->belongsTo(\App\Models\Cars::class, 'cars_id', 'id');
+    }
 
 }

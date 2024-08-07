@@ -54,4 +54,8 @@ class Cars extends Model
     {
         return $this->belongsTo(\App\Models\InspeksiInterior::class, 'id','cars_id');
     }
+    public function detail_inspeksi_lain()
+    {
+        return $this->belongsTo(\App\Models\InspeksiLain::class, 'id','cars_id');
+    }
 }

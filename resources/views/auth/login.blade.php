@@ -14,11 +14,13 @@
                                 <img src="assets/images/logo-dark.png" alt="" height="24" />
                             </a>
                         </div>
-
-                        <h6 class="h5 mb-0 mt-3">Selamat Datang</h6>
-                        <p class="text-muted mt-1 mb-4">
-                            Login Untuk Memulai Aktifitasmu
-                        </p>
+                        <center>
+                            <h6 class="h5 mb-0 mt-3">Selamat Datang Di <br> <b>AFKAR MAHESA MOBIL</b></h6>
+                            <p class="text-muted mt-1 mb-4">
+                                Login Untuk Memulai Aktifitasmu
+                            </p>
+                        </center>
+                        
 
                         <form action="{{ route('login') }}" method="POST" class="authentication-form">
                             @csrf
@@ -34,7 +36,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Password</label>
-                                <a href="pages-recoverpw.html" class="float-end text-muted text-unline-dashed ms-1">Lupa password?</a>
+                                <a href="{{ route('password.request') }}" class="float-end text-muted text-unline-dashed ms-1">Lupa password?</a>
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i class="icon-dual" data-feather="lock"></i>
@@ -59,8 +61,8 @@
                         <div class="auth-page-sidebar" style="background-image: url({{ asset('backend/assets/images/covers/bg.jpg') }})">
                             <div class="overlay"></div>
                             <div class="auth-user-testimonial">
-                                <p class="fs-24 fw-bold text-white mb-1">INSPEKSI MOBIL</p>
-                                <p class="lead">"Permudah Pekerjaanmu Dengan Satu Aplikasi !"</p>
+                                <p class="fs-24 fw-bold text-white mb-1">AFKAR MAHESA MOBIL</p>
+                                <p class="lead">"Solusi Inspeksi Mobil Bekas Malang !"</p>
                             </div>
                         </div>
                     </div>
@@ -69,7 +71,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-12 text-center">
-                <p class="text-muted">Copyright_&copy;Codein Solution</a></p>
+                <p class="text-muted">Copyright 2024 &copy;Codein Solution</a></p>
             </div>
         </div>
     </div>

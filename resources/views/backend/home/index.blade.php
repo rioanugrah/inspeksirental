@@ -67,42 +67,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none text-muted" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="uil uil-ellipsis-v"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                Today
-                            </a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                7 Days
-                            </a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                15 Days
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                1 Months
-                            </a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                6 Months
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                1 Year
-                            </a>
-                        </div>
-                    </div>
-                    <h5 class="card-title mb-0 header-title">Total Inspeksi Tahun 2024</h5>
-
+                    <h5 class="card-title mb-0 header-title">Total Inspeksi Tahun {{ date('Y') }}</h5>
                     <div id="revenue-chart" class="apex-charts mt-3" dir="ltr"></div>
                 </div>
             </div>

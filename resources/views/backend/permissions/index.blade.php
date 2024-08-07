@@ -14,6 +14,7 @@
 @endsection
 @section('content')
     @include('backend.permissions.modalBuat')
+    @include('backend.permissions.modalEdit')
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
@@ -93,6 +94,38 @@
             $('#modal_buat').modal('show');
         }
 
+        function edit(id) {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('permissions') }}"+"/"+id+"/"+"edit",
+                contentType: false,
+                processData: false,
+                success: (result) => {
+                    if (result.success != false) {
+                        $('#edit_id').val(result.data.id);
+                        $('#edit_name').val(result.data.name);
+                        $('#edit_guard_name').val(result.data.guard_name);
+                        $('#modal_edit').modal('show');
+                    } else {
+                        Swal.fire({
+                            title: 'Gagal',
+                            text: result.error,
+                            icon: 'error',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                },
+                error: function(request, status, error) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: error,
+                        icon: 'error',
+                    })
+                }
+            });
+        }
+
         $('#upload-form').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);
@@ -112,24 +145,6 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
-                        // toastr["success"](result.message_content);
-                        // toastr.options = {
-                        //     "closeButton": false,
-                        //     "debug": false,
-                        //     "newestOnTop": false,
-                        //     "progressBar": true,
-                        //     "positionClass": "toast-top-right",
-                        //     "preventDuplicates": false,
-                        //     "onclick": null,
-                        //     "showDuration": 300,
-                        //     "hideDuration": 1000,
-                        //     "timeOut": 5000,
-                        //     "extendedTimeOut": 1000,
-                        //     "showEasing": "swing",
-                        //     "hideEasing": "linear",
-                        //     "showMethod": "fadeIn",
-                        //     "hideMethod": "fadeOut"
-                        // }
                         this.reset();
                         table.ajax.reload();
                     } else {
@@ -140,45 +155,51 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
-                        // toastr["error"](result.error);
-                        // toastr.options = {
-                        //     "closeButton": false,
-                        //     "debug": false,
-                        //     "newestOnTop": false,
-                        //     "progressBar": true,
-                        //     "positionClass": "toast-top-right",
-                        //     "preventDuplicates": false,
-                        //     "onclick": null,
-                        //     "showDuration": 300,
-                        //     "hideDuration": 1000,
-                        //     "timeOut": 5000,
-                        //     "extendedTimeOut": 1000,
-                        //     "showEasing": "swing",
-                        //     "hideEasing": "linear",
-                        //     "showMethod": "fadeIn",
-                        //     "hideMethod": "fadeOut"
-                        // }
                     }
                 },
                 error: function(request, status, error) {
-                    // toastr["error"](error);
-                    // toastr.options = {
-                    //     "closeButton": false,
-                    //     "debug": false,
-                    //     "newestOnTop": false,
-                    //     "progressBar": true,
-                    //     "positionClass": "toast-top-right",
-                    //     "preventDuplicates": false,
-                    //     "onclick": null,
-                    //     "showDuration": 300,
-                    //     "hideDuration": 1000,
-                    //     "timeOut": 5000,
-                    //     "extendedTimeOut": 1000,
-                    //     "showEasing": "swing",
-                    //     "hideEasing": "linear",
-                    //     "showMethod": "fadeIn",
-                    //     "hideMethod": "fadeOut"
-                    // }
+                    Swal.fire({
+                        title: 'Error',
+                        text: error,
+                        icon: 'error',
+                    })
+                }
+            });
+        });
+
+        $('#edit-form').submit(function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            // $('#image-input-error').text('');
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('permissions.update') }}",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (result) => {
+                    if (result.success != false) {
+                        Swal.fire({
+                            title: result.message_title,
+                            text: result.message_content,
+                            icon: 'success',
+                        })
+                        table.ajax.reload();
+                        $('#modal_edit').modal('hide');
+                    } else {
+                        Swal.fire({
+                            title: 'Gagal',
+                            text: result.error,
+                            icon: 'error',
+                        })
+                    }
+                },
+                error: function(request, status, error) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: error,
+                        icon: 'error',
+                    })
                 }
             });
         });

@@ -1392,7 +1392,7 @@
             if (this.value == 'Rusak') {
                 document.getElementById('view_kap_mesin').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Kap Mesin</label>' +
-                    '<input type="file" name="foto_kap_mesin" class="form-control">' + 
+                    '<input type="file" name="foto_kap_mesin" class="form-control">' +
                     '<textarea id="" name="keterangan_kap_mesin" rows="2" cols="10" class="form-control" placeholder="Keterangan Kap Mesin"></textarea>'+
                     '</div>';
             } else {
@@ -1404,7 +1404,7 @@
             if (this.value == 'Rusak') {
                 document.getElementById('view_rangka_mobil').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Rangka Mobil</label>' +
-                    '<input type="file" name="foto_rangka_mobil" class="form-control">' + 
+                    '<input type="file" name="foto_rangka_mobil" class="form-control">' +
                     '<textarea id="" name="keterangan_rangka_mobil" rows="2" cols="10" class="form-control" placeholder="Keterangan Rangka Mobil"></textarea>'+
                     '</div>';
             } else {
@@ -1416,7 +1416,7 @@
             if (this.value == 'Rusak') {
                 document.getElementById('view_aki').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Aki Mobil</label>' +
-                    '<input type="file" name="foto_aki" class="form-control">' + 
+                    '<input type="file" name="foto_aki" class="form-control">' +
                     '<textarea id="" name="keterangan_aki" rows="2" cols="10" class="form-control" placeholder="Keterangan Aki Mobil"></textarea>'+
                     '</div>';
             } else {

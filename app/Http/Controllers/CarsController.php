@@ -306,11 +306,11 @@ class CarsController extends Controller
         //             DB::raw('(
         //                         (
         //                             COUNT(CASE kaca_depan WHEN "Rusak" THEN 1 ELSE NULL END) +
-        //                             COUNT(CASE kap_mesin WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE rangka_mobil WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE aki WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE radiator WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE kondisi_mesin WHEN "Rusak" THEN 1 ELSE NULL END) + 
+        //                             COUNT(CASE kap_mesin WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE rangka_mobil WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE aki WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE radiator WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE kondisi_mesin WHEN "Rusak" THEN 1 ELSE NULL END) +
         //                             COUNT(CASE bumper_lampu WHEN "Rusak" THEN 1 ELSE NULL END)
         //                         )/7
         //                     )*100
@@ -318,11 +318,11 @@ class CarsController extends Controller
         //             DB::raw('(
         //                         (
         //                             COUNT(CASE kaca_depan WHEN "Baik" THEN 1 ELSE NULL END) +
-        //                             COUNT(CASE kap_mesin WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE rangka_mobil WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE aki WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE radiator WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE kondisi_mesin WHEN "Baik" THEN 1 ELSE NULL END) + 
+        //                             COUNT(CASE kap_mesin WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE rangka_mobil WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE aki WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE radiator WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE kondisi_mesin WHEN "Baik" THEN 1 ELSE NULL END) +
         //                             COUNT(CASE bumper_lampu WHEN "Baik" THEN 1 ELSE NULL END)
         //                         )/7
         //                     )*100
@@ -342,10 +342,10 @@ class CarsController extends Controller
         //             DB::raw('(
         //                         (
         //                             COUNT(CASE fender_depan_kiri WHEN "Rusak" THEN 1 ELSE NULL END) +
-        //                             COUNT(CASE kaki_depan_kiri WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE kaki_belakang_kiri WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE pintu_depan_kiri WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE pintu_belakang_kiri WHEN "Rusak" THEN 1 ELSE NULL END) + 
+        //                             COUNT(CASE kaki_depan_kiri WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE kaki_belakang_kiri WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE pintu_depan_kiri WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE pintu_belakang_kiri WHEN "Rusak" THEN 1 ELSE NULL END) +
         //                             COUNT(CASE fender_belakang_kiri WHEN "Rusak" THEN 1 ELSE NULL END)
         //                         )/6
         //                     )*100
@@ -353,10 +353,10 @@ class CarsController extends Controller
         //             DB::raw('(
         //                         (
         //                             COUNT(CASE fender_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
-        //                             COUNT(CASE kaki_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE kaki_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE pintu_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE pintu_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END) + 
+        //                             COUNT(CASE kaki_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE kaki_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE pintu_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE pintu_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
         //                             COUNT(CASE fender_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END)
         //                         )/6
         //                     )*100
@@ -376,10 +376,10 @@ class CarsController extends Controller
         //             DB::raw('(
         //                         (
         //                             COUNT(CASE fender_depan_kanan WHEN "Rusak" THEN 1 ELSE NULL END) +
-        //                             COUNT(CASE kaki_depan_kanan WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE kaki_belakang_kanan WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE pintu_depan_kanan WHEN "Rusak" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE pintu_belakang_kanan WHEN "Rusak" THEN 1 ELSE NULL END) + 
+        //                             COUNT(CASE kaki_depan_kanan WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE kaki_belakang_kanan WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE pintu_depan_kanan WHEN "Rusak" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE pintu_belakang_kanan WHEN "Rusak" THEN 1 ELSE NULL END) +
         //                             COUNT(CASE fender_belakang_kanan WHEN "Rusak" THEN 1 ELSE NULL END)
         //                         )/6
         //                     )*100
@@ -387,10 +387,10 @@ class CarsController extends Controller
         //             DB::raw('(
         //                         (
         //                             COUNT(CASE fender_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
-        //                             COUNT(CASE kaki_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE kaki_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE pintu_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) + 
-        //                             COUNT(CASE pintu_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END) + 
+        //                             COUNT(CASE kaki_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE kaki_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE pintu_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
+        //                             COUNT(CASE pintu_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
         //                             COUNT(CASE fender_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END)
         //                         )/6
         //                     )*100
@@ -410,7 +410,7 @@ class CarsController extends Controller
         //             DB::raw('(
         //                         (
         //                             COUNT(CASE lampu_belakang WHEN "Rusak" THEN 1 ELSE NULL END) +
-        //                             COUNT(CASE pintu_bagasi_belakang WHEN "Rusak" THEN 1 ELSE NULL END) + 
+        //                             COUNT(CASE pintu_bagasi_belakang WHEN "Rusak" THEN 1 ELSE NULL END) +
         //                             COUNT(CASE bumper_belakang WHEN "Rusak" THEN 1 ELSE NULL END)
         //                         )/3
         //                     )*100
@@ -418,7 +418,7 @@ class CarsController extends Controller
         //             DB::raw('(
         //                         (
         //                             COUNT(CASE lampu_belakang WHEN "Baik" THEN 1 ELSE NULL END) +
-        //                             COUNT(CASE pintu_bagasi_belakang WHEN "Baik" THEN 1 ELSE NULL END) + 
+        //                             COUNT(CASE pintu_bagasi_belakang WHEN "Baik" THEN 1 ELSE NULL END) +
         //                             COUNT(CASE bumper_belakang WHEN "Baik" THEN 1 ELSE NULL END)
         //                         )/3
         //                     )*100
@@ -658,12 +658,12 @@ class CarsController extends Controller
 
             if ($save_inspeksi_kiri) {
                 if (
-                    !empty($check_cars->detail_inspeksi_depan) && 
+                    !empty($check_cars->detail_inspeksi_depan) &&
                     !empty($check_cars->detail_inspeksi_kiri) &&
                     !empty($check_cars->detail_inspeksi_belakang) &&
                     !empty($check_cars->detail_inspeksi_kanan) &&
                     !empty($check_cars->detail_inspeksi_interior) &&
-                    empty($check_cars->detail_inspeksi_lain) || !empty($check_cars->detail_inspeksi_lain)
+                    !empty($check_cars->detail_inspeksi_lain)
                 ) {
                     $check_cars->update([
                         'status' => 'Selesai'
@@ -785,12 +785,12 @@ class CarsController extends Controller
 
             if ($save_inspeksi_kanan) {
                 if (
-                    !empty($check_cars->detail_inspeksi_depan) && 
+                    !empty($check_cars->detail_inspeksi_depan) &&
                     !empty($check_cars->detail_inspeksi_kiri) &&
                     !empty($check_cars->detail_inspeksi_belakang) &&
                     !empty($check_cars->detail_inspeksi_kanan) &&
                     !empty($check_cars->detail_inspeksi_interior) &&
-                    empty($check_cars->detail_inspeksi_lain) || !empty($check_cars->detail_inspeksi_lain)
+                    !empty($check_cars->detail_inspeksi_lain)
                 ) {
                     $check_cars->update([
                         'status' => 'Selesai'
@@ -879,12 +879,12 @@ class CarsController extends Controller
 
             if ($save_inspeksi_belakang) {
                 if (
-                    !empty($check_cars->detail_inspeksi_depan) && 
+                    !empty($check_cars->detail_inspeksi_depan) &&
                     !empty($check_cars->detail_inspeksi_kiri) &&
                     !empty($check_cars->detail_inspeksi_belakang) &&
                     !empty($check_cars->detail_inspeksi_kanan) &&
                     !empty($check_cars->detail_inspeksi_interior) &&
-                    empty($check_cars->detail_inspeksi_lain) || !empty($check_cars->detail_inspeksi_lain)
+                    !empty($check_cars->detail_inspeksi_lain)
                 ) {
                     $check_cars->update([
                         'status' => 'Selesai'
@@ -1050,12 +1050,12 @@ class CarsController extends Controller
                 //     'status' => 'Selesai'
                 // ]);
                 if (
-                    !empty($check_cars->detail_inspeksi_depan) && 
+                    !empty($check_cars->detail_inspeksi_depan) &&
                     !empty($check_cars->detail_inspeksi_kiri) &&
                     !empty($check_cars->detail_inspeksi_belakang) &&
                     !empty($check_cars->detail_inspeksi_kanan) &&
                     !empty($check_cars->detail_inspeksi_interior) &&
-                    empty($check_cars->detail_inspeksi_lain) || !empty($check_cars->detail_inspeksi_lain)
+                    !empty($check_cars->detail_inspeksi_lain)
                 ) {
                     $check_cars->update([
                         'status' => 'Selesai'
@@ -1120,12 +1120,12 @@ class CarsController extends Controller
 
         if ($save_inspeksi_lain) {
             if (
-                !empty($check_cars->detail_inspeksi_depan) && 
+                !empty($check_cars->detail_inspeksi_depan) &&
                 !empty($check_cars->detail_inspeksi_kiri) &&
                 !empty($check_cars->detail_inspeksi_belakang) &&
                 !empty($check_cars->detail_inspeksi_kanan) &&
                 !empty($check_cars->detail_inspeksi_interior) &&
-                empty($check_cars->detail_inspeksi_lain) || !empty($check_cars->detail_inspeksi_lain)
+                !empty($check_cars->detail_inspeksi_lain)
             ) {
                 $check_cars->update([
                     'status' => 'Selesai'
@@ -1187,7 +1187,7 @@ class CarsController extends Controller
         // $validator = Validator::make($request->all(), $rules, $messages);
 
         // if ($validator->passes()) {
-            
+
         // }
 
         // return response()->json(
@@ -1265,7 +1265,7 @@ class CarsController extends Controller
         // $validator = Validator::make($request->all(), $rules, $messages);
 
         // if ($validator->passes()) {
-            
+
         // }
 
         // return response()->json(
@@ -1335,7 +1335,7 @@ class CarsController extends Controller
         // $validator = Validator::make($request->all(), $rules, $messages);
 
         // if ($validator->passes()) {
-            
+
         // }
 
         // return response()->json(
@@ -1408,7 +1408,7 @@ class CarsController extends Controller
         // $validator = Validator::make($request->all(), $rules, $messages);
 
         // if ($validator->passes()) {
-            
+
         // }
 
         // return response()->json(
@@ -1490,7 +1490,7 @@ class CarsController extends Controller
         // $validator = Validator::make($request->all(), $rules, $messages);
 
         // if ($validator->passes()) {
-            
+
         // }
 
         // return response()->json(
@@ -1561,7 +1561,7 @@ class CarsController extends Controller
         // $validator = Validator::make($request->all(), $rules, $messages);
 
         // if ($validator->passes()) {
-            
+
         // }
 
         // return response()->json(
@@ -1820,11 +1820,11 @@ class CarsController extends Controller
                 DB::raw('(
                             (
                                 COUNT(CASE kaca_depan WHEN "Baik" THEN 1 ELSE NULL END) +
-                                COUNT(CASE kap_mesin WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE rangka_mobil WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE aki WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE radiator WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE kondisi_mesin WHEN "Baik" THEN 1 ELSE NULL END) + 
+                                COUNT(CASE kap_mesin WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE rangka_mobil WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE aki WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE radiator WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE kondisi_mesin WHEN "Baik" THEN 1 ELSE NULL END) +
                                 COUNT(CASE bumper_lampu WHEN "Baik" THEN 1 ELSE NULL END)
                             )/7
                         )*100
@@ -1837,10 +1837,10 @@ class CarsController extends Controller
                 DB::raw('(
                             (
                                 COUNT(CASE fender_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
-                                COUNT(CASE kaki_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE kaki_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE pintu_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE pintu_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END) + 
+                                COUNT(CASE kaki_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE kaki_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE pintu_depan_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE pintu_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END) +
                                 COUNT(CASE fender_belakang_kiri WHEN "Baik" THEN 1 ELSE NULL END)
                             )/6
                         )*100
@@ -1853,10 +1853,10 @@ class CarsController extends Controller
                 DB::raw('(
                             (
                                 COUNT(CASE fender_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
-                                COUNT(CASE kaki_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE kaki_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE pintu_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) + 
-                                COUNT(CASE pintu_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END) + 
+                                COUNT(CASE kaki_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE kaki_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE pintu_depan_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
+                                COUNT(CASE pintu_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END) +
                                 COUNT(CASE fender_belakang_kanan WHEN "Baik" THEN 1 ELSE NULL END)
                             )/6
                         )*100
@@ -1869,7 +1869,7 @@ class CarsController extends Controller
                 DB::raw('(
                             (
                                 COUNT(CASE lampu_belakang WHEN "Baik" THEN 1 ELSE NULL END) +
-                                COUNT(CASE pintu_bagasi_belakang WHEN "Baik" THEN 1 ELSE NULL END) + 
+                                COUNT(CASE pintu_bagasi_belakang WHEN "Baik" THEN 1 ELSE NULL END) +
                                 COUNT(CASE bumper_belakang WHEN "Baik" THEN 1 ELSE NULL END)
                             )/3
                         )*100

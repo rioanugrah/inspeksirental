@@ -88,6 +88,21 @@ Route::domain(parse_url(env('APP_URL'), PHP_URL_HOST))->group(function () {
             Route::post('{id}/inspeksi/{inspeksi_lain}/inspeksi_lain/update', [App\Http\Controllers\CarsController::class, 'update_inspeksi_lain'])->name('cars.update_inspeksi_lain')->middleware('verified');
 
         });
+        Route::prefix('inspeksi')->group(function(){
+            Route::prefix('interior')->group(function(){
+                Route::post('{id}/speedometer/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_speedometer'])->name('cars.upload_file_inspeksi_interior_speedometer')->middleware('verified');
+                Route::post('{id}/setir/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_setir'])->name('cars.upload_file_inspeksi_interior_setir')->middleware('verified');
+                Route::post('{id}/dasboard/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_dasboard'])->name('cars.upload_file_inspeksi_interior_dasboard')->middleware('verified');
+                Route::post('{id}/plafon/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_plafon'])->name('cars.upload_file_inspeksi_interior_plafon')->middleware('verified');
+                Route::post('{id}/ac/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_ac'])->name('cars.upload_file_inspeksi_interior_ac')->middleware('verified');
+                Route::post('{id}/audio/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_audio'])->name('cars.upload_file_inspeksi_interior_audio')->middleware('verified');
+                Route::post('{id}/jok/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_jok'])->name('cars.upload_file_inspeksi_interior_jok')->middleware('verified');
+                Route::post('{id}/electric_spion/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_electric_spion'])->name('cars.upload_file_inspeksi_interior_electric_spion')->middleware('verified');
+                Route::post('{id}/power_window/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_power_window'])->name('cars.upload_file_inspeksi_interior_power_window')->middleware('verified');
+                Route::post('{id}/lain_lain/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_lain_lain'])->name('cars.upload_file_inspeksi_interior_lain_lain')->middleware('verified');
+            });
+        });
+
     });
     Route::get('testinghome', function(){
     //    return ini_set('post_max_size', '50M');

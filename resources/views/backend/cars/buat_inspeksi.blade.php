@@ -1854,9 +1854,9 @@
                         }, 2000);
                     } else {
                         Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
+                            icon: 'error',
+                            title: 'Gagal',
+                            text: result.error,
                             // showConfirmButton: false,
                         });
                     }

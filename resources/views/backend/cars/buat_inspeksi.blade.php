@@ -1149,7 +1149,7 @@
                                         <div class="mb-3">
                                             <label>Speedometer</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_speedometer" class="form-control">
+                                                <input type="file" name="foto_speedometer" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_speedometer" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Spidometer"></textarea>
                                             </div>
@@ -1159,7 +1159,7 @@
                                         <div class="mb-3">
                                             <label>Setir</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_setir" class="form-control">
+                                                <input type="file" name="foto_setir" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_setir" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Setir"></textarea>
                                             </div>
@@ -1169,7 +1169,7 @@
                                         <div class="mb-3">
                                             <label>Dashboard</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_dasboard" class="form-control">
+                                                <input type="file" name="foto_dasboard" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_dasboard" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Dashboard"></textarea>
                                             </div>
@@ -1179,7 +1179,7 @@
                                         <div class="mb-3">
                                             <label>Plafon</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_plafon" class="form-control">
+                                                <input type="file" name="foto_plafon" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_plafon" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Plafon"></textarea>
                                             </div>
@@ -1189,7 +1189,7 @@
                                         <div class="mb-3">
                                             <label>AC</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_ac" class="form-control">
+                                                <input type="file" name="foto_ac" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_ac" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan AC"></textarea>
                                             </div>
@@ -1199,7 +1199,7 @@
                                         <div class="mb-3">
                                             <label>Audio</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_audio" class="form-control">
+                                                <input type="file" name="foto_audio" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_audio" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Audio"></textarea>
                                             </div>
@@ -1209,7 +1209,7 @@
                                         <div class="mb-3">
                                             <label>Jok</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_jok" class="form-control">
+                                                <input type="file" name="foto_jok" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_jok" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Jok"></textarea>
                                             </div>
@@ -1219,7 +1219,7 @@
                                         <div class="mb-3">
                                             <label>Electric Spion</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_electric_spion" class="form-control">
+                                                <input type="file" name="foto_electric_spion" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_electric_spion" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Electric Spion"></textarea>
                                             </div>
@@ -1229,7 +1229,7 @@
                                         <div class="mb-3">
                                             <label>Power Window</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_power_window" class="form-control">
+                                                <input type="file" name="foto_power_window" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_power_window" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Power Window"></textarea>
                                             </div>
@@ -1239,7 +1239,7 @@
                                         <div class="mb-3">
                                             <label>Lain - Lain</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_lain_lain" class="form-control">
+                                                <input type="file" name="foto_lain_lain" accept="image/*" class="form-control">
                                                 <textarea id="" name="keterangan_lain_lain" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Lain - Lain"></textarea>
                                             </div>
@@ -1855,7 +1855,8 @@
                     } else {
                         Swal.fire({
                             icon: result.message_type,
-                            text: result.error,
+                            title: result.message_title,
+                            text: result.message_content,
                             // showConfirmButton: false,
                         });
                     }
@@ -1863,7 +1864,7 @@
                 error: function(request, status, error) {
                     Swal.fire({
                         icon: 'error',
-                        title: error,
+                        title: 'Error',
                         // showConfirmButton: false,
                     });
                 }

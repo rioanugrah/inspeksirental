@@ -976,7 +976,7 @@ class CarsController extends Controller
             if ($request->file('foto_speedometer')) {
                 $image_interior_foto_speedometer = $request->file('foto_speedometer');
                 $img_interior_foto_speedometer = \Image::make($image_interior_foto_speedometer->path());
-                $img_interior_foto_speedometer = $img_interior_foto_speedometer->encode('webp',75);
+                $img_interior_foto_speedometer = $img_interior_foto_speedometer->encode('webp',65);
                 $inputBagianInterior['foto_speedometer'] = 'SpeedometerInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_speedometer->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_speedometer']);
             }

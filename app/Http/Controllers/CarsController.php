@@ -973,46 +973,46 @@ class CarsController extends Controller
             $inputBagianInterior['keterangan_power_window'] = $request->keterangan_power_window;
             $inputBagianInterior['keterangan_lain_lain'] = $request->keterangan_lain_lain;
 
-            if ($request->foto_speedometer) {
-                $imageSpeedometer = 'SpeedometerInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_speedometer'] = $imageSpeedometer;
-            }
-            if ($request->foto_setir) {
-                $imageSetir = 'SetirInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_setir'] = $imageSetir;
-            }
-            if ($request->foto_dasboard) {
-                $imageDasboard = 'DasboardInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_dasboard'] = $imageDasboard;
-            }
-            if ($request->foto_plafon) {
-                $imagePlafon = 'PlafonInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_plafon'] = $imagePlafon;
-            }
-            if ($request->foto_ac) {
-                $imageAc = 'ACInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_ac'] = $imageAc;
-            }
-            if ($request->foto_audio) {
-                $imageAudio = 'AudioInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_audio'] = $imageAudio;
-            }
-            if ($request->foto_jok) {
-                $imageJok = 'JokInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_jok'] = $imageJok;
-            }
-            if ($request->foto_electric_spion) {
-                $imageElectricSpion = 'ElectricSpionInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_electric_spion'] = $imageElectricSpion;
-            }
-            if ($request->foto_power_window) {
-                $imagePowerWindow = 'PowerWindowInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_power_window'] = $imagePowerWindow;
-            }
-            if ($request->foto_lain_lain) {
-                $imageLainLain = 'LainLainInterior'.$plat_mobil.'.webp';
-                $inputBagianInterior['foto_lain_lain'] = $imageLainLain;
-            }
+            $imageSpeedometer = 'SpeedometerInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_speedometer'] = $imageSpeedometer;
+            // if ($request->foto_speedometer) {
+            // }
+            $imageSetir = 'SetirInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_setir'] = $imageSetir;
+            // if ($request->foto_setir) {
+            // }
+            $imageDasboard = 'DasboardInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_dasboard'] = $imageDasboard;
+            // if ($request->foto_dasboard) {
+            // }
+            $imagePlafon = 'PlafonInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_plafon'] = $imagePlafon;
+            // if ($request->foto_plafon) {
+            // }
+            $imageAc = 'ACInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_ac'] = $imageAc;
+            // if ($request->foto_ac) {
+            // }
+            $imageAudio = 'AudioInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_audio'] = $imageAudio;
+            // if ($request->foto_audio) {
+            // }
+            $imageJok = 'JokInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_jok'] = $imageJok;
+            // if ($request->foto_jok) {
+            // }
+            $imageElectricSpion = 'ElectricSpionInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_electric_spion'] = $imageElectricSpion;
+            // if ($request->foto_electric_spion) {
+            // }
+            $imagePowerWindow = 'PowerWindowInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_power_window'] = $imagePowerWindow;
+            // if ($request->foto_power_window) {
+            // }
+            $imageLainLain = 'LainLainInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_lain_lain'] = $imageLainLain;
+            // if ($request->foto_lain_lain) {
+            // }
             // if ($request->file('foto_speedometer')) {
             //     $image_interior_foto_speedometer = $request->file('foto_speedometer');
             //     $img_interior_foto_speedometer = \Image::make($image_interior_foto_speedometer->path());

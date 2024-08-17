@@ -914,6 +914,7 @@ class CarsController extends Controller
 
     public function simpan_inspeksi_interior(Request $request,$id)
     {
+        ini_set('post_max_size', '1024M');
         $rules = [
             'foto_speedometer'  => 'required',
             'keterangan_speedometer'  => 'required',
@@ -1085,6 +1086,8 @@ class CarsController extends Controller
 
     public function simpan_inspeksi_lain(Request $request,$id)
     {
+        ini_set('post_max_size', '1024M');
+
         $check_cars = $this->cars->find($id);
         if (empty($check_cars)) {
             return response()->json([

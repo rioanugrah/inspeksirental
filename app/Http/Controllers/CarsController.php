@@ -914,7 +914,7 @@ class CarsController extends Controller
 
     public function simpan_inspeksi_interior(Request $request,$id)
     {
-        ini_set('post_max_size', '1024M');
+        // ini_set('post_max_size', '1024M');
         $rules = [
             'foto_speedometer'  => 'required',
             'keterangan_speedometer'  => 'required',
@@ -983,63 +983,63 @@ class CarsController extends Controller
             if ($request->file('foto_setir')) {
                 $image_interior_foto_setir = $request->file('foto_setir');
                 $img_interior_foto_setir = \Image::make($image_interior_foto_setir->path());
-                $img_interior_foto_setir = $img_interior_foto_setir->encode('webp',75);
+                $img_interior_foto_setir = $img_interior_foto_setir->encode('webp',65);
                 $inputBagianInterior['foto_setir'] = 'SetirInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_setir->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_setir']);
             }
             if ($request->file('foto_dasboard')) {
                 $image_interior_foto_dasboard = $request->file('foto_dasboard');
                 $img_interior_foto_dasboard = \Image::make($image_interior_foto_dasboard->path());
-                $img_interior_foto_dasboard = $img_interior_foto_dasboard->encode('webp',75);
+                $img_interior_foto_dasboard = $img_interior_foto_dasboard->encode('webp',65);
                 $inputBagianInterior['foto_dasboard'] = 'DasboardInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_dasboard->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_dasboard']);
             }
             if ($request->file('foto_plafon')) {
                 $image_interior_foto_plafon = $request->file('foto_plafon');
                 $img_interior_foto_plafon = \Image::make($image_interior_foto_plafon->path());
-                $img_interior_foto_plafon = $img_interior_foto_plafon->encode('webp',75);
+                $img_interior_foto_plafon = $img_interior_foto_plafon->encode('webp',65);
                 $inputBagianInterior['foto_plafon'] = 'PlafonInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_plafon->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_plafon']);
             }
             if ($request->file('foto_ac')) {
                 $image_interior_foto_ac = $request->file('foto_ac');
                 $img_interior_foto_ac = \Image::make($image_interior_foto_ac->path());
-                $img_interior_foto_ac = $img_interior_foto_ac->encode('webp',75);
+                $img_interior_foto_ac = $img_interior_foto_ac->encode('webp',65);
                 $inputBagianInterior['foto_ac'] = 'ACInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_ac->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_ac']);
             }
             if ($request->file('foto_audio')) {
                 $image_interior_foto_audio = $request->file('foto_audio');
                 $img_interior_foto_audio = \Image::make($image_interior_foto_audio->path());
-                $img_interior_foto_audio = $img_interior_foto_audio->encode('webp',75);
+                $img_interior_foto_audio = $img_interior_foto_audio->encode('webp',65);
                 $inputBagianInterior['foto_audio'] = 'AudioInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_audio->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_audio']);
             }
             if ($request->file('foto_jok')) {
                 $image_interior_foto_jok = $request->file('foto_jok');
                 $img_interior_foto_jok = \Image::make($image_interior_foto_jok->path());
-                $img_interior_foto_jok = $img_interior_foto_jok->encode('webp',75);
+                $img_interior_foto_jok = $img_interior_foto_jok->encode('webp',65);
                 $inputBagianInterior['foto_jok'] = 'JokInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_jok->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_jok']);
             }
             if ($request->file('foto_electric_spion')) {
                 $image_interior_foto_electric_spion = $request->file('foto_electric_spion');
                 $img_interior_foto_electric_spion = \Image::make($image_interior_foto_electric_spion->path());
-                $img_interior_foto_electric_spion = $img_interior_foto_electric_spion->encode('webp',75);
+                $img_interior_foto_electric_spion = $img_interior_foto_electric_spion->encode('webp',65);
                 $inputBagianInterior['foto_electric_spion'] = 'ElectricSpionInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_electric_spion->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_electric_spion']);
             }
             if ($request->file('foto_power_window')) {
                 $image_interior_foto_power_window = $request->file('foto_power_window');
                 $img_interior_foto_power_window = \Image::make($image_interior_foto_power_window->path());
-                $img_interior_foto_power_window = $img_interior_foto_power_window->encode('webp',75);
+                $img_interior_foto_power_window = $img_interior_foto_power_window->encode('webp',65);
                 $inputBagianInterior['foto_power_window'] = 'PowerWindowInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_power_window->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_power_window']);
             }
             if ($request->file('foto_lain_lain')) {
                 $image_interior_foto_lain_lain = $request->file('foto_lain_lain');
                 $img_interior_foto_lain_lain = \Image::make($image_interior_foto_lain_lain->path());
-                $img_interior_foto_lain_lain = $img_interior_foto_lain_lain->encode('webp',75);
+                $img_interior_foto_lain_lain = $img_interior_foto_lain_lain->encode('webp',65);
                 $inputBagianInterior['foto_lain_lain'] = 'LainLainInterior'.$plat_mobil.'_'.time().'.webp';
                 $img_interior_foto_lain_lain->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$inputBagianInterior['foto_lain_lain']);
             }
@@ -1086,7 +1086,7 @@ class CarsController extends Controller
 
     public function simpan_inspeksi_lain(Request $request,$id)
     {
-        ini_set('post_max_size', '1024M');
+        // ini_set('post_max_size', '1024M');
 
         $check_cars = $this->cars->find($id);
         if (empty($check_cars)) {

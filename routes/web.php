@@ -90,7 +90,8 @@ Route::domain(parse_url(env('APP_URL'), PHP_URL_HOST))->group(function () {
         });
     });
     Route::get('testinghome', function(){
-       return ini_get('post_max_size');
+    //    return ini_get('post_max_size');
+       return phpinfo(); exit;
     });
 
 });

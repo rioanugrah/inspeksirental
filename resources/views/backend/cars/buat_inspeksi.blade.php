@@ -1855,8 +1855,7 @@
                     } else {
                         Swal.fire({
                             icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
+                            text: result.error,
                             // showConfirmButton: false,
                         });
                     }

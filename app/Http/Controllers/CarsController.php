@@ -1367,16 +1367,32 @@ class CarsController extends Controller
         $inputBagianLain['id'] = Str::uuid()->toString();
         $inputBagianLain['cars_id'] = $id;
         $inputBody = array();
-        foreach ($request->foto_lain_lain as $key => $value) {
-            $image_foto_lain_lain = $value;
+        // dd($request->all());
+        // foreach ($request['foto_lain_lain'] as $key => $value) {
+        //     // dd($value);
+        //     // $image_foto_lain_lain = $value;
+        //     // $img_foto_lain_lain = \Image::make($image_foto_lain_lain->path());
+        //     // $img_foto_lain_lain = $img_foto_lain_lain->encode('webp', 75);
+        //     $input_lain['foto_lain_lain'] = ['LainLain_'.$plat_mobil.'_'.time().'.webp'];
+        //     // $img_foto_lain_lain->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/').$input_lain['foto_lain_lain']);
+        //     $input_lain['keterangan_lain_lain'] = $request->keterangan_lain_lain[$key];
+        //     $inputBody[$key] = $input_lain;
+        //     // $inputBody[$key] = $key;
+        // }
+
+        foreach ($request['group-a'] as $key => $value) {
+            // $inputBody[$key] = $value;
+            $image_foto_lain_lain = $value['foto_lain_lain'];
             $img_foto_lain_lain = \Image::make($image_foto_lain_lain->path());
             $img_foto_lain_lain = $img_foto_lain_lain->encode('webp', 75);
-            $input_lain['foto_lain_lain'] = 'LainLain_'.$plat_mobil.'_'.time().'.webp';
+            $input_lain['foto_lain_lain'] = 'LainLain_'.$plat_mobil.'_'.rand(100,999).'.webp';
             $img_foto_lain_lain->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/').$input_lain['foto_lain_lain']);
-            $input_lain['keterangan_lain_lain'] = $request->keterangan_lain_lain[$key];
+            $input_lain['keterangan_lain_lain'] = $value['keterangan_lain_lain'];
             $inputBody[$key] = $input_lain;
         }
+
         // $inputBagianLain['body'] = json_encode($input_lain);
+        // dd($inputBody);
         $inputBagianLain['body'] = json_encode($inputBody);
 
         $save_inspeksi_lain = $this->inspeksi_lain->create($inputBagianLain);
@@ -2078,13 +2094,23 @@ class CarsController extends Controller
             // $input_lain['foto_lain_lain'] = $value->foto_lain_lain;
             // $input_lain['keterangan_lain_lain'] = $request->keterangan_lain_lain[$key];
             // $inputBody[$key] = $input_lain;
-            if ($value) {
-                $image_foto_lain_lain = $value;
+            // $cari_asset = public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/'.)
+            // dd($key);
+
+            if ($request['foto_lain_lain_'.$key]) {
+                // if (File::exists(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/').$value)) {
+                //     File::delete(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/').$value);
+                // }
+                $image_foto_lain_lain = $request->file('foto_lain_lain_'.$key);
                 $img_foto_lain_lain = \Image::make($image_foto_lain_lain->path());
                 $img_foto_lain_lain = $img_foto_lain_lain->encode('webp', 75);
-                $input_lain['foto_lain_lain'] = 'LainLain_'.$plat_mobil.'_'.time().'.webp';
+                $input_lain['foto_lain_lain'] = 'LainLain_'.$plat_mobil.'_'.rand(1000,9999).'.webp';
                 $img_foto_lain_lain->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/').$input_lain['foto_lain_lain']);
-                $input_lain['keterangan_lain_lain'] = $request->keterangan_lain_lain[$key];
+                $input_lain['keterangan_lain_lain'] = $request['keterangan_lain_lain_'.$key];
+                $inputBody[$key] = $input_lain;
+            }else{
+                $input_lain['foto_lain_lain'] = $value->foto_lain_lain;
+                $input_lain['keterangan_lain_lain'] = $request['keterangan_lain_lain_'.$key];
                 $inputBody[$key] = $input_lain;
             }
         }

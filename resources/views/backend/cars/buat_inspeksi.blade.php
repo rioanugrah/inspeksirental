@@ -234,7 +234,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" onclick="window.location.href='{{ route('cars.edit_inspeksi_depan',['id' => $car->id, 'inspeksi_depan' => $car->detail_inspeksi_depan->id]) }}'" class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
+                            <button type="button"
+                                onclick="window.location.href='{{ route('cars.edit_inspeksi_depan', ['id' => $car->id, 'inspeksi_depan' => $car->detail_inspeksi_depan->id]) }}'"
+                                class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
                         </div>
                     @else
                         <form method="post" id="upload-simpan-bagian-depan" enctype="multipart/form-data">
@@ -379,12 +381,16 @@
                         Inspeksi Bagian Kiri
                         <i class="uil uil-angle-down float-end accordion-arrow"></i>
                     </h5>
-                    {!! $car->detail_inspeksi_kiri ? '<i class="uil-check text-success"></i> <span class="badge bg-success">Verified</span>' : null !!}
+                    {!! $car->detail_inspeksi_kiri
+                        ? '<i class="uil-check text-success"></i> <span class="badge bg-success">Verified</span>'
+                        : null !!}
                     {{-- <small>Baik : {!! number_format($total_inspeksi_kiri['total_baik'], 0, '.', ',') . '%' !!}</small>
                     <small>Tidak Baik : {!! number_format($total_inspeksi_kiri['total_rusak'], 0, '.', ',') . '%' !!}</small> --}}
                 </div>
             </a>
-            <div id="collapseTwo" class="collapse {{ !empty($car->detail_inspeksi_depan) && empty($car->detail_inspeksi_kiri) ? 'show' : null }}" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div id="collapseTwo"
+                class="collapse {{ !empty($car->detail_inspeksi_depan) && empty($car->detail_inspeksi_kiri) ? 'show' : null }}"
+                aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="card-body">
                     @if ($car->detail_inspeksi_kiri)
                         <div class="col-md-12">
@@ -498,7 +504,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" onclick="window.location.href='{{ route('cars.edit_inspeksi_kiri',['id' => $car->id, 'inspeksi_kiri' => $car->detail_inspeksi_kiri->id]) }}'" class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
+                            <button type="button"
+                                onclick="window.location.href='{{ route('cars.edit_inspeksi_kiri', ['id' => $car->id, 'inspeksi_kiri' => $car->detail_inspeksi_kiri->id]) }}'"
+                                class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
                         </div>
                     @else
                         <form method="post" id="upload-simpan-bagian-kiri" enctype="multipart/form-data">
@@ -641,7 +649,9 @@
                 </div>
             </a>
 
-            <div id="collapseThree" class="collapse {{ !empty($car->detail_inspeksi_depan) && !empty($car->detail_inspeksi_kiri) && empty($car->detail_inspeksi_belakang) ? 'show' : null }}" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div id="collapseThree"
+                class="collapse {{ !empty($car->detail_inspeksi_depan) && !empty($car->detail_inspeksi_kiri) && empty($car->detail_inspeksi_belakang) ? 'show' : null }}"
+                aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="card-body">
                     @if ($car->detail_inspeksi_belakang)
                         <div class="col-md-12">
@@ -701,7 +711,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" onclick="window.location.href='{{ route('cars.edit_inspeksi_belakang',['id' => $car->id, 'inspeksi_belakang' => $car->detail_inspeksi_belakang->id]) }}'" class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
+                            <button type="button"
+                                onclick="window.location.href='{{ route('cars.edit_inspeksi_belakang', ['id' => $car->id, 'inspeksi_belakang' => $car->detail_inspeksi_belakang->id]) }}'"
+                                class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
                         </div>
                     @else
                         <form method="post" id="upload-simpan-bagian-belakang" enctype="multipart/form-data">
@@ -780,13 +792,17 @@
                         Inspeksi Bagian Kanan
                         <i class="uil uil-angle-down float-end accordion-arrow"></i>
                     </h5>
-                    {!! $car->detail_inspeksi_kanan ? '<i class="uil-check text-success"></i> <span class="badge bg-success">Verified</span>' : null !!}
+                    {!! $car->detail_inspeksi_kanan
+                        ? '<i class="uil-check text-success"></i> <span class="badge bg-success">Verified</span>'
+                        : null !!}
                     {{-- <small>Baik : {!! number_format($total_inspeksi_kanan['total_baik'], 0, '.', ',') . '%' !!}</small>
                     <small>Tidak Baik : {!! number_format($total_inspeksi_kanan['total_rusak'], 0, '.', ',') . '%' !!}</small> --}}
                 </div>
             </a>
 
-            <div id="collapseFour" class="collapse {{ !empty($car->detail_inspeksi_depan) && !empty($car->detail_inspeksi_kiri) && !empty($car->detail_inspeksi_belakang) && empty($car->detail_inspeksi_kanan) ? 'show' : null }}" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+            <div id="collapseFour"
+                class="collapse {{ !empty($car->detail_inspeksi_depan) && !empty($car->detail_inspeksi_kiri) && !empty($car->detail_inspeksi_belakang) && empty($car->detail_inspeksi_kanan) ? 'show' : null }}"
+                aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                 <div class="card-body">
                     @if ($car->detail_inspeksi_kanan)
                         <div class="col-md-12">
@@ -900,7 +916,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" onclick="window.location.href='{{ route('cars.edit_inspeksi_kanan',['id' => $car->id, 'inspeksi_kanan' => $car->detail_inspeksi_kanan->id]) }}'" class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
+                            <button type="button"
+                                onclick="window.location.href='{{ route('cars.edit_inspeksi_kanan', ['id' => $car->id, 'inspeksi_kanan' => $car->detail_inspeksi_kanan->id]) }}'"
+                                class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
                         </div>
                     @else
                         <form method="post" id="upload-simpan-bagian-kanan" enctype="multipart/form-data">
@@ -1042,7 +1060,9 @@
                 </div>
             </a>
 
-            <div id="collapseFive" class="collapse {{ !empty($car->detail_inspeksi_depan) && !empty($car->detail_inspeksi_kiri) && !empty($car->detail_inspeksi_belakang) && !empty($car->detail_inspeksi_kanan) && empty($car->detail_inspeksi_interior) ? 'show' : null }}" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+            <div id="collapseFive"
+                class="collapse {{ !empty($car->detail_inspeksi_depan) && !empty($car->detail_inspeksi_kiri) && !empty($car->detail_inspeksi_belakang) && !empty($car->detail_inspeksi_kanan) && empty($car->detail_inspeksi_interior) ? 'show' : null }}"
+                aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                 <div class="card-body">
                     @if ($car->detail_inspeksi_interior)
                         <div class="col-md-12">
@@ -1051,7 +1071,7 @@
                                     <div class="mb-3">
                                         <label>Speedometer</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_speedometer) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan Speedometer</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_speedometer !!}</div>
                                     </div>
@@ -1060,7 +1080,7 @@
                                     <div class="mb-3">
                                         <label>Setir</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_setir) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan Setir</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_setir !!}</div>
                                     </div>
@@ -1069,7 +1089,7 @@
                                     <div class="mb-3">
                                         <label>Dasboard</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_dasboard) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan Dasboard</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_dasboard !!}</div>
                                     </div>
@@ -1078,7 +1098,7 @@
                                     <div class="mb-3">
                                         <label>Plafon</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_plafon) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan Plafon</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_plafon !!}</div>
                                     </div>
@@ -1087,7 +1107,7 @@
                                     <div class="mb-3">
                                         <label>AC</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_ac) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan AC</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_ac !!}</div>
                                     </div>
@@ -1096,7 +1116,7 @@
                                     <div class="mb-3">
                                         <label>Audio</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_audio) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan Audio</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_audio !!}</div>
                                     </div>
@@ -1105,7 +1125,7 @@
                                     <div class="mb-3">
                                         <label>Jok</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_jok) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan Jok</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_jok !!}</div>
                                     </div>
@@ -1114,7 +1134,7 @@
                                     <div class="mb-3">
                                         <label>Keterangan Electric Spion</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_electric_spion) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan Electric Spion</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_electric_spion !!}</div>
                                     </div>
@@ -1123,7 +1143,7 @@
                                     <div class="mb-3">
                                         <label>Power Window</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_power_window) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan Power Window</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_power_window !!}</div>
                                     </div>
@@ -1132,13 +1152,15 @@
                                     <div class="mb-3">
                                         <label>Keterangan Lain - Lain</label>
                                         <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $car->detail_inspeksi_interior->foto_lain_lain) }}"
-                                        width="100%" style="width: 250px; height: 250px; object-fit: cover;">
+                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
                                         <div>Keterangan Lain - Lain</div>
                                         <div>{!! $car->detail_inspeksi_interior->keterangan_lain_lain !!}</div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" onclick="window.location.href='{{ route('cars.edit_inspeksi_interior',['id' => $car->id, 'inspeksi_interior' => $car->detail_inspeksi_interior->id]) }}'" class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
+                            <button type="button"
+                                onclick="window.location.href='{{ route('cars.edit_inspeksi_interior', ['id' => $car->id, 'inspeksi_interior' => $car->detail_inspeksi_interior->id]) }}'"
+                                class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
                         </div>
                     @else
                         <form method="post" id="upload-simpan-bagian-interior" enctype="multipart/form-data">
@@ -1149,11 +1171,13 @@
                                         <div class="mb-3">
                                             <label>Speedometer</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_speedometer" accept="image/*" class="form-control" id="foto_speedometer">
+                                                <input type="file" name="foto_speedometer" accept="image/*"
+                                                    class="form-control" id="foto_speedometer">
                                                 <textarea id="" name="keterangan_speedometer" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Spidometer"></textarea>
                                             </div>
-                                            <progress id="progressBarSpeedometer" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarSpeedometer" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusSpeedometer"></h3>
                                             <p id="loaded_n_totalSpeedometer"></p>
                                         </div>
@@ -1162,11 +1186,13 @@
                                         <div class="mb-3">
                                             <label>Setir</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_setir" accept="image/*" class="form-control" id="foto_setir">
+                                                <input type="file" name="foto_setir" accept="image/*"
+                                                    class="form-control" id="foto_setir">
                                                 <textarea id="" name="keterangan_setir" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Setir"></textarea>
                                             </div>
-                                            <progress id="progressBarSetir" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarSetir" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusSetir"></h3>
                                             <p id="loaded_n_totalSetir"></p>
                                         </div>
@@ -1175,11 +1201,13 @@
                                         <div class="mb-3">
                                             <label>Dashboard</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_dasboard" accept="image/*" class="form-control" id="foto_dasboard">
+                                                <input type="file" name="foto_dasboard" accept="image/*"
+                                                    class="form-control" id="foto_dasboard">
                                                 <textarea id="" name="keterangan_dasboard" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Dashboard"></textarea>
                                             </div>
-                                            <progress id="progressBarDasboard" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarDasboard" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusDasboard"></h3>
                                             <p id="loaded_n_totalDasboard"></p>
                                         </div>
@@ -1188,11 +1216,13 @@
                                         <div class="mb-3">
                                             <label>Plafon</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_plafon" accept="image/*" class="form-control" id="foto_plafon">
+                                                <input type="file" name="foto_plafon" accept="image/*"
+                                                    class="form-control" id="foto_plafon">
                                                 <textarea id="" name="keterangan_plafon" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Plafon"></textarea>
                                             </div>
-                                            <progress id="progressBarPlafon" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarPlafon" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusPlafon"></h3>
                                             <p id="loaded_n_totalPlafon"></p>
                                         </div>
@@ -1201,11 +1231,13 @@
                                         <div class="mb-3">
                                             <label>AC</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_ac" accept="image/*" class="form-control" id="foto_ac">
+                                                <input type="file" name="foto_ac" accept="image/*"
+                                                    class="form-control" id="foto_ac">
                                                 <textarea id="" name="keterangan_ac" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan AC"></textarea>
                                             </div>
-                                            <progress id="progressBarAc" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarAc" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusAc"></h3>
                                             <p id="loaded_n_totalAc"></p>
                                         </div>
@@ -1214,11 +1246,13 @@
                                         <div class="mb-3">
                                             <label>Audio</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_audio" accept="image/*" class="form-control" id="foto_audio">
+                                                <input type="file" name="foto_audio" accept="image/*"
+                                                    class="form-control" id="foto_audio">
                                                 <textarea id="" name="keterangan_audio" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Audio"></textarea>
                                             </div>
-                                            <progress id="progressBarAudio" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarAudio" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusAudio"></h3>
                                             <p id="loaded_n_totalAudio"></p>
                                         </div>
@@ -1227,11 +1261,13 @@
                                         <div class="mb-3">
                                             <label>Jok</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_jok" accept="image/*" class="form-control" id="foto_jok">
+                                                <input type="file" name="foto_jok" accept="image/*"
+                                                    class="form-control" id="foto_jok">
                                                 <textarea id="" name="keterangan_jok" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Jok"></textarea>
                                             </div>
-                                            <progress id="progressBarJok" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarJok" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusJok"></h3>
                                             <p id="loaded_n_totalJok"></p>
                                         </div>
@@ -1240,11 +1276,13 @@
                                         <div class="mb-3">
                                             <label>Electric Spion</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_electric_spion" accept="image/*" class="form-control" id="foto_electric_spion">
+                                                <input type="file" name="foto_electric_spion" accept="image/*"
+                                                    class="form-control" id="foto_electric_spion">
                                                 <textarea id="" name="keterangan_electric_spion" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Electric Spion"></textarea>
                                             </div>
-                                            <progress id="progressBarElectricSpion" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarElectricSpion" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusElectricSpion"></h3>
                                             <p id="loaded_n_totalElectricSpion"></p>
                                         </div>
@@ -1253,11 +1291,13 @@
                                         <div class="mb-3">
                                             <label>Power Window</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_power_window" accept="image/*" class="form-control" id="foto_power_window">
+                                                <input type="file" name="foto_power_window" accept="image/*"
+                                                    class="form-control" id="foto_power_window">
                                                 <textarea id="" name="keterangan_power_window" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Power Window"></textarea>
                                             </div>
-                                            <progress id="progressBarPowerWindow" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarPowerWindow" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusPowerWindow"></h3>
                                             <p id="loaded_n_totalPowerWindow"></p>
                                         </div>
@@ -1266,11 +1306,13 @@
                                         <div class="mb-3">
                                             <label>Lain - Lain</label>
                                             <div class="input-group-btn">
-                                                <input type="file" name="foto_lain_lain" accept="image/*" class="form-control" id="foto_lain_lain">
+                                                <input type="file" name="foto_lain_lain" accept="image/*"
+                                                    class="form-control" id="foto_lain_lain">
                                                 <textarea id="" name="keterangan_lain_lain" rows="2" cols="30" class="form-control"
                                                     placeholder="Keterangan Lain - Lain"></textarea>
                                             </div>
-                                            <progress id="progressBarLainLain" value="0" max="100" style="width:300px;"></progress>
+                                            <progress id="progressBarLainLain" value="0" max="100"
+                                                style="width:300px;"></progress>
                                             <h3 id="statusLainLain"></h3>
                                             <p id="loaded_n_totalLainLain"></p>
                                         </div>
@@ -1297,28 +1339,33 @@
                         : null !!}
                 </div>
             </a>
-            <div id="collapseSix" class="collapse {{ !empty($car->detail_inspeksi_depan) && !empty($car->detail_inspeksi_kiri) && !empty($car->detail_inspeksi_belakang) && !empty($car->detail_inspeksi_kanan) && !empty($car->detail_inspeksi_interior) && empty($car->detail_inspeksi_lain) ? 'show' : null }}" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                <form id="upload-simpan-bagian-lain" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="card">
-                    <div class="card-body">
-                        @if ($car->detail_inspeksi_lain)
-                        <div class="row">
-                            @foreach (json_decode($car->detail_inspeksi_lain->body) as $key_lain => $detail_inspeksi_lain)
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label>Keterangan {{ $key_lain+1 }}</label>
-                                        <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_lain/' . $detail_inspeksi_lain->foto_lain_lain) }}"
-                                            width="100%" style="width: 250px; height: 250px; object-fit: cover;">
-                                        <p>{!! $detail_inspeksi_lain->keterangan_lain_lain !!}</p>
-                                    </div>
+            <div id="collapseSix"
+                class="collapse {{ !empty($car->detail_inspeksi_depan) && !empty($car->detail_inspeksi_kiri) && !empty($car->detail_inspeksi_belakang) && !empty($car->detail_inspeksi_kanan) && !empty($car->detail_inspeksi_interior) && empty($car->detail_inspeksi_lain) ? 'show' : null }}"
+                aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                <form id="upload-simpan-bagian-lain" class="repeater" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card">
+                        <div class="card-body">
+                            @if ($car->detail_inspeksi_lain)
+                                <div class="row">
+                                    @foreach (json_decode($car->detail_inspeksi_lain->body) as $key_lain => $detail_inspeksi_lain)
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label>Keterangan {{ $key_lain + 1 }}</label>
+                                                <img src="{{ asset('backend/mobil/' . $car->plat_nomor . '/berkas/pengecekkan_bagian_lain/' . $detail_inspeksi_lain->foto_lain_lain) }}"
+                                                    width="100%"
+                                                    style="width: 250px; height: 250px; object-fit: cover;">
+                                                <p>{!! $detail_inspeksi_lain->keterangan_lain_lain !!}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
-                        </div>
-                        <button type="button" onclick="window.location.href='{{ route('cars.edit_inspeksi_lain',['id' => $car->id, 'inspeksi_lain' => $car->detail_inspeksi_lain->id]) }}'" class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
-                        @else
-                        <div class="row">
-                            <div class="col-md-6">
+                                <button type="button"
+                                    onclick="window.location.href='{{ route('cars.edit_inspeksi_lain', ['id' => $car->id, 'inspeksi_lain' => $car->detail_inspeksi_lain->id]) }}'"
+                                    class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
+                            @else
+                                <div class="row">
+                                    {{-- <div class="col-md-6">
                                 <div id="formAttachmentLainLain">
                                     <input type="file" name="foto_lain_lain[]" class="form-control">
                                     <textarea name="keterangan_lain_lain[]" class="form-control" placeholder="Keterangan 1"></textarea>
@@ -1340,12 +1387,22 @@
                                                 d="M4 5h3V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1h3a1 1 0 0 1 0 2h-1v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7H4a1 1 0 1 1 0-2m3 2v13h10V7zm2-2h6V4H9zm0 4h2v9H9zm4 0h2v9h-2z" />
                                         </svg></button>
                                 </div>
-                            </div>
+                            </div> --}}
+                                    <div class="col-md-12">
+                                        <div data-repeater-list="group-a">
+                                            <div data-repeater-item>
+                                                <input type="file" name="foto_lain_lain" class="form-control">
+                                                <textarea name="keterangan_lain_lain" class="form-control" placeholder="Keterangan 1"></textarea>
+                                                <input data-repeater-delete type="button" value="Delete" />
+                                            </div>
+                                        </div>
+                                        <input data-repeater-create type="button" value="Add" />
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            @endif
                         </div>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        @endif
                     </div>
-                </div>
                 </form>
             </div>
         </div>
@@ -1354,15 +1411,73 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('backend/assets/js/jquery.repeater.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/pages/sweetalert2@11.js') }}"></script>
     <script src="{{ asset('plugins/src/tomSelect/tom-select.base.js') }}"></script>
     <script src="{{ asset('plugins/src/tomSelect/custom-tom-select.js') }}"></script>
     {{-- <script src="{{ asset('backend/assets/libs/smartwizard/js/jquery.smartWizard.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/pages/form-wizard.init.js') }}"></script> --}}
     <script>
+        $(document).ready(function() {
+            'use strict';
+
+            $('.repeater').repeater({
+                defaultValues: {
+                    'textarea-input': 'foo',
+                    'text-input': 'bar',
+                    'select-input': 'B',
+                    'checkbox-input': ['A', 'B'],
+                    'radio-input': 'B'
+                },
+                show: function() {
+                    $(this).slideDown();
+                },
+                hide: function(deleteElement) {
+                    if (confirm('Are you sure you want to delete this element?')) {
+                        $(this).slideUp(deleteElement);
+                    }
+                },
+                ready: function(setIndexes) {
+
+                }
+            });
+
+            window.outerRepeater = $('.outer-repeater').repeater({
+                isFirstItemUndeletable: true,
+                defaultValues: {
+                    'text-input': 'outer-default'
+                },
+                show: function() {
+                    console.log('outer show');
+                    $(this).slideDown();
+                },
+                hide: function(deleteElement) {
+                    console.log('outer delete');
+                    $(this).slideUp(deleteElement);
+                },
+                repeaters: [{
+                    isFirstItemUndeletable: true,
+                    selector: '.inner-repeater',
+                    defaultValues: {
+                        'inner-text-input': 'inner-default'
+                    },
+                    show: function() {
+                        console.log('inner show');
+                        $(this).slideDown();
+                    },
+                    hide: function(deleteElement) {
+                        console.log('inner delete');
+                        $(this).slideUp(deleteElement);
+                    }
+                }]
+            });
+        });
+
         var formAttachmentLainLain = document.getElementById('formAttachmentLainLain');
 
         var no = 1;
+
         function add() {
             var newField = document.createElement('input');
             newField.setAttribute('type', 'file');
@@ -1373,7 +1488,7 @@
             var newFieldTextArea = document.createElement('textarea');
             newFieldTextArea.setAttribute('name', 'keterangan_lain_lain[]');
             newFieldTextArea.setAttribute('class', 'form-control');
-            newFieldTextArea.setAttribute('placeholder', 'Keterangan '+parseInt(no+1));
+            newFieldTextArea.setAttribute('placeholder', 'Keterangan ' + parseInt(no + 1));
             formAttachmentLainLain.appendChild(newFieldTextArea);
 
             var hr = document.createElement('hr');
@@ -1411,7 +1526,7 @@
                 document.getElementById('view_kaca_depan').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Kaca Depan</label>' +
                     '<input type="file" name="foto_kaca_depan" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaca_depan" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaca Depan"></textarea>'+
+                    '<textarea id="" name="keterangan_kaca_depan" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaca Depan"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_kaca_depan').innerHTML = null;
@@ -1423,7 +1538,7 @@
                 document.getElementById('view_kap_mesin').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Kap Mesin</label>' +
                     '<input type="file" name="foto_kap_mesin" class="form-control">' +
-                    '<textarea id="" name="keterangan_kap_mesin" rows="2" cols="10" class="form-control" placeholder="Keterangan Kap Mesin"></textarea>'+
+                    '<textarea id="" name="keterangan_kap_mesin" rows="2" cols="10" class="form-control" placeholder="Keterangan Kap Mesin"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_kap_mesin').innerHTML = null;
@@ -1435,7 +1550,7 @@
                 document.getElementById('view_rangka_mobil').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Rangka Mobil</label>' +
                     '<input type="file" name="foto_rangka_mobil" class="form-control">' +
-                    '<textarea id="" name="keterangan_rangka_mobil" rows="2" cols="10" class="form-control" placeholder="Keterangan Rangka Mobil"></textarea>'+
+                    '<textarea id="" name="keterangan_rangka_mobil" rows="2" cols="10" class="form-control" placeholder="Keterangan Rangka Mobil"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_rangka_mobil').innerHTML = null;
@@ -1447,7 +1562,7 @@
                 document.getElementById('view_aki').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Aki Mobil</label>' +
                     '<input type="file" name="foto_aki" class="form-control">' +
-                    '<textarea id="" name="keterangan_aki" rows="2" cols="10" class="form-control" placeholder="Keterangan Aki Mobil"></textarea>'+
+                    '<textarea id="" name="keterangan_aki" rows="2" cols="10" class="form-control" placeholder="Keterangan Aki Mobil"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_aki').innerHTML = null;
@@ -1459,7 +1574,7 @@
                 document.getElementById('view_radiator').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Radiator</label>' +
                     '<input type="file" name="foto_radiator" class="form-control">' +
-                    '<textarea id="" name="keterangan_radiator" rows="2" cols="10" class="form-control" placeholder="Keterangan Radiator"></textarea>'+
+                    '<textarea id="" name="keterangan_radiator" rows="2" cols="10" class="form-control" placeholder="Keterangan Radiator"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_radiator').innerHTML = null;
@@ -1471,7 +1586,7 @@
                 document.getElementById('view_kondisi_mesin').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Kondisi Mesin</label>' +
                     '<input type="file" name="foto_kondisi_mesin" class="form-control">' +
-                    '<textarea id="" name="keterangan_kondisi_mesin" rows="2" cols="10" class="form-control" placeholder="Keterangan Kondisi Mesin"></textarea>'+
+                    '<textarea id="" name="keterangan_kondisi_mesin" rows="2" cols="10" class="form-control" placeholder="Keterangan Kondisi Mesin"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_kondisi_mesin').innerHTML = null;
@@ -1483,7 +1598,7 @@
                 document.getElementById('view_bumper_lampu').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Bumper & Lampu</label>' +
                     '<input type="file" name="foto_bumper_lampu" class="form-control">' +
-                    '<textarea id="" name="keterangan_bumper_lampu" rows="2" cols="10" class="form-control" placeholder="Keterangan Bumper & Lampu"></textarea>'+
+                    '<textarea id="" name="keterangan_bumper_lampu" rows="2" cols="10" class="form-control" placeholder="Keterangan Bumper & Lampu"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_bumper_lampu').innerHTML = null;
@@ -1495,7 +1610,7 @@
                 document.getElementById('view_fender_depan_kiri').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Fender Depan Kiri</label>' +
                     '<input type="file" name="foto_fender_depan_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_fender_depan_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Depan Kiri"></textarea>'+
+                    '<textarea id="" name="keterangan_fender_depan_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Depan Kiri"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_fender_depan_kiri').innerHTML = null;
@@ -1507,7 +1622,7 @@
                 document.getElementById('view_kaki_depan_kiri').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Kaki Depan Kiri</label>' +
                     '<input type="file" name="foto_kaki_depan_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaki_depan_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Depan Kiri"></textarea>'+
+                    '<textarea id="" name="keterangan_kaki_depan_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Depan Kiri"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_kaki_depan_kiri').innerHTML = null;
@@ -1519,7 +1634,7 @@
                 document.getElementById('view_kaki_belakang_kiri').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Kaki Belakang Kiri</label>' +
                     '<input type="file" name="foto_kaki_belakang_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaki_belakang_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Belakang Kiri"></textarea>'+
+                    '<textarea id="" name="keterangan_kaki_belakang_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Belakang Kiri"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_kaki_belakang_kiri').innerHTML = null;
@@ -1531,7 +1646,7 @@
                 document.getElementById('view_pintu_depan_kiri').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Pintu Depan Kiri</label>' +
                     '<input type="file" name="foto_pintu_depan_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_depan_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Depan Kiri"></textarea>'+
+                    '<textarea id="" name="keterangan_pintu_depan_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Depan Kiri"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_pintu_depan_kiri').innerHTML = null;
@@ -1543,7 +1658,7 @@
                 document.getElementById('view_pintu_belakang_kiri').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Pintu Belakang Kiri</label>' +
                     '<input type="file" name="foto_pintu_belakang_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_belakang_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Belakang Kiri"></textarea>'+
+                    '<textarea id="" name="keterangan_pintu_belakang_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Belakang Kiri"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_pintu_belakang_kiri').innerHTML = null;
@@ -1555,7 +1670,7 @@
                 document.getElementById('view_fender_belakang_kiri').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Fender Belakang Kiri</label>' +
                     '<input type="file" name="foto_fender_belakang_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_fender_belakang_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Belakang Kiri"></textarea>'+
+                    '<textarea id="" name="keterangan_fender_belakang_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Belakang Kiri"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_fender_belakang_kiri').innerHTML = null;
@@ -1567,7 +1682,7 @@
                 document.getElementById('view_lampu_belakang_kanan_kiri').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Lampu Belakang Kanan Kiri</label>' +
                     '<input type="file" name="foto_lampu_belakang" class="form-control">' +
-                    '<textarea id="" name="keterangan_lampu_belakang" rows="2" cols="10" class="form-control" placeholder="Keterangan Lampu Belakang Kanan Kiri"></textarea>'+
+                    '<textarea id="" name="keterangan_lampu_belakang" rows="2" cols="10" class="form-control" placeholder="Keterangan Lampu Belakang Kanan Kiri"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_lampu_belakang_kanan_kiri').innerHTML = null;
@@ -1579,7 +1694,7 @@
                 document.getElementById('view_pintu_bagasi_belakang').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Pintu Bagasi Belakang</label>' +
                     '<input type="file" name="foto_pintu_bagasi_belakang" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_bagasi_belakang" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Bagasi Belakang"></textarea>'+
+                    '<textarea id="" name="keterangan_pintu_bagasi_belakang" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Bagasi Belakang"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_pintu_bagasi_belakang').innerHTML = null;
@@ -1591,7 +1706,7 @@
                 document.getElementById('view_bumper_belakang').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Bumper Belakang</label>' +
                     '<input type="file" name="foto_bumper_belakang" class="form-control">' +
-                    '<textarea id="" name="keterangan_bumper_belakang" rows="2" cols="10" class="form-control" placeholder="Keterangan Bumper Belakang"></textarea>'+
+                    '<textarea id="" name="keterangan_bumper_belakang" rows="2" cols="10" class="form-control" placeholder="Keterangan Bumper Belakang"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_bumper_belakang').innerHTML = null;
@@ -1603,7 +1718,7 @@
                 document.getElementById('view_fender_depan_kanan').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Fender Depan Kanan</label>' +
                     '<input type="file" name="foto_fender_depan_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_fender_depan_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Depan Kanan"></textarea>'+
+                    '<textarea id="" name="keterangan_fender_depan_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Depan Kanan"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_fender_depan_kanan').innerHTML = null;
@@ -1615,7 +1730,7 @@
                 document.getElementById('view_kaki_depan_kanan').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Kaki Depan Kanan</label>' +
                     '<input type="file" name="foto_kaki_depan_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaki_depan_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Depan Kanan"></textarea>'+
+                    '<textarea id="" name="keterangan_kaki_depan_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Depan Kanan"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_kaki_depan_kanan').innerHTML = null;
@@ -1627,7 +1742,7 @@
                 document.getElementById('view_kaki_belakang_kanan').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Kaki Belakang Kanan</label>' +
                     '<input type="file" name="foto_kaki_belakang_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaki_belakang_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Belakang Kanan"></textarea>'+
+                    '<textarea id="" name="keterangan_kaki_belakang_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Belakang Kanan"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_kaki_belakang_kanan').innerHTML = null;
@@ -1639,7 +1754,7 @@
                 document.getElementById('view_pintu_depan_kanan').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Pintu Depan Kanan</label>' +
                     '<input type="file" name="foto_pintu_depan_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_depan_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Depan Kanan"></textarea>'+
+                    '<textarea id="" name="keterangan_pintu_depan_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Depan Kanan"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_pintu_depan_kanan').innerHTML = null;
@@ -1651,7 +1766,7 @@
                 document.getElementById('view_pintu_belakang_kanan').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Pintu Belakang Kanan</label>' +
                     '<input type="file" name="foto_pintu_belakang_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_belakang_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Belakang Kanan"></textarea>'+
+                    '<textarea id="" name="keterangan_pintu_belakang_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Belakang Kanan"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_pintu_belakang_kanan').innerHTML = null;
@@ -1663,7 +1778,7 @@
                 document.getElementById('view_fender_belakang_kanan').innerHTML = '<div class="mt-2 mb-2">' +
                     '<label>Bukti Foto Fender Belakang Kanan</label>' +
                     '<input type="file" name="foto_fender_belakang_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_fender_belakang_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Belakang Kanan"></textarea>'+
+                    '<textarea id="" name="keterangan_fender_belakang_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Belakang Kanan"></textarea>' +
                     '</div>';
             } else {
                 document.getElementById('view_fender_belakang_kanan').innerHTML = null;
@@ -1880,7 +1995,7 @@
                         });
                         setTimeout(function() {
                             // location.reload();
-                            window.location.href="{{ route('cars') }}";
+                            window.location.href = "{{ route('cars') }}";
                         }, 2000);
                     } else {
                         Swal.fire({
@@ -1927,7 +2042,7 @@
                         });
                         setTimeout(function() {
                             // location.reload();
-                            window.location.href="{{ route('cars') }}";
+                            window.location.href = "{{ route('cars') }}";
                         }, 2000);
                     } else {
                         Swal.fire({
@@ -1953,7 +2068,7 @@
             return document.getElementById(el);
         }
 
-        $('#foto_speedometer').on('change',function(){
+        $('#foto_speedometer').on('change', function() {
             var file = _("foto_speedometer").files[0];
             var formdata = new FormData();
             formdata.append("foto_speedometer", file);
@@ -1963,7 +2078,7 @@
             ajax.addEventListener("load", completeHandlerSpeedometer, false);
             ajax.addEventListener("error", errorHandlerSpeedometer, false);
             ajax.addEventListener("abort", abortHandlerSpeedometer, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_speedometer',['id' => $car->id]) }}");
+            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_speedometer', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);
@@ -1990,7 +2105,7 @@
         }
 
 
-        $('#foto_setir').on('change',function(){
+        $('#foto_setir').on('change', function() {
             var file = _("foto_setir").files[0];
             var formdata = new FormData();
             formdata.append("foto_setir", file);
@@ -2000,7 +2115,7 @@
             ajax.addEventListener("load", completeHandlerSetir, false);
             ajax.addEventListener("error", errorHandlerSetir, false);
             ajax.addEventListener("abort", abortHandlerSetir, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_setir',['id' => $car->id]) }}");
+            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_setir', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);
@@ -2027,7 +2142,7 @@
         }
 
 
-        $('#foto_dasboard').on('change',function(){
+        $('#foto_dasboard').on('change', function() {
             var file = _("foto_dasboard").files[0];
             var formdata = new FormData();
             formdata.append("foto_dasboard", file);
@@ -2037,7 +2152,7 @@
             ajax.addEventListener("load", completeHandlerDasboard, false);
             ajax.addEventListener("error", errorHandlerDasboard, false);
             ajax.addEventListener("abort", abortHandlerDasboard, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_dasboard',['id' => $car->id]) }}");
+            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_dasboard', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);
@@ -2064,7 +2179,7 @@
         }
 
 
-        $('#foto_plafon').on('change',function(){
+        $('#foto_plafon').on('change', function() {
             var file = _("foto_plafon").files[0];
             var formdata = new FormData();
             formdata.append("foto_plafon", file);
@@ -2074,7 +2189,7 @@
             ajax.addEventListener("load", completeHandlerPlafon, false);
             ajax.addEventListener("error", errorHandlerPlafon, false);
             ajax.addEventListener("abort", abortHandlerPlafon, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_plafon',['id' => $car->id]) }}");
+            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_plafon', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);
@@ -2101,7 +2216,7 @@
         }
 
 
-        $('#foto_ac').on('change',function(){
+        $('#foto_ac').on('change', function() {
             var file = _("foto_ac").files[0];
             var formdata = new FormData();
             formdata.append("foto_ac", file);
@@ -2111,7 +2226,7 @@
             ajax.addEventListener("load", completeHandlerAc, false);
             ajax.addEventListener("error", errorHandlerAc, false);
             ajax.addEventListener("abort", abortHandlerAc, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_ac',['id' => $car->id]) }}");
+            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_ac', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);
@@ -2138,7 +2253,7 @@
         }
 
 
-        $('#foto_audio').on('change',function(){
+        $('#foto_audio').on('change', function() {
             var file = _("foto_audio").files[0];
             var formdata = new FormData();
             formdata.append("foto_audio", file);
@@ -2148,7 +2263,7 @@
             ajax.addEventListener("load", completeHandlerAudio, false);
             ajax.addEventListener("error", errorHandlerAudio, false);
             ajax.addEventListener("abort", abortHandlerAudio, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_audio',['id' => $car->id]) }}");
+            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_audio', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);
@@ -2175,7 +2290,7 @@
         }
 
 
-        $('#foto_jok').on('change',function(){
+        $('#foto_jok').on('change', function() {
             var file = _("foto_jok").files[0];
             var formdata = new FormData();
             formdata.append("foto_jok", file);
@@ -2185,7 +2300,7 @@
             ajax.addEventListener("load", completeHandlerJok, false);
             ajax.addEventListener("error", errorHandlerJok, false);
             ajax.addEventListener("abort", abortHandlerJok, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_jok',['id' => $car->id]) }}");
+            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_jok', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);
@@ -2212,7 +2327,7 @@
         }
 
 
-        $('#foto_electric_spion').on('change',function(){
+        $('#foto_electric_spion').on('change', function() {
             var file = _("foto_electric_spion").files[0];
             var formdata = new FormData();
             formdata.append("foto_electric_spion", file);
@@ -2222,7 +2337,8 @@
             ajax.addEventListener("load", completeHandlerElectricSpion, false);
             ajax.addEventListener("error", errorHandlerElectricSpion, false);
             ajax.addEventListener("abort", abortHandlerElectricSpion, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_electric_spion',['id' => $car->id]) }}");
+            ajax.open("POST",
+                "{{ route('cars.upload_file_inspeksi_interior_electric_spion', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);
@@ -2249,7 +2365,7 @@
         }
 
 
-        $('#foto_power_window').on('change',function(){
+        $('#foto_power_window').on('change', function() {
             var file = _("foto_power_window").files[0];
             var formdata = new FormData();
             formdata.append("foto_power_window", file);
@@ -2259,7 +2375,7 @@
             ajax.addEventListener("load", completeHandlerPowerWindow, false);
             ajax.addEventListener("error", errorHandlerPowerWindow, false);
             ajax.addEventListener("abort", abortHandlerPowerWindow, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_power_window',['id' => $car->id]) }}");
+            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_power_window', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);
@@ -2286,7 +2402,7 @@
         }
 
 
-        $('#foto_lain_lain').on('change',function(){
+        $('#foto_lain_lain').on('change', function() {
             var file = _("foto_lain_lain").files[0];
             var formdata = new FormData();
             formdata.append("foto_lain_lain", file);
@@ -2296,7 +2412,7 @@
             ajax.addEventListener("load", completeHandlerLainLain, false);
             ajax.addEventListener("error", errorHandlerLainLain, false);
             ajax.addEventListener("abort", abortHandlerLainLain, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_lain_lain',['id' => $car->id]) }}");
+            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_lain_lain', ['id' => $car->id]) }}");
             ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
 
             ajax.send(formdata);

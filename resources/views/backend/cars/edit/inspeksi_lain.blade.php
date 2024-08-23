@@ -14,8 +14,8 @@
                     <div class="col-md-3">
                         <div style="font-weight: bold">Keterangan Lain - Lain {{ $key+1 }}</div>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_lain->cars->plat_nomor.'/berkas/pengecekkan_bagian_lain/'.$inspeksi_lain_data->foto_lain_lain) }}" class="mt-2 mb-2" style="width: 250px; height: 250px; object-fit: contain;">
-                        <input type="file" name="foto_lain_lain[]" class="form-control" id="">
-                        <textarea name="keterangan_lain_lain[]" class="form-control" cols="30" rows="2">{{ $inspeksi_lain_data->keterangan_lain_lain }}</textarea>
+                        <input type="file" name="foto_lain_lain_{{ $key }}" class="form-control" id="">
+                        <textarea name="keterangan_lain_lain_{{ $key }}" class="form-control" cols="30" rows="2">{{ $inspeksi_lain_data->keterangan_lain_lain }}</textarea>
                     </div>
                     @endforeach
                 </div>

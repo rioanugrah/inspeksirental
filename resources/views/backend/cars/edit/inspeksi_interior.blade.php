@@ -14,6 +14,7 @@
                             <label>Speedometer</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_speedometer) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_speedometer" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_speedometer" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_speedometer }}</textarea>
@@ -23,6 +24,7 @@
                             <label>Setir</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_setir) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_setir" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_setir" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_setir }}</textarea>
@@ -32,6 +34,7 @@
                             <label>Dasboard</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_dasboard) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_dasboard" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_dasboard" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_dasboard }}</textarea>
@@ -41,6 +44,7 @@
                             <label>Plafon</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_plafon) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_plafon" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_plafon" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_plafon }}</textarea>
@@ -50,6 +54,7 @@
                             <label>AC</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_ac) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_ac" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_ac" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_ac }}</textarea>
@@ -59,6 +64,7 @@
                             <label>Audio</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_audio) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_audio" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_audio" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_audio }}</textarea>
@@ -68,6 +74,7 @@
                             <label>Jok</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_jok) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_jok" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_jok" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_jok }}</textarea>
@@ -77,6 +84,7 @@
                             <label>Electric Spion</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_electric_spion) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_electric_spion" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_electric_spion" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_electric_spion }}</textarea>
@@ -86,6 +94,7 @@
                             <label>Power Window</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_power_window) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_power_window" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_power_window" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_power_window }}</textarea>
@@ -95,6 +104,7 @@
                             <label>Lain - Lain</label>
                             <img src="{{ asset('backend/mobil/' . $inspeksi_interior->cars->plat_nomor . '/berkas/pengecekkan_bagian_interior/' . $inspeksi_interior->foto_lain_lain) }}"
                                 style="width: 250px; height: 250px; object-fit: contain;">
+                            <input type="file" name="foto_lain_lain" class="form-control" id="">
                             <div style="font-weight: bold">Keterangan</div>
                             <div>
                                 <textarea name="keterangan_lain_lain" class="form-control" id="" cols="30" rows="2">{{ $inspeksi_interior->keterangan_lain_lain }}</textarea>

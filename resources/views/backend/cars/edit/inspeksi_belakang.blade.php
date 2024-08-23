@@ -14,6 +14,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Lampu Belakang</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_belakang->cars->plat_nomor.'/berkas/pengecekkan_bagian_belakang/'.$inspeksi_belakang->foto_lampu_belakang) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_lampu_belakang" class="form-control" id="">
                         <textarea name="keterangan_lampu_belakang" class="form-control" id="" placeholder="Keterangan Lampu Belakang" cols="30" rows="2">{{ $inspeksi_belakang->keterangan_lampu_belakang }}</textarea>
                     </div>
                     @endif
@@ -21,6 +22,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Pintu Bagasi Belakang</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_belakang->cars->plat_nomor.'/berkas/pengecekkan_bagian_belakang/'.$inspeksi_belakang->foto_pintu_bagasi_belakang) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_pintu_bagasi_belakang" class="form-control" id="">
                         <textarea name="keterangan_pintu_bagasi_belakang" class="form-control" id="" placeholder="Keterangan Pintu Bagasi Belakang" cols="30" rows="2">{{ $inspeksi_belakang->keterangan_pintu_bagasi_belakang }}</textarea>
                     </div>
                     @endif
@@ -28,6 +30,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Bumper Belakang</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_belakang->cars->plat_nomor.'/berkas/pengecekkan_bagian_belakang/'.$inspeksi_belakang->foto_bumper_belakang) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_bumper_belakang" class="form-control" id="">
                         <textarea name="keterangan_bumper_belakang" class="form-control" id="" placeholder="Keterangan Bumper Belakang" cols="30" rows="2">{{ $inspeksi_belakang->keterangan_bumper_belakang }}</textarea>
                     </div>
                     @endif

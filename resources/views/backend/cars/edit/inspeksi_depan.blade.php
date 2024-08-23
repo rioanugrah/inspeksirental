@@ -14,6 +14,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Kaca Depan</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_depan->cars->plat_nomor.'/berkas/pengecekkan_bagian_depan/'.$inspeksi_depan->foto_kaca_depan) }}" style="width: 250px; height: 250px; object-fit: cover;">
+                        <input type="file" name="foto_kaca_depan" class="form-control" id="">
                         <textarea name="keterangan_kaca_depan" class="form-control mt-2" id="" placeholder="Keterangan Kaca Depan" cols="30" rows="2">{{ $inspeksi_depan->keterangan_kaca_depan }}</textarea>
                     </div>
                     @endif
@@ -21,6 +22,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Kap Mesin</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_depan->cars->plat_nomor.'/berkas/pengecekkan_bagian_depan/'.$inspeksi_depan->foto_kap_mesin) }}" style="width: 250px; height: 250px; object-fit: cover;">
+                        <input type="file" name="foto_kap_mesin" class="form-control" id="">
                         <textarea name="keterangan_kap_mesin" class="form-control mt-2" id="" placeholder="Keterangan Kap Mesin" cols="30" rows="2">{{ $inspeksi_depan->keterangan_kap_mesin }}</textarea>
                     </div>
                     @endif
@@ -28,6 +30,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Rangka Mobil</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_depan->cars->plat_nomor.'/berkas/pengecekkan_bagian_depan/'.$inspeksi_depan->foto_rangka_mobil) }}" style="width: 250px; height: 250px; object-fit: cover;">
+                        <input type="file" name="foto_rangka_mobil" class="form-control" id="">
                         <textarea name="keterangan_rangka_mobil" class="form-control mt-2" id="" placeholder="Keterangan Rangka Mobil" cols="30" rows="2">{{ $inspeksi_depan->keterangan_rangka_mobil }}</textarea>
                     </div>
                     @endif
@@ -35,6 +38,7 @@
                     <div class="col-md-3 mb-3">
                         <label>AKI / Baterai</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_depan->cars->plat_nomor.'/berkas/pengecekkan_bagian_depan/'.$inspeksi_depan->foto_aki) }}" style="width: 250px; height: 250px; object-fit: cover;">
+                        <input type="file" name="foto_aki" class="form-control" id="">
                         <textarea name="keterangan_aki" class="form-control mt-2" id="" placeholder="Keterangan Aki / Baterai" cols="30" rows="2">{{ $inspeksi_depan->keterangan_aki }}</textarea>
                     </div>
                     @endif
@@ -42,6 +46,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Radiator</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_depan->cars->plat_nomor.'/berkas/pengecekkan_bagian_depan/'.$inspeksi_depan->foto_radiator) }}" style="width: 250px; height: 250px; object-fit: cover;">
+                        <input type="file" name="foto_radiator" class="form-control" id="">
                         <textarea name="keterangan_radiator" class="form-control mt-2" id="" placeholder="Keterangan Radiator" cols="30" rows="2">{{ $inspeksi_depan->keterangan_radiator }}</textarea>
                     </div>
                     @endif
@@ -49,6 +54,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Kondisi Mesin</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_depan->cars->plat_nomor.'/berkas/pengecekkan_bagian_depan/'.$inspeksi_depan->foto_kondisi_mesin) }}" style="width: 250px; height: 250px; object-fit: cover;">
+                        <input type="file" name="foto_kondisi_mesin" class="form-control" id="">
                         <textarea name="keterangan_kondisi_mesin" class="form-control mt-2" id="" placeholder="Keterangan Kondisi Mesin" cols="30" rows="2">{{ $inspeksi_depan->keterangan_kondisi_mesin }}</textarea>
                     </div>
                     @endif
@@ -56,6 +62,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Bumper dan Lampu</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_depan->cars->plat_nomor.'/berkas/pengecekkan_bagian_depan/'.$inspeksi_depan->foto_bumper_lampu) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_bumper_lampu" class="form-control" id="">
                         <textarea name="keterangan_bumper_lampu" class="form-control mt-2" id="" placeholder="Keterangan Bumper dan Lampu" cols="30" rows="2">{{ $inspeksi_depan->keterangan_bumper_lampu }}</textarea>
                     </div>
                     @endif

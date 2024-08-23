@@ -14,6 +14,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Fender Depan Kiri</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kiri->cars->plat_nomor.'/berkas/pengecekkan_bagian_kiri/'.$inspeksi_kiri->foto_fender_depan_kiri) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_fender_depan_kiri" class="form-control" id="">
                         <textarea name="keterangan_fender_depan_kiri" class="form-control" id="" placeholder="Keterangan Fender Depan Kiri" cols="30" rows="2">{{ $inspeksi_kiri->keterangan_fender_depan_kiri }}</textarea>
                     </div>
                     @endif
@@ -21,6 +22,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Kaki Depan Kiri</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kiri->cars->plat_nomor.'/berkas/pengecekkan_bagian_kiri/'.$inspeksi_kiri->foto_kaki_depan_kiri) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_kaki_depan_kiri" class="form-control" id="">
                         <textarea name="keterangan_kaki_depan_kiri" class="form-control" id="" placeholder="Keterangan Kaki Depan Kiri" cols="30" rows="2">{{ $inspeksi_kiri->keterangan_kaki_depan_kiri }}</textarea>
                     </div>
                     @endif
@@ -28,6 +30,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Kaki Belakang Kiri</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kiri->cars->plat_nomor.'/berkas/pengecekkan_bagian_kiri/'.$inspeksi_kiri->foto_kaki_belakang_kiri) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_kaki_belakang_kiri" class="form-control" id="">
                         <textarea name="keterangan_kaki_belakang_kiri" class="form-control" id="" placeholder="Keterangan Kaki Belakang Kiri" cols="30" rows="2">{{ $inspeksi_kiri->keterangan_kaki_belakang_kiri }}</textarea>
                     </div>
                     @endif
@@ -35,6 +38,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Pintu Depan Kiri</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kiri->cars->plat_nomor.'/berkas/pengecekkan_bagian_kiri/'.$inspeksi_kiri->foto_pintu_depan_kiri) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_pintu_depan_kiri" class="form-control" id="">
                         <textarea name="keterangan_pintu_depan_kiri" class="form-control" id="" placeholder="Keterangan Pintu Depan Kiri" cols="30" rows="2">{{ $inspeksi_kiri->keterangan_pintu_depan_kiri }}</textarea>
                     </div>
                     @endif
@@ -42,6 +46,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Pintu Belakang Kiri</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kiri->cars->plat_nomor.'/berkas/pengecekkan_bagian_kiri/'.$inspeksi_kiri->foto_pintu_belakang_kiri) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_pintu_belakang_kiri" class="form-control" id="">
                         <textarea name="keterangan_pintu_belakang_kiri" class="form-control" id="" placeholder="Keterangan Pintu Belakang Kiri" cols="30" rows="2">{{ $inspeksi_kiri->keterangan_pintu_belakang_kiri }}</textarea>
                     </div>
                     @endif
@@ -49,6 +54,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Fender Belakang Kiri</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kiri->cars->plat_nomor.'/berkas/pengecekkan_bagian_kiri/'.$inspeksi_kiri->foto_fender_belakang_kiri) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_fender_belakang_kiri" class="form-control" id="">
                         <textarea name="keterangan_fender_belakang_kiri" class="form-control" id="" placeholder="Keterangan Fender Belakang Kiri" cols="30" rows="2">{{ $inspeksi_kiri->keterangan_fender_belakang_kiri }}</textarea>
                     </div>
                     @endif

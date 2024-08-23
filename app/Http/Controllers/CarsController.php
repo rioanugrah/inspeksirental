@@ -1471,6 +1471,56 @@ class CarsController extends Controller
 
         $plat_mobil = $inspeksi_depan->cars->plat_nomor;
 
+        if ($request->file('foto_kaca_depan')) {
+            $image_foto_kaca_depan = $request->file('foto_kaca_depan');
+            $img_foto_kaca_depan = \Image::make($image_foto_kaca_depan->path());
+            $img_foto_kaca_depan = $img_foto_kaca_depan->encode('webp',75);
+            $input['foto_kaca_depan'] = 'KacaDepan_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_kaca_depan->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_depan/').$input['foto_kaca_depan']);
+        }
+        if ($request->file('foto_kap_mesin')) {
+            $image_foto_kap_mesin = $request->file('foto_kap_mesin');
+            $img_foto_kap_mesin = \Image::make($image_foto_kap_mesin->path());
+            $img_foto_kap_mesin = $img_foto_kap_mesin->encode('webp',75);
+            $input['foto_kap_mesin'] = 'KapMesinDepan_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_kap_mesin->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_depan/').$input['foto_kap_mesin']);
+        }
+        if ($request->file('foto_rangka_mobil')) {
+            $image_foto_rangka_mobil = $request->file('foto_rangka_mobil');
+            $img_foto_rangka_mobil = \Image::make($image_foto_rangka_mobil->path());
+            $img_foto_rangka_mobil = $img_foto_rangka_mobil->encode('webp',75);
+            $input['foto_rangka_mobil'] = 'RangkaMobilDepan_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_rangka_mobil->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_depan/').$input['foto_rangka_mobil']);
+        }
+        if ($request->file('foto_aki')) {
+            $image_foto_aki = $request->file('foto_aki');
+            $img_foto_aki = \Image::make($image_foto_aki->path());
+            $img_foto_aki = $img_foto_aki->encode('webp',75);
+            $input['foto_aki'] = 'AkiMobilDepan_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_aki->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_depan/').$input['foto_aki']);
+        }
+        if ($request->file('foto_radiator')) {
+            $image_foto_radiator = $request->file('foto_radiator');
+            $img_foto_radiator = \Image::make($image_foto_radiator->path());
+            $img_foto_radiatori = $img_foto_radiator->encode('webp',75);
+            $input['foto_radiator'] = 'RadiatorMobilDepan_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_radiator->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_depan/').$input['foto_radiator']);
+        }
+        if ($request->file('foto_kondisi_mesin')) {
+            $image_foto_kondisi_mesin = $request->file('foto_kondisi_mesin');
+            $img_foto_kondisi_mesin = \Image::make($image_foto_kondisi_mesin->path());
+            $img_foto_kondisi_mesin = $img_foto_kondisi_mesin->encode('webp',75);
+            $input['foto_kondisi_mesin'] = 'KondisiMesinMobilDepan_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_kondisi_mesin->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_depan/').$input['foto_kondisi_mesin']);
+        }
+        if ($request->file('foto_bumper_lampu')) {
+            $image_foto_bumper_mobil = $request->file('foto_bumper_lampu');
+            $img_foto_bumper_mobil = \Image::make($image_foto_bumper_mobil->path());
+            $img_foto_bumper_mobil = $img_foto_bumper_mobil->encode('webp',75);
+            $input['foto_bumper_lampu'] = 'BumperLampuMobilDepan_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_bumper_mobil->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_depan/').$input['foto_bumper_lampu']);
+        }
+
         $input['keterangan_kaca_depan'] = $request->keterangan_kaca_depan;
         $input['keterangan_kap_mesin'] = $request->keterangan_kap_mesin;
         $input['keterangan_rangka_mobil'] = $request->keterangan_rangka_mobil;
@@ -1548,6 +1598,49 @@ class CarsController extends Controller
 
         $plat_mobil = $inspeksi_kiri->cars->plat_nomor;
 
+        if ($request->file('foto_fender_depan_kiri')) {
+            $image_depan_foto_fender_depan_kiri = $request->file('foto_fender_depan_kiri');
+            $img_depan_foto_fender_depan_kiri = \Image::make($image_depan_foto_fender_depan_kiri->path());
+            $img_depan_foto_fender_depan_kiri = $img_depan_foto_fender_depan_kiri->encode('webp',75);
+            $input['foto_fender_depan_kiri'] = 'FenderDepanKiri'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_fender_depan_kiri->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kiri/').$input['foto_fender_depan_kiri']);
+        }
+        if ($request->file('foto_kaki_depan_kiri')) {
+            $image_depan_foto_kaki_depan_kiri = $request->file('foto_kaki_depan_kiri');
+            $img_depan_foto_kaki_depan_kiri = \Image::make($image_depan_foto_kaki_depan_kiri->path());
+            $img_depan_foto_kaki_depan_kiri = $img_depan_foto_kaki_depan_kiri->encode('webp',75);
+            $input['foto_kaki_depan_kiri'] = 'KakiDepanKiri'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_kaki_depan_kiri->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kiri/').$input['foto_kaki_depan_kiri']);
+        }
+        if ($request->file('foto_kaki_belakang_kiri')) {
+            $image_depan_foto_kaki_belakang_kiri = $request->file('foto_kaki_belakang_kiri');
+            $img_depan_foto_kaki_belakang_kiri = \Image::make($image_depan_foto_kaki_belakang_kiri->path());
+            $img_depan_foto_kaki_belakang_kiri = $img_depan_foto_kaki_belakang_kiri->encode('webp',75);
+            $input['foto_kaki_belakang_kiri'] = 'KakiBelakangKiri'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_kaki_belakang_kiri->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kiri/').$input['foto_kaki_belakang_kiri']);
+        }
+        if ($request->file('foto_pintu_depan_kiri')) {
+            $image_depan_foto_pintu_depan_kiri = $request->file('foto_pintu_depan_kiri');
+            $img_depan_foto_pintu_depan_kiri = \Image::make($image_depan_foto_pintu_depan_kiri->path());
+            $img_depan_foto_pintu_depan_kiri = $img_depan_foto_pintu_depan_kiri->encode('webp',75);
+            $input['foto_pintu_depan_kiri'] = 'PintuDepanKiri'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_pintu_depan_kiri->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kiri/').$input['foto_pintu_depan_kiri']);
+        }
+        if ($request->file('foto_pintu_belakang_kiri')) {
+            $image_depan_foto_pintu_belakang_kiri = $request->file('foto_pintu_belakang_kiri');
+            $img_depan_foto_pintu_belakang_kiri = \Image::make($image_depan_foto_pintu_belakang_kiri->path());
+            $img_depan_foto_pintu_belakang_kiri = $img_depan_foto_pintu_belakang_kiri->encode('webp',75);
+            $input['foto_pintu_belakang_kiri'] = 'PintuBelakangKiri'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_pintu_belakang_kiri->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kiri/').$input['foto_pintu_belakang_kiri']);
+        }
+        if ($request->file('foto_fender_belakang_kiri')) {
+            $image_depan_foto_fender_belakang_kiri = $request->file('foto_fender_belakang_kiri');
+            $img_depan_foto_fender_belakang_kiri = \Image::make($image_depan_foto_fender_belakang_kiri->path());
+            $img_depan_foto_fender_belakang_kiri = $img_depan_foto_fender_belakang_kiri->encode('webp',75);
+            $input['foto_fender_belakang_kiri'] = 'FenderBelakangKiri'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_fender_belakang_kiri->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kiri/').$input['foto_fender_belakang_kiri']);
+        }
+
         $input['keterangan_fender_depan_kiri'] = $request->keterangan_fender_depan_kiri;
         $input['keterangan_kaki_depan_kiri'] = $request->keterangan_kaki_depan_kiri;
         $input['keterangan_kaki_belakang_kiri'] = $request->keterangan_kaki_belakang_kiri;
@@ -1617,6 +1710,28 @@ class CarsController extends Controller
         }
 
         $plat_mobil = $inspeksi_belakang->cars->plat_nomor;
+
+        if ($request->file('foto_lampu_belakang')) {
+            $image_foto_lampu_belakang = $request->file('foto_lampu_belakang');
+            $img_foto_lampu_belakang = \Image::make($image_foto_lampu_belakang->path());
+            $img_foto_lampu_belakang = $img_foto_lampu_belakang->encode('webp',75);
+            $input['foto_lampu_belakang'] = 'LampuBelakang_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_lampu_belakang->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_belakang/').$input['foto_lampu_belakang']);
+        }
+        if ($request->file('foto_pintu_bagasi_belakang')) {
+            $image_foto_pintu_bagasi_belakang = $request->file('foto_pintu_bagasi_belakang');
+            $img_foto_pintu_bagasi_belakang = \Image::make($image_foto_pintu_bagasi_belakang->path());
+            $img_foto_pintu_bagasi_belakang = $img_foto_pintu_bagasi_belakang->encode('webp',75);
+            $input['foto_pintu_bagasi_belakang'] = 'PintuBagasiBelakang_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_pintu_bagasi_belakang->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_belakang/').$input['foto_pintu_bagasi_belakang']);
+        }
+        if ($request->file('foto_bumper_belakang')) {
+            $image_foto_bumper_belakang = $request->file('foto_bumper_belakang');
+            $img_foto_bumper_belakang = \Image::make($image_foto_bumper_belakang->path());
+            $img_foto_bumper_belakang = $img_foto_bumper_belakang->encode('webp',75);
+            $input['foto_bumper_belakang'] = 'BumperBelakang_'.$plat_mobil.'_'.time().'.webp';
+            $img_foto_bumper_belakang->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_belakang/').$input['foto_bumper_belakang']);
+        }
 
         $input['keterangan_lampu_belakang'] = $request->keterangan_lampu_belakang;
         $input['keterangan_pintu_bagasi_belakang'] = $request->keterangan_pintu_bagasi_belakang;
@@ -1690,6 +1805,49 @@ class CarsController extends Controller
         }
 
         $plat_mobil = $inspeksi_kanan->cars->plat_nomor;
+
+        if ($request->file('foto_fender_depan_kanan')) {
+            $image_depan_foto_fender_depan_kanan = $request->file('foto_fender_depan_kanan');
+            $img_depan_foto_fender_depan_kanan = \Image::make($image_depan_foto_fender_depan_kanan->path());
+            $img_depan_foto_fender_depan_kanan = $img_depan_foto_fender_depan_kanan->encode('webp',75);
+            $input['foto_fender_depan_kanan'] = 'FenderDepanKanan'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_fender_depan_kanan->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kanan/').$input['foto_fender_depan_kanan']);
+        }
+        if ($request->file('foto_kaki_depan_kanan')) {
+            $image_depan_foto_kaki_depan_kanan = $request->file('foto_kaki_depan_kanan');
+            $img_depan_foto_kaki_depan_kanan = \Image::make($image_depan_foto_kaki_depan_kanan->path());
+            $img_depan_foto_kaki_depan_kanan = $img_depan_foto_kaki_depan_kanan->encode('webp',75);
+            $input['foto_kaki_depan_kanan'] = 'KakiDepanKanan'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_kaki_depan_kanan->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kanan/').$input['foto_kaki_depan_kanan']);
+        }
+        if ($request->file('foto_kaki_belakang_kanan')) {
+            $image_depan_foto_kaki_belakang_kanan = $request->file('foto_kaki_belakang_kanan');
+            $img_depan_foto_kaki_belakang_kanan = \Image::make($image_depan_foto_kaki_belakang_kanan->path());
+            $img_depan_foto_kaki_belakang_kanan = $img_depan_foto_kaki_belakang_kanan->encode('webp',75);
+            $input['foto_kaki_belakang_kanan'] = 'KakiBelakangKanan'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_kaki_belakang_kanan->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kanan/').$input['foto_kaki_belakang_kanan']);
+        }
+        if ($request->file('foto_pintu_depan_kanan')) {
+            $image_depan_foto_pintu_depan_kanan = $request->file('foto_pintu_depan_kanan');
+            $img_depan_foto_pintu_depan_kanan = \Image::make($image_depan_foto_pintu_depan_kanan->path());
+            $img_depan_foto_pintu_depan_kanan = $img_depan_foto_pintu_depan_kanan->encode('webp',75);
+            $input['foto_pintu_depan_kanan'] = 'PintuDepanKanan'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_pintu_depan_kanan->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kanan/').$input['foto_pintu_depan_kanan']);
+        }
+        if ($request->file('foto_pintu_belakang_kanan')) {
+            $image_depan_foto_pintu_belakang_kanan = $request->file('foto_pintu_belakang_kanan');
+            $img_depan_foto_pintu_belakang_kanan = \Image::make($image_depan_foto_pintu_belakang_kanan->path());
+            $img_depan_foto_pintu_belakang_kanan = $img_depan_foto_pintu_belakang_kanan->encode('webp',75);
+            $input['foto_pintu_belakang_kanan'] = 'PintuBelakangKanan'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_pintu_belakang_kanan->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kanan/').$input['foto_pintu_belakang_kanan']);
+        }
+        if ($request->file('foto_fender_belakang_kanan')) {
+            $image_depan_foto_fender_belakang_kanan = $request->file('foto_fender_belakang_kanan');
+            $img_depan_foto_fender_belakang_kanan = \Image::make($image_depan_foto_fender_belakang_kanan->path());
+            $img_depan_foto_fender_belakang_kanan = $img_depan_foto_fender_belakang_kanan->encode('webp',75);
+            $input['foto_fender_belakang_kanan'] = 'FenderBelakangKanan'.$plat_mobil.'_'.time().'.webp';
+            $img_depan_foto_fender_belakang_kanan->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_kanan/').$input['foto_fender_belakang_kanan']);
+        }
 
         $input['keterangan_fender_depan_kanan'] = $request->keterangan_fender_depan_kanan;
         $input['keterangan_kaki_depan_kanan'] = $request->keterangan_kaki_depan_kanan;
@@ -1774,6 +1932,77 @@ class CarsController extends Controller
 
         $plat_mobil = $inspeksi_interior->cars->plat_nomor;
 
+        if ($request->file('foto_speedometer')) {
+            $image_interior_foto_speedometer = $request->file('foto_speedometer');
+            $img_interior_foto_speedometer = \Image::make($image_interior_foto_speedometer->path());
+            $img_interior_foto_speedometer = $img_interior_foto_speedometer->encode('webp',65);
+            $input['foto_speedometer'] = 'SpeedometerInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_speedometer->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_speedometer']);
+        }
+        if ($request->file('foto_setir')) {
+            $image_interior_foto_setir = $request->file('foto_setir');
+            $img_interior_foto_setir = \Image::make($image_interior_foto_setir->path());
+            $img_interior_foto_setir = $img_interior_foto_setir->encode('webp',65);
+            $input['foto_setir'] = 'SetirInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_setir->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_setir']);
+        }
+        if ($request->file('foto_dasboard')) {
+            $image_interior_foto_dasboard = $request->file('foto_dasboard');
+            $img_interior_foto_dasboard = \Image::make($image_interior_foto_dasboard->path());
+            $img_interior_foto_dasboard = $img_interior_foto_dasboard->encode('webp',65);
+            $input['foto_dasboard'] = 'DasboardInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_dasboard->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_dasboard']);
+        }
+        if ($request->file('foto_plafon')) {
+            $image_interior_foto_plafon = $request->file('foto_plafon');
+            $img_interior_foto_plafon = \Image::make($image_interior_foto_plafon->path());
+            $img_interior_foto_plafon = $img_interior_foto_plafon->encode('webp',65);
+            $input['foto_plafon'] = 'PlafonInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_plafon->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_plafon']);
+        }
+        if ($request->file('foto_ac')) {
+            $image_interior_foto_ac = $request->file('foto_ac');
+            $img_interior_foto_ac = \Image::make($image_interior_foto_ac->path());
+            $img_interior_foto_ac = $img_interior_foto_ac->encode('webp',65);
+            $input['foto_ac'] = 'ACInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_ac->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_ac']);
+        }
+        if ($request->file('foto_audio')) {
+            $image_interior_foto_audio = $request->file('foto_audio');
+            $img_interior_foto_audio = \Image::make($image_interior_foto_audio->path());
+            $img_interior_foto_audio = $img_interior_foto_audio->encode('webp',65);
+            $input['foto_audio'] = 'AudioInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_audio->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_audio']);
+        }
+        if ($request->file('foto_jok')) {
+            $image_interior_foto_jok = $request->file('foto_jok');
+            $img_interior_foto_jok = \Image::make($image_interior_foto_jok->path());
+            $img_interior_foto_jok = $img_interior_foto_jok->encode('webp',65);
+            $input['foto_jok'] = 'JokInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_jok->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_jok']);
+        }
+        if ($request->file('foto_electric_spion')) {
+            $image_interior_foto_electric_spion = $request->file('foto_electric_spion');
+            $img_interior_foto_electric_spion = \Image::make($image_interior_foto_electric_spion->path());
+            $img_interior_foto_electric_spion = $img_interior_foto_electric_spion->encode('webp',65);
+            $input['foto_electric_spion'] = 'ElectricSpionInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_electric_spion->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_electric_spion']);
+        }
+        if ($request->file('foto_power_window')) {
+            $image_interior_foto_power_window = $request->file('foto_power_window');
+            $img_interior_foto_power_window = \Image::make($image_interior_foto_power_window->path());
+            $img_interior_foto_power_window = $img_interior_foto_power_window->encode('webp',65);
+            $input['foto_power_window'] = 'PowerWindowInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_power_window->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_power_window']);
+        }
+        if ($request->file('foto_lain_lain')) {
+            $image_interior_foto_lain_lain = $request->file('foto_lain_lain');
+            $img_interior_foto_lain_lain = \Image::make($image_interior_foto_lain_lain->path());
+            $img_interior_foto_lain_lain = $img_interior_foto_lain_lain->encode('webp',65);
+            $input['foto_lain_lain'] = 'LainLainInterior'.$plat_mobil.'_'.time().'.webp';
+            $img_interior_foto_lain_lain->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_interior/').$input['foto_lain_lain']);
+        }
+
         $input['keterangan_speedometer'] = $request->keterangan_speedometer;
         $input['keterangan_setir'] = $request->keterangan_setir;
         $input['keterangan_dasboard'] = $request->keterangan_dasboard;
@@ -1846,9 +2075,18 @@ class CarsController extends Controller
 
         $inputBody = array();
         foreach (json_decode($inspeksi_lain->body) as $key => $value) {
-            $input_lain['foto_lain_lain'] = $value->foto_lain_lain;
-            $input_lain['keterangan_lain_lain'] = $request->keterangan_lain_lain[$key];
-            $inputBody[$key] = $input_lain;
+            // $input_lain['foto_lain_lain'] = $value->foto_lain_lain;
+            // $input_lain['keterangan_lain_lain'] = $request->keterangan_lain_lain[$key];
+            // $inputBody[$key] = $input_lain;
+            if ($value) {
+                $image_foto_lain_lain = $value;
+                $img_foto_lain_lain = \Image::make($image_foto_lain_lain->path());
+                $img_foto_lain_lain = $img_foto_lain_lain->encode('webp', 75);
+                $input_lain['foto_lain_lain'] = 'LainLain_'.$plat_mobil.'_'.time().'.webp';
+                $img_foto_lain_lain->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/').$input_lain['foto_lain_lain']);
+                $input_lain['keterangan_lain_lain'] = $request->keterangan_lain_lain[$key];
+                $inputBody[$key] = $input_lain;
+            }
         }
         $input['body'] = json_encode($inputBody);
         $inspeksi_lain->update($input);

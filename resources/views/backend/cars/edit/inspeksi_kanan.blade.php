@@ -14,6 +14,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Fender Depan Kanan</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kanan->cars->plat_nomor.'/berkas/pengecekkan_bagian_kanan/'.$inspeksi_kanan->foto_fender_depan_kanan) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_fender_depan_kanan" class="form-control" id="">
                         <textarea name="keterangan_fender_depan_kanan" class="form-control" id="" placeholder="Keterangan Fender Depan Kanan" cols="30" rows="2">{{ $inspeksi_kanan->keterangan_fender_depan_kanan }}</textarea>
                     </div>
                     @endif
@@ -21,6 +22,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Kaki Depan Kanan</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kanan->cars->plat_nomor.'/berkas/pengecekkan_bagian_kanan/'.$inspeksi_kanan->foto_kaki_depan_kanan) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_kaki_depan_kanan" class="form-control" id="">
                         <textarea name="keterangan_kaki_depan_kanan" class="form-control" id="" placeholder="Keterangan Kaki Depan Kanan" cols="30" rows="2">{{ $inspeksi_kanan->keterangan_kaki_depan_kanan }}</textarea>
                     </div>
                     @endif
@@ -28,6 +30,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Kaki Belakang Kanan</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kanan->cars->plat_nomor.'/berkas/pengecekkan_bagian_kanan/'.$inspeksi_kanan->foto_kaki_belakang_kanan) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_kaki_belakang_kanan" class="form-control" id="">
                         <textarea name="keterangan_kaki_belakang_kanan" class="form-control" id="" placeholder="Keterangan Kaki Belakang Kanan" cols="30" rows="2">{{ $inspeksi_kanan->keterangan_kaki_belakang_kanan }}</textarea>
                     </div>
                     @endif
@@ -35,6 +38,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Pintu Depan Kanan</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kanan->cars->plat_nomor.'/berkas/pengecekkan_bagian_kanan/'.$inspeksi_kanan->foto_pintu_depan_kanan) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_pintu_depan_kanan" class="form-control" id="">
                         <textarea name="keterangan_pintu_depan_kanan" class="form-control" id="" placeholder="Keterangan Pintu Depan Kanan" cols="30" rows="2">{{ $inspeksi_kanan->keterangan_pintu_depan_kanan }}</textarea>
                     </div>
                     @endif
@@ -42,6 +46,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Pintu Belakang Kanan</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kanan->cars->plat_nomor.'/berkas/pengecekkan_bagian_kanan/'.$inspeksi_kanan->foto_pintu_belakang_kanan) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_pintu_belakang_kanan" class="form-control" id="">
                         <textarea name="keterangan_pintu_belakang_kanan" class="form-control" id="" placeholder="Keterangan Pintu Belakang Kanan" cols="30" rows="2">{{ $inspeksi_kanan->keterangan_pintu_belakang_kanan }}</textarea>
                     </div>
                     @endif
@@ -49,6 +54,7 @@
                     <div class="col-md-3 mb-3">
                         <label>Fender Belakang Kanan</label>
                         <img src="{{ asset('backend/mobil/'.$inspeksi_kanan->cars->plat_nomor.'/berkas/pengecekkan_bagian_kanan/'.$inspeksi_kanan->foto_fender_belakang_kanan) }}" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_fender_belakang_kanan" class="form-control" id="">
                         <textarea name="keterangan_fender_belakang_kanan" class="form-control" id="" placeholder="Keterangan Fender Belakang Kanan" cols="30" rows="2">{{ $inspeksi_kanan->keterangan_fender_belakang_kanan }}</textarea>
                     </div>
                     @endif

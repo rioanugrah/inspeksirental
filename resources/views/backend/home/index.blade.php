@@ -25,7 +25,7 @@
     </div>
     <!-- end page title -->
     <div class="row">
-        <div class="col-md-6 col-xl-6">
+        <div class="col-md-3 col-xl-3">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex">
@@ -38,26 +38,52 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-xl-3">
+        {{-- <div class="col-md-3 col-xl-3">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
-                            <span class="text-muted text-uppercase fs-12 fw-bold">Total Data Mobil</span>
-                            <h3 class="mb-0 text-success fw-bold fs-24">{{ $total_car }}</h3>
+                            <span class="text-muted text-uppercase fs-12 fw-bold">Total Pendapatan Bulan Ini {{ \Carbon\Carbon::now()->isoFormat('MMMM YYYY') }}</span>
+                            <h3 class="mb-0 text-success">Rp. {{ number_format($total_pendapatan_bulan_ini,0,',','.') }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+
+        <div class="col-md-2 col-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <span class="text-muted text-uppercase fs-12 fw-bold">Total Inspeksi Bulan Ini {{ \Carbon\Carbon::now()->isoFormat('MMMM YYYY') }}</span>
+                            <h3 class="mb-0">{{ $total_car_bulan_ini }} Inspeksi</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6 col-xl-3">
+        <div class="col-md-2 col-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <span class="text-muted text-uppercase fs-12 fw-bold">Total Data Mobil</span>
+                            <h3 class="mb-0 text-primary fw-bold fs-24">{{ $total_car }} Inspeksi</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-xl-2">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <span class="text-muted text-uppercase fs-12 fw-bold">Mobil Yang Terinspeksi</span>
-                            <h3 class="mb-0 text-danger fw-bold fs-24">{{ $total_car_inspeksi }}</h3>
+                            <h3 class="mb-0 text-danger fw-bold fs-24">{{ $total_car_inspeksi }} Inspeksi</h3>
                         </div>
                     </div>
                 </div>

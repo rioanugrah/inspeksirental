@@ -54,6 +54,7 @@ Route::domain(parse_url(env('APP_URL'), PHP_URL_HOST))->group(function () {
             Route::get('create', [App\Http\Controllers\CarsController::class, 'create'])->name('cars.create')->middleware('verified');
             Route::post('simpan', [App\Http\Controllers\CarsController::class, 'store'])->name('cars.store')->middleware('verified');
             Route::post('sendMailInspeksi', [App\Http\Controllers\CarsController::class, 'sendMailInspeksi'])->name('cars.sendMailInspeksi')->middleware('verified');
+            Route::post('inputHargaInspeksiSimpan', [App\Http\Controllers\CarsController::class, 'inputHargaInspeksiSimpan'])->name('cars.inputHargaInspeksiSimpan')->middleware('verified');
 
             Route::get('{id}/detail', [App\Http\Controllers\CarsController::class, 'show'])->name('cars.detail')->middleware('verified');
             Route::get('{id}/inspeksi', [App\Http\Controllers\CarsController::class, 'buat_inspeksi'])->name('cars.buat_inspeksi')->middleware('verified');
@@ -68,6 +69,8 @@ Route::domain(parse_url(env('APP_URL'), PHP_URL_HOST))->group(function () {
             Route::get('{id}/download', [App\Http\Controllers\CarsController::class, 'download'])->name('cars.download')->middleware('verified');
             Route::get('{id}/modalSendMail', [App\Http\Controllers\CarsController::class, 'modalSendMail'])->name('cars.modalSendMail')->middleware('verified');
             Route::get('{id}/delete', [App\Http\Controllers\CarsController::class, 'delete'])->name('cars.delete')->middleware('verified');
+
+            Route::get('{id}/input_harga_inspeksi', [App\Http\Controllers\CarsController::class, 'inputHargaInspeksi'])->name('cars.inputHargaInspeksi')->middleware('verified');
 
             Route::get('{id}/inspeksi/{inspeksi_depan}/inspeksi_depan', [App\Http\Controllers\CarsController::class, 'edit_inspeksi_depan'])->name('cars.edit_inspeksi_depan')->middleware('verified');
             Route::post('{id}/inspeksi/{inspeksi_depan}/inspeksi_depan/update', [App\Http\Controllers\CarsController::class, 'update_inspeksi_depan'])->name('cars.update_inspeksi_depan')->middleware('verified');
@@ -100,6 +103,20 @@ Route::domain(parse_url(env('APP_URL'), PHP_URL_HOST))->group(function () {
                 Route::post('{id}/electric_spion/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_electric_spion'])->name('cars.upload_file_inspeksi_interior_electric_spion')->middleware('verified');
                 Route::post('{id}/power_window/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_power_window'])->name('cars.upload_file_inspeksi_interior_power_window')->middleware('verified');
                 Route::post('{id}/lain_lain/upload', [App\Http\Controllers\CarsController::class, 'upload_file_inspeksi_interior_lain_lain'])->name('cars.upload_file_inspeksi_interior_lain_lain')->middleware('verified');
+            });
+        });
+
+        Route::prefix('laporan')->group(function(){
+            Route::prefix('keuangan')->group(function(){
+                Route::get('/', [App\Http\Controllers\LaporanKeuanganController::class, 'index'])->name('lap_keuangan.index')->middleware('verified');
+                Route::get('cari', [App\Http\Controllers\LaporanKeuanganController::class, 'cari_data'])->name('lap_keuangan.cari_data')->middleware('verified');
+                Route::get('export_pdf', [App\Http\Controllers\LaporanKeuanganController::class, 'export_pdf'])->name('lap_keuangan.export_pdf')->middleware('verified');
+            });
+
+            Route::prefix('inspeksi')->group(function(){
+                Route::get('/', [App\Http\Controllers\LaporanInspeksiController::class, 'index'])->name('lap_inspeksi.index')->middleware('verified');
+                Route::get('cari', [App\Http\Controllers\LaporanInspeksiController::class, 'cari_data'])->name('lap_inspeksi.cari_data')->middleware('verified');
+
             });
         });
 

@@ -11,10 +11,15 @@ use App\Models\InspeksiKanan;
 use App\Models\InspeksiBelakang;
 use App\Models\InspeksiInterior;
 use App\Models\InspeksiLain;
+use App\Models\PriceInspeksi;
 
 use App\Mail\InvoiceInspeksi;
 
 use \Carbon\Carbon;
+
+use Dompdf\Options;
+use Dompdf\Dompdf;
+
 use Validator;
 use File;
 use DB;
@@ -33,7 +38,8 @@ class CarsController extends Controller
         InspeksiBelakang $inspeksi_belakang,
         InspeksiInterior $inspeksi_interior,
         InspeksiLain $inspeksi_lain,
-        InvoiceInspeksi $invoiceInspeksi
+        InvoiceInspeksi $invoiceInspeksi,
+        PriceInspeksi $priceInspeksi
     ){
         $this->cars = $cars; //Ini cara manggil parameters
         $this->inspeksi_depan = $inspeksi_depan;
@@ -42,6 +48,7 @@ class CarsController extends Controller
         $this->inspeksi_belakang = $inspeksi_belakang;
         $this->inspeksi_interior = $inspeksi_interior;
         $this->inspeksi_lain = $inspeksi_lain;
+        $this->priceInspeksi = $priceInspeksi;
 
         $this->invoiceInspeksi = $invoiceInspeksi;
 
@@ -109,22 +116,25 @@ class CarsController extends Controller
                                     $btn = '<div class="button-list">';
                                     if ($row->status == 'Waiting') {
                                         if (auth()->user()->can('Mobil Create') == true) {
-                                            $btn = $btn.'<a href='.route('cars.buat_inspeksi',['id' => $row->id]).' class="btn btn-warning"><i class="bi-pencil-square"></i> Mulai Inspeksi</a>';
+                                            $btn = $btn.'<a href='.route('cars.buat_inspeksi',['id' => $row->id]).' class="btn btn-warning btn-xs"><i class="bi-pencil-square"></i> Mulai Inspeksi</a>';
                                         }
                                         if (auth()->user()->can('Mobil Delete') == true) {
-                                            $btn = $btn.'<a href="javascript:void(0)" onclick="hapus(`'.$row->id.'`)" class="btn btn-danger"><i class="bi-trash2"></i> Delete</a>';
+                                            $btn = $btn.'<a href="javascript:void(0)" onclick="hapus(`'.$row->id.'`)" class="btn btn-danger btn-xs"><i class="bi-trash2"></i> Delete</a>';
                                         }
                                     }elseif($row->status == 'Proses'){
                                         if (auth()->user()->can('Mobil Create') == true) {
-                                            $btn = $btn.'<a href='.route('cars.buat_inspeksi',['id' => $row->id]).' class="btn btn-warning"><i class="bi-pencil-square"></i> Lanjut Inspeksi</a>';
+                                            $btn = $btn.'<a href='.route('cars.buat_inspeksi',['id' => $row->id]).' class="btn btn-warning btn-xs"><i class="bi-pencil-square"></i> Lanjut Inspeksi</a>';
                                         }
                                     }else{
                                         if (auth()->user()->can('Mobil Detail') == true) {
-                                            $btn = $btn.'<a href='.route('cars.detail',['id' => $row->id]).' class="btn btn-success"><i class="bi-eye"></i> Detail Inspeksi</a>';
+                                            $btn = $btn.'<a href='.route('cars.detail',['id' => $row->id]).' class="btn btn-success btn-xs text-dark"><i class="bi-eye"></i> Detail Inspeksi</a>';
                                         }
                                         if (auth()->user()->can('Mobil Cetak') == true) {
-                                            $btn = $btn.'<a href='.route('cars.download',['id' => $row->id]).' class="btn btn-primary" target="_blank"><i class="bi-printer"></i> Cetak Hasil</a>';
+                                            $btn = $btn.'<a href='.route('cars.download',['id' => $row->id]).' class="btn btn-primary btn-xs" target="_blank"><i class="bi-printer"></i> Cetak Hasil</a>';
                                         }
+                                        // if (!$row->detail_price_inspeksi) {
+                                        //     $btn = $btn.'<a onclick="inputHarga(`'.$row->id.'`)" class="btn btn-warning btn-xs text-dark" target="_blank"><i class="bi-plus"></i> Input Harga Inspeksi</a>';
+                                        // }
                                         // $btn = $btn.'<a href="javascript:void(0)" onclick="sendEmailInspeksi(`'.$row->id.'`)" class="btn btn-info"><i class="bi-envelope"></i> Kirim Email</a>';
                                         // $btn = $btn.'<a href="javascript:void(0)" onclick="sendEmailInspeksi(`'.$row->id.'`)" class="btn btn-info"><i class="bi-envelope"></i> Kirim Email</a>';
                                     }
@@ -2318,13 +2328,24 @@ class CarsController extends Controller
         ini_set('max_execution_time', -1);
         $data['car'] = $this->cars->find($id);
 
-        return view('backend.cars.download',$data);
-        // $pdf = PDF::loadView('backend.cars.download',$data);
-        // $pdf->setOption([
-        //     // 'dpi' => 96
-        // ]);
-        // // $pdf->setEncryption(1234, 5678, ['print', 'modify', 'copy', 'add']);
-        // return $pdf->stream('Laporan Kondisi Kendaraan Inspeksi No '.$data['car']->no_reference.'.pdf');
+        return view('backend.cars.downloadNew',$data);
+        // $options = new Options();
+        // $options->set('isRemoteEnabled', true);
+
+        // $dompdf = new Dompdf($options);
+        // $dompdf->loadHtml('backend.cars.downloadNew',$data);
+        // $dompdf->render();
+
+        // return $dompdf;
+
+        $pdf = PDF::loadView('backend.cars.downloadNew',$data);
+        $pdf->setOption([
+            'dpi' => 10,
+            'enable_remote' => true
+        ]);
+        // $pdf->set_option('isRemoteEnabled', true);
+        // $pdf->setEncryption(1234, 5678, ['print', 'modify', 'copy', 'add']);
+        return $pdf->stream('Laporan Kondisi Kendaraan Inspeksi No '.$data['car']->no_reference.'.pdf');
     }
 
     public function modalSendMail($id)
@@ -2418,6 +2439,113 @@ class CarsController extends Controller
             'message_title' => 'Berhasil',
             'message_content' => 'Invoice Inspeksi Berhasil Dikirim. Silahkan cek email secara berkala.'
         ]);
+    }
+
+    public function inputHargaInspeksi($id)
+    {
+        $data = $this->cars->select(
+                            'cars.id as id',
+                            'cars.no_reference as no_reference',
+                            'cars.plat_nomor as plat_nomor',
+                            'cars.warna as warna',
+                            'cars.merk as merk',
+                            'cars.model as model',
+                            'cars.tahun as tahun',
+                            'cars.no_rangka as no_rangka',
+                            'cars.transmisi as transmisi',
+                            'cars.status as status',
+                            'price_inspeksi.price as price',
+                        )
+                        ->leftJoin('price_inspeksi','price_inspeksi.cars_id','cars.id')
+                        ->where('cars.id',$id)
+                        ->first();
+
+        if (empty($data)) {
+            return redirect()->back()->with('error','Inspeksi Tidak Ditemukan');
+        }
+
+        $plat_nomor = explode('-',$data->plat_nomor);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'id' => $data->id,
+                'no_reference' => $data->no_reference,
+                'plat_nomor' => $plat_nomor[0] . ' ' . $plat_nomor[1] . ' ' . $plat_nomor[2],
+                'warna' => $data->warna,
+                'merk' => $data->merk,
+                'model' => $data->model,
+                'tahun' => $data->tahun,
+                'no_rangka' => $data->no_rangka,
+                'transmisi' => $data->transmisi,
+                'status' => $data->status,
+                'price' => $data->price
+                // 'price' => 'Rp. '.number_format($data->price_inspeksi,0,',','.'),
+            ]
+        ],200);
+                                // dd($data);
+        // return view('backend.cars.inputHargaInspeksi',$data);
+    }
+
+    public function inputHargaInspeksiSimpan(Request $request)
+    {
+        $rules = [
+            'modalPrice' => 'required',
+        ]; // Ini buat validasi inputan
+
+        $messages = [
+            'modalPrice.required'  => 'Harga Inspeksi wajib diisi lengkap.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages); // Ini buat cek validasi
+
+        if ($validator->passes()) {
+            $price = $this->priceInspeksi->where('cars_id',$request->modalId)->first();
+            if (empty($price)) {
+                // dd('ok');
+                $input['id'] = Str::uuid()->toString();
+                $input['cars_id'] = $request->modalId;
+                $input['price'] = $request->modalPrice;
+                // dd($input);
+                $savePrice = $this->priceInspeksi->create($input);
+
+                if ($savePrice){
+                    $message_title="Berhasil !";
+                    $message_content= "Harga Inspeksi Berhasil Disimpan";
+                    $message_type="success";
+                    $message_succes = true;
+                    // return redirect()->route()->with('success',' Mobil '.$input['plat_nomor'].' Berhasil Dibuat');
+                }
+                $array_message = array(
+                    'success' => $message_succes,
+                    'message_title' => $message_title,
+                    'message_content' => $message_content,
+                    'message_type' => $message_type,
+                );
+                return response()->json($array_message);
+            }else{
+                $message_title="Gagal !";
+                $message_content= "Harga Inspeksi sudah ditambahkan!";
+                $message_type="error";
+                $message_succes = false;
+
+                $array_message = array(
+                    'success' => $message_succes,
+                    'message_title' => $message_title,
+                    'message_content' => $message_content,
+                    'message_type' => $message_type,
+                );
+                return response()->json($array_message);
+            }
+        }
+
+        return response()->json(
+            [
+                'success' => false,
+                'error' => $validator->errors()->all()
+            ]
+        );
+
     }
 
 }

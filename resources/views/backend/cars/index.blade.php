@@ -16,6 +16,7 @@
 
 @section('content')
     @include('backend.cars.modalEmail')
+    @include('backend.cars.modalInputHarga')
     <div class="row">
         <div class="col-md-12">
             <div class="page-title-box">
@@ -117,6 +118,47 @@
 
         function reload(){
             table.ajax.reload();
+        }
+
+        function inputHarga(id)
+        {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('cars/') }}"+'/'+id+'/'+'input_harga_inspeksi',
+                beforeSend: () => {
+
+                },
+                success: (result) => {
+                    if (result.success != false) {
+                        $('#modalIdNew').val(result.data.id);
+                        document.getElementById('modalNoReference').innerHTML = result.data.no_reference;
+                        document.getElementById('modalPlatNomor').innerHTML = result.data.plat_nomor;
+                        document.getElementById('modalWarnaMobil').innerHTML = result.data.warna;
+                        document.getElementById('modalMerk').innerHTML = result.data.merk;
+                        document.getElementById('modalModel').innerHTML = result.data.model;
+                        document.getElementById('modalNoRangka').innerHTML = result.data.no_rangka;
+                        document.getElementById('modalTransmisi').innerHTML = result.data.transmisi;
+                        document.getElementById('modalStatus').innerHTML = result.data.status;
+                        $('#modalPrice').val(result.data.price);
+                        $('#modalInputHarga').modal('show');
+                    } else {
+                        Swal.fire({
+                            icon: result.message_type,
+                            title: result.message_title,
+                            text: result.message_content,
+                            showConfirmButton: true,
+                            // showConfirmButton: false,
+                        });
+                    }
+                },
+                error: function(request, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: error,
+                        // showConfirmButton: false,
+                    });
+                }
+            });
         }
 
         function sendEmailInspeksi(id)
@@ -225,6 +267,55 @@
                             text: result.message_content,
                             showConfirmButton: true,
                         });
+                        // setTimeout(function(){
+                        //     location.reload();
+                        // }, 2000);
+                    } else {
+                        Swal.fire({
+                            icon: result.message_type,
+                            title: result.message_title,
+                            text: result.message_content,
+                            showConfirmButton: true,
+                        });
+                    }
+                },
+                error: function(request, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: error,
+                        // showConfirmButton: false,
+                    });
+                }
+            });
+        });
+
+        $('#submit-modal-price').submit(function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('cars.inputHargaInspeksiSimpan') }}",
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: () => {
+                    Swal.fire({
+                        icon: "info",
+                        title: "Sedang Diproses, Silahkan Tunggu",
+                        showConfirmButton: false,
+                    });
+                },
+                success: (result) => {
+                    if (result.success != false) {
+                        Swal.fire({
+                            icon: result.message_type,
+                            title: result.message_title,
+                            text: result.message_content,
+                            showConfirmButton: true,
+                        });
+                        $('#modalInputHarga').modal('hide');
+                        this.reset();
+                        table.ajax.reload(null, false);
                         // setTimeout(function(){
                         //     location.reload();
                         // }, 2000);

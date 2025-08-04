@@ -54,6 +54,22 @@
                     </a>
                 </li>
 
+                {{-- @can('Keuangan List') --}}
+                {{-- <li class="menu-title">Laporan</li>
+                <li class="{{ request()->is('laporan/keuangan/*') ? 'menuitem-active' : null }}">
+                    <a href="{{ route('lap_keuangan.index') }}">
+                        <i data-feather="truck"></i>
+                        <span>Keuangan</span>
+                    </a>
+                </li>
+                <li class="{{ request()->is('laporan/inspeksi/*') ? 'menuitem-active' : null }}">
+                    <a href="{{ route('lap_inspeksi.index') }}">
+                        <i data-feather="truck"></i>
+                        <span>Inspeksi</span>
+                    </a>
+                </li> --}}
+                {{-- @endcan --}}
+
                 @can('User List')
                 <li class="menu-title">User Management</li>
                 <li class="{{ request()->is('users/*') ? 'menuitem-active' : null }}">

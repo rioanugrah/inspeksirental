@@ -32,6 +32,10 @@ class HomeController extends Controller
         $date = Carbon::now();
         $data['total_car'] = $this->car->count();
         $data['total_car_inspeksi'] = $this->car->where('status','selesai')->count();
+        $data['total_car_bulan_ini'] = $this->car->where('status','selesai')
+                                                ->whereMonth('created_at',date('m'))
+                                                ->whereYear('created_at',date('Y'))
+                                                ->count();
 
         $week_start = $date->startOfYear()->format('Y-m');
         $week_end = $date->endOfYear()->format('Y-m');
@@ -43,7 +47,13 @@ class HomeController extends Controller
             $data['years'][] = $value->format('m-Y');
         }
 
+        // $data['total_pendapatan_bulan_ini'] = $this->car->leftJoin('price_inspeksi','price_inspeksi.cars_id','=','cars.id')
+        //                                                 ->whereMonth('cars.created_at',date('m'))
+        //                                                 ->whereYear('cars.created_at',date('Y'))
+        //                                                 ->sum('price_inspeksi.price');
+
         // dd($data);
+        // dd(date('Y'));
 
         // $data['total_inspeksi_done_year'] = $this->car->whereMonth('created_at','<=',$date)
         //                                             ->whereMonth('created_at','>=',$data)

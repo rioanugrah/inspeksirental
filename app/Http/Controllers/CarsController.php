@@ -1394,6 +1394,12 @@ class CarsController extends Controller
             // $inputBody[$key] = $value;
             $image_foto_lain_lain = $value['foto_lain_lain'];
             $img_foto_lain_lain = \Image::make($image_foto_lain_lain->path());
+
+            $img_foto_lain_lain->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize(); // Prevent upsizing
+            });
+
             $img_foto_lain_lain = $img_foto_lain_lain->encode('webp', 75);
             $input_lain['foto_lain_lain'] = 'LainLain_'.$plat_mobil.'_'.rand(100,999).'.webp';
             $img_foto_lain_lain->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/').$input_lain['foto_lain_lain']);

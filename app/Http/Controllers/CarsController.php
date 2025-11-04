@@ -1390,6 +1390,8 @@ class CarsController extends Controller
         //     // $inputBody[$key] = $key;
         // }
 
+        dd($request['group-a']);
+
         foreach ($request['group-a'] as $key => $value) {
             // $inputBody[$key] = $value;
             $image_foto_lain_lain = $value['foto_lain_lain'];

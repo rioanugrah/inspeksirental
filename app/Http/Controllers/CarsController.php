@@ -1395,6 +1395,7 @@ class CarsController extends Controller
         foreach ($request['group-a'] as $key => $value) {
             // $inputBody[$key] = $value;
             $image_foto_lain_lain = $value['foto_lain_lain'];
+            dd($image_foto_lain_lain);
             $img_foto_lain_lain = \Image::make($image_foto_lain_lain->path());
 
             $img_foto_lain_lain->resize(800, null, function ($constraint) {

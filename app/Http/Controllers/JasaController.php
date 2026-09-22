@@ -24,7 +24,7 @@ class JasaController extends Controller
         PriceInspeksi $priceInspeksi,
         FinanceBiayaJasa $financeBiayaJasa,
         FinanceCoa $financeCoa,
-        FinanceJournal $financeJournal,
+        FinanceJournal $financeJournal
 
     ){
         $this->middleware('permission:BiayaJasa Create', ['only' => ['biaya_jasa_simpan','biaya_jasa_detail','biaya_jasa_metodePembayaran_simpan']]);

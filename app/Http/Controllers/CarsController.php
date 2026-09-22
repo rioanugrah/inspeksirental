@@ -43,7 +43,7 @@ class CarsController extends Controller
         InspeksiLain $inspeksi_lain,
         InvoiceInspeksi $invoiceInspeksi,
         PriceInspeksi $priceInspeksi,
-        FinanceBiayaJasa $financeBiayaJasa,
+        FinanceBiayaJasa $financeBiayaJasa
     ){
         $this->cars = $cars; //Ini cara manggil parameters
         $this->inspeksi_depan = $inspeksi_depan;

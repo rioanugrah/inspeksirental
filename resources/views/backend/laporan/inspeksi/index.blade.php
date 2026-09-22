@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <form action="{{ route('lap_inspeksi.cari_data') }}" method="get">
-                                @csrf
+                                {{-- @csrf --}}
                                 <div class="row">
                                     <div class="col-md-4">
                                         <select name="years" class="form-control">
@@ -51,6 +51,7 @@
                                     <th class="text-center">No</th>
                                     <th class="text-center">Bulan</th>
                                     <th class="text-center">Total Inspeksi</th>
+                                    <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,6 +66,9 @@
                                         <td class="text-center">{{ $key+1 }}</td>
                                         <td class="text-center">{{ \Carbon\Carbon::create($period['date'])->isoFormat('MMMM YYYY') }}</td>
                                         <td class="text-center">{{ $period['total_cars'] }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('lap_inspeksi.rekap_inspeksi',['date' => $period['date']]) }}" class="btn btn-primary" target="_blank">Download Rekap Inspeksi</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

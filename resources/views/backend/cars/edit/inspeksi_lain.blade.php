@@ -5,7 +5,7 @@
 @section('content')
     <div class="col-md-12 mt-3">
         <div class="card">
-            <form id="edit-bagian-lain" method="post" enctype="multipart/form-data">
+            <form id="edit-bagian-lain" method="post" class="repeater" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <h6 class="card-title border-bottom p-3 mb-0 header-title">Edit Inspeksi Lain - Lain</h6>
@@ -19,6 +19,18 @@
                     </div>
                     @endforeach
                 </div>
+                {{-- <div class="row mt-3" data-repeater-list="group-a">
+                    @foreach (json_decode($inspeksi_lain->body) as $key => $inspeksi_lain_data)
+                    <div class="col-md-3 mb-3" data-repeater-item>
+                        <div style="font-weight: bold">Keterangan Lain - Lain</div>
+                        <img src="{{ asset('backend/mobil/'.$inspeksi_lain->cars->plat_nomor.'/berkas/pengecekkan_bagian_lain/'.$inspeksi_lain_data->foto_lain_lain) }}" class="mt-2 mb-2" style="width: 250px; height: 250px; object-fit: contain;">
+                        <input type="file" name="foto_lain_lain_{{ $key }}" class="form-control" id="">
+                        <textarea name="keterangan_lain_lain_{{ $key }}" class="form-control" cols="30" rows="2">{{ $inspeksi_lain_data->keterangan_lain_lain }}</textarea>
+                    </div>
+                    @endforeach
+                </div>
+                <input data-repeater-create type="button" value="Add" /> --}}
+
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-success">Update</button>
@@ -30,7 +42,34 @@
 @endsection
 @section('script')
     <script src="{{ asset('backend/assets/js/pages/sweetalert2@11.js') }}"></script>
+    {{-- <script src="{{ asset('backend/assets/js/jquery.repeater.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/jquery.repeater.min.js') }}"></script> --}}
     <script>
+        $(document).ready(function() {
+            'use strict';
+
+            // $('.repeater').repeater({
+            //     defaultValues: {
+            //         'textarea-input': 'foo',
+            //         'text-input': 'bar',
+            //         'select-input': 'B',
+            //         'checkbox-input': ['A', 'B'],
+            //         'radio-input': 'B'
+            //     },
+            //     show: function() {
+            //         $(this).slideDown();
+            //     },
+            //     hide: function(deleteElement) {
+            //         if (confirm('Are you sure you want to delete this element?')) {
+            //             $(this).slideUp(deleteElement);
+            //         }
+            //     },
+            //     ready: function(setIndexes) {
+
+            //     }
+            // });
+        });
+
         $('#edit-bagian-lain').submit(function(e) {
             e.preventDefault();
             let formData = new FormData(this);

@@ -5,7 +5,7 @@
                 <script>
                     // document.write(new Date().getFullYear())
                     2024
-                </script> &copy; Inspeksi Rental by <a href="">CodeinSolution</a>
+                </script> &copy; Inspeksi Rental by <a href="">DigiCodein</a>
             </div>
         </div>
     </div>

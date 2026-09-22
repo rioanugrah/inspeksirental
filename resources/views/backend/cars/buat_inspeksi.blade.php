@@ -22,8 +22,8 @@
                     <h6 class="card-title border-bottom p-3 mb-0 header-title">DETAIL IDENTITAS KENDARAAN</h6>
                     <div class="row py-1">
                         <div class="col-xl-6 col-sm-6">
-                            <input type="image" src="{{ asset('backend/assets/images/mobil_images/mb.webp') }}"
-                                width="100%" height="85%" style="margin-left: 5%">
+                            <img src="{{ asset('backend/assets/images/mobil_images/mb.webp') }}"
+                                width="100%" height="85%" class="img-fluid" alt="Foto kendaraan" style="margin-left: 5%">
                         </div>
                         <div class="col-xl-6 col-sm-6">
                             <div class="row" style="margin-left: 2.5%; margin-right: 2.5%;">
@@ -87,7 +87,7 @@
 
     <div class="accordion custom-accordionwitharrow" id="accordionExample">
         <div class="card mb-1 shadow-none border">
-            <a href="" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+            <a href="#!" class="text-dark" onclick="event.preventDefault();" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
                 aria-controls="collapseOne">
                 <div class="card-header" id="headingOne">
                     <h5 class="m-0 fs-16">
@@ -374,7 +374,7 @@
         </div>
 
         <div class="card mb-1 shadow-none border">
-            <a href="" class="text-dark collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+            <a href="#!" class="text-dark collapsed" onclick="event.preventDefault();" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                 aria-expanded="false" aria-controls="collapseTwo">
                 <div class="card-header" id="headingTwo">
                     <h5 class="m-0 fs-16">
@@ -634,7 +634,7 @@
         </div>
 
         <div class="card mb-1 shadow-none border">
-            <a href="" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+            <a href="#!" class="text-dark" onclick="event.preventDefault();" data-bs-toggle="collapse" data-bs-target="#collapseThree"
                 aria-expanded="true" aria-controls="collapseThree">
                 <div class="card-header" id="headingThree">
                     <h5 class="m-0 fs-16">
@@ -785,7 +785,7 @@
         </div>
 
         <div class="card mb-1 shadow-none border">
-            <a href="" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+            <a href="#!" class="text-dark" onclick="event.preventDefault();" data-bs-toggle="collapse" data-bs-target="#collapseFour"
                 aria-expanded="true" aria-controls="collapseFour">
                 <div class="card-header" id="headingFour">
                     <h5 class="m-0 fs-16">
@@ -1047,9 +1047,9 @@
         </div>
 
         <div class="card mb-1 shadow-none border">
-            <a href="" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseFive"
+            <a href="#!" class="text-dark" onclick="event.preventDefault();" data-bs-toggle="collapse" data-bs-target="#collapseFive"
                 aria-expanded="true" aria-controls="collapseFive">
-                <div class="card-header" id="headingiver">
+                <div class="card-header" id="headingFive">
                     <h5 class="m-0 fs-16">
                         Inspeksi Bagian Interior
                         <i class="uil uil-angle-down float-end accordion-arrow"></i>
@@ -1318,7 +1318,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <div id="interior-realtime-status" class="alert alert-light border mt-3" role="status" aria-live="polite">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <strong id="interior-realtime-title">Menunggu kelengkapan data...</strong>
+                                        <span id="interior-realtime-percent">0%</span>
+                                    </div>
+                                    <div class="progress" style="height: 10px;">
+                                        <div id="interior-realtime-progress" class="progress-bar progress-bar-striped" role="progressbar"
+                                            style="width: 0%;" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+                                    </div>
+                                    <small id="interior-realtime-detail" class="text-muted d-block mt-2">Lengkapi semua foto dan keterangan terlebih dahulu.</small>
+                                </div>
+
+                                <button type="submit" id="btn-submit-interior" class="btn btn-success">
+                                    <i class="uil uil-check-circle me-1"></i> Submit
+                                </button>
                             </div>
                         </form>
                     @endif
@@ -1327,9 +1341,9 @@
         </div>
 
         <div class="card mb-1 shadow-none border">
-            <a href="" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseSix"
+            <a href="#!" class="text-dark" onclick="event.preventDefault();" data-bs-toggle="collapse" data-bs-target="#collapseSix"
                 aria-expanded="true" aria-controls="collapseSix">
-                <div class="card-header" id="headingiver">
+                <div class="card-header" id="headingSix">
                     <h5 class="m-0 fs-16">
                         Inspeksi Bagian Lain - Lain
                         <i class="uil uil-angle-down float-end accordion-arrow"></i>
@@ -1363,6 +1377,9 @@
                                 <button type="button"
                                     onclick="window.location.href='{{ route('cars.edit_inspeksi_lain', ['id' => $car->id, 'inspeksi_lain' => $car->detail_inspeksi_lain->id]) }}'"
                                     class="btn btn-warning"><i class="bi-pencil-square"></i> Edit</button>
+                                <button type="button"
+                                    onclick="window.location.href='{{ route('cars.tambah_inspeksi_lain', ['id' => $car->id, 'inspeksi_lain' => $car->detail_inspeksi_lain->id]) }}'"
+                                    class="btn btn-primary">Tambah Baru</button>
                             @else
                                 <div class="row">
                                     {{-- <div class="col-md-6">
@@ -1411,1031 +1428,579 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('backend/assets/js/jquery.repeater.js') }}"></script>
     <script src="{{ asset('backend/assets/js/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/pages/sweetalert2@11.js') }}"></script>
-    <script src="{{ asset('plugins/src/tomSelect/tom-select.base.js') }}"></script>
-    <script src="{{ asset('plugins/src/tomSelect/custom-tom-select.js') }}"></script>
-    {{-- <script src="{{ asset('backend/assets/libs/smartwizard/js/jquery.smartWizard.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/pages/form-wizard.init.js') }}"></script> --}}
     <script>
-        $(document).ready(function() {
+        $(function () {
             'use strict';
 
-            $('.repeater').repeater({
-                defaultValues: {
-                    'textarea-input': 'foo',
-                    'text-input': 'bar',
-                    'select-input': 'B',
-                    'checkbox-input': ['A', 'B'],
-                    'radio-input': 'B'
-                },
-                show: function() {
-                    $(this).slideDown();
-                },
-                hide: function(deleteElement) {
-                    if (confirm('Are you sure you want to delete this element?')) {
-                        $(this).slideUp(deleteElement);
-                    }
-                },
-                ready: function(setIndexes) {
+            /* -------------------------------------------------------------
+             * Common helpers
+             * ----------------------------------------------------------- */
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+                || document.querySelector('input[name="_token"]')?.value
+                || '';
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
                 }
             });
 
-            window.outerRepeater = $('.outer-repeater').repeater({
-                isFirstItemUndeletable: true,
-                defaultValues: {
-                    'text-input': 'outer-default'
+            const inspectionForms = {
+                '#upload-simpan-bagian-depan': {
+                    url: "{{ route('cars.simpan_inspeksi_depan', ['id' => $car->id]) }}",
+                    redirect: 'reload'
                 },
-                show: function() {
-                    console.log('outer show');
-                    $(this).slideDown();
+                '#upload-simpan-bagian-kiri': {
+                    url: "{{ route('cars.simpan_inspeksi_kiri', ['id' => $car->id]) }}",
+                    redirect: 'reload'
                 },
-                hide: function(deleteElement) {
-                    console.log('outer delete');
-                    $(this).slideUp(deleteElement);
+                '#upload-simpan-bagian-belakang': {
+                    url: "{{ route('cars.simpan_inspeksi_belakang', ['id' => $car->id]) }}",
+                    redirect: 'reload'
                 },
-                repeaters: [{
+                '#upload-simpan-bagian-kanan': {
+                    url: "{{ route('cars.simpan_inspeksi_kanan', ['id' => $car->id]) }}",
+                    redirect: 'reload'
+                },
+                '#upload-simpan-bagian-interior': {
+                    url: "{{ route('cars.simpan_inspeksi_interior', ['id' => $car->id]) }}",
+                    redirect: "{{ route('cars') }}",
+                    waitForUploads: true
+                },
+                '#upload-simpan-bagian-lain': {
+                    url: "{{ route('cars.simpan_inspeksi_lain', ['id' => $car->id]) }}",
+                    redirect: "{{ route('cars') }}"
+                }
+            };
+
+            function safeJson(text) {
+                if (!text) return null;
+                try {
+                    return typeof text === 'object' ? text : JSON.parse(text);
+                } catch (error) {
+                    return null;
+                }
+            }
+
+            function getResponseData(request, fallback) {
+                return request?.responseJSON || safeJson(request?.responseText) || fallback || {};
+            }
+
+            function getFirstValidationError(errors) {
+                if (!errors || typeof errors !== 'object') return '';
+                for (const key of Object.keys(errors)) {
+                    const messages = Array.isArray(errors[key]) ? errors[key] : [errors[key]];
+                    if (messages[0]) return messages[0];
+                }
+                return '';
+            }
+
+            function showAlert({
+                icon = 'info',
+                title = 'Informasi',
+                text = '',
+                timer = null,
+                allowOutsideClick = true
+            }) {
+                const options = {
+                    icon,
+                    title,
+                    text,
+                    allowOutsideClick,
+                    buttonsStyling: true
+                };
+                if (timer) {
+                    options.timer = timer;
+                    options.showConfirmButton = false;
+                }
+                return Swal.fire(options);
+            }
+
+            function showLoading(title = 'Data sedang diproses, silakan tunggu...') {
+                Swal.fire({
+                    title,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showConfirmButton: false,
+                    didOpen: () => Swal.showLoading()
+                });
+            }
+
+            function setFormBusy(form, busy) {
+                form.dataset.submitting = busy ? '1' : '0';
+                form.querySelectorAll('button[type="submit"]').forEach(button => {
+                    button.disabled = busy;
+                });
+            }
+
+            /* -------------------------------------------------------------
+             * Repeater: bagian lain-lain
+             * ----------------------------------------------------------- */
+            const $repeater = $('.repeater');
+            if ($repeater.length && typeof $repeater.repeater === 'function') {
+                $repeater.repeater({
                     isFirstItemUndeletable: true,
-                    selector: '.inner-repeater',
-                    defaultValues: {
-                        'inner-text-input': 'inner-default'
-                    },
-                    show: function() {
-                        console.log('inner show');
+                    show: function () {
                         $(this).slideDown();
                     },
-                    hide: function(deleteElement) {
-                        console.log('inner delete');
-                        $(this).slideUp(deleteElement);
-                    }
-                }]
-            });
-        });
-
-        var formAttachmentLainLain = document.getElementById('formAttachmentLainLain');
-
-        var no = 1;
-
-        function add() {
-            var newField = document.createElement('input');
-            newField.setAttribute('type', 'file');
-            newField.setAttribute('name', 'foto_lain_lain[]');
-            newField.setAttribute('class', 'form-control');
-            formAttachmentLainLain.appendChild(newField);
-
-            var newFieldTextArea = document.createElement('textarea');
-            newFieldTextArea.setAttribute('name', 'keterangan_lain_lain[]');
-            newFieldTextArea.setAttribute('class', 'form-control');
-            newFieldTextArea.setAttribute('placeholder', 'Keterangan ' + parseInt(no + 1));
-            formAttachmentLainLain.appendChild(newFieldTextArea);
-
-            var hr = document.createElement('hr');
-            formAttachmentLainLain.appendChild(hr);
-            no++;
-        }
-
-        function remove() {
-            var input_tags = formAttachmentLainLain.getElementsByTagName('input');
-            if (input_tags.length > 0) {
-                formAttachmentLainLain.removeChild(input_tags[(input_tags.length) - 1]);
-            }
-
-            var input_tags_textarea = formAttachmentLainLain.getElementsByTagName('textarea');
-            if (input_tags_textarea.length > 0) {
-                formAttachmentLainLain.removeChild(input_tags_textarea[(input_tags_textarea.length) - 1]);
-            }
-
-            var hr = formAttachmentLainLain.getElementsByTagName('hr');
-            if (hr.length > 0) {
-                formAttachmentLainLain.removeChild(hr[(hr.length) - 1]);
-            }
-            no--;
-        }
-    </script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('input[type=radio][name=kaca_depan]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_kaca_depan').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Kaca Depan</label>' +
-                    '<input type="file" name="foto_kaca_depan" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaca_depan" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaca Depan"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_kaca_depan').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=kap_mesin]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_kap_mesin').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Kap Mesin</label>' +
-                    '<input type="file" name="foto_kap_mesin" class="form-control">' +
-                    '<textarea id="" name="keterangan_kap_mesin" rows="2" cols="10" class="form-control" placeholder="Keterangan Kap Mesin"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_kap_mesin').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=rangka_mobil]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_rangka_mobil').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Rangka Mobil</label>' +
-                    '<input type="file" name="foto_rangka_mobil" class="form-control">' +
-                    '<textarea id="" name="keterangan_rangka_mobil" rows="2" cols="10" class="form-control" placeholder="Keterangan Rangka Mobil"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_rangka_mobil').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=aki]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_aki').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Aki Mobil</label>' +
-                    '<input type="file" name="foto_aki" class="form-control">' +
-                    '<textarea id="" name="keterangan_aki" rows="2" cols="10" class="form-control" placeholder="Keterangan Aki Mobil"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_aki').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=radiator]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_radiator').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Radiator</label>' +
-                    '<input type="file" name="foto_radiator" class="form-control">' +
-                    '<textarea id="" name="keterangan_radiator" rows="2" cols="10" class="form-control" placeholder="Keterangan Radiator"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_radiator').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=kondisi_mesin]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_kondisi_mesin').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Kondisi Mesin</label>' +
-                    '<input type="file" name="foto_kondisi_mesin" class="form-control">' +
-                    '<textarea id="" name="keterangan_kondisi_mesin" rows="2" cols="10" class="form-control" placeholder="Keterangan Kondisi Mesin"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_kondisi_mesin').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=bumper_lampu]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_bumper_lampu').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Bumper & Lampu</label>' +
-                    '<input type="file" name="foto_bumper_lampu" class="form-control">' +
-                    '<textarea id="" name="keterangan_bumper_lampu" rows="2" cols="10" class="form-control" placeholder="Keterangan Bumper & Lampu"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_bumper_lampu').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=fender_depan_kiri]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_fender_depan_kiri').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Fender Depan Kiri</label>' +
-                    '<input type="file" name="foto_fender_depan_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_fender_depan_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Depan Kiri"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_fender_depan_kiri').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=kaki_depan_kiri]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_kaki_depan_kiri').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Kaki Depan Kiri</label>' +
-                    '<input type="file" name="foto_kaki_depan_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaki_depan_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Depan Kiri"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_kaki_depan_kiri').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=kaki_belakang_kiri]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_kaki_belakang_kiri').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Kaki Belakang Kiri</label>' +
-                    '<input type="file" name="foto_kaki_belakang_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaki_belakang_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Belakang Kiri"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_kaki_belakang_kiri').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=pintu_depan_kiri]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_pintu_depan_kiri').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Pintu Depan Kiri</label>' +
-                    '<input type="file" name="foto_pintu_depan_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_depan_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Depan Kiri"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_pintu_depan_kiri').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=pintu_belakang_kiri]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_pintu_belakang_kiri').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Pintu Belakang Kiri</label>' +
-                    '<input type="file" name="foto_pintu_belakang_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_belakang_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Belakang Kiri"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_pintu_belakang_kiri').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=fender_belakang_kiri]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_fender_belakang_kiri').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Fender Belakang Kiri</label>' +
-                    '<input type="file" name="foto_fender_belakang_kiri" class="form-control">' +
-                    '<textarea id="" name="keterangan_fender_belakang_kiri" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Belakang Kiri"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_fender_belakang_kiri').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=lampu_belakang]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_lampu_belakang_kanan_kiri').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Lampu Belakang Kanan Kiri</label>' +
-                    '<input type="file" name="foto_lampu_belakang" class="form-control">' +
-                    '<textarea id="" name="keterangan_lampu_belakang" rows="2" cols="10" class="form-control" placeholder="Keterangan Lampu Belakang Kanan Kiri"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_lampu_belakang_kanan_kiri').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=pintu_bagasi_belakang]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_pintu_bagasi_belakang').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Pintu Bagasi Belakang</label>' +
-                    '<input type="file" name="foto_pintu_bagasi_belakang" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_bagasi_belakang" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Bagasi Belakang"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_pintu_bagasi_belakang').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=bumper_belakang]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_bumper_belakang').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Bumper Belakang</label>' +
-                    '<input type="file" name="foto_bumper_belakang" class="form-control">' +
-                    '<textarea id="" name="keterangan_bumper_belakang" rows="2" cols="10" class="form-control" placeholder="Keterangan Bumper Belakang"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_bumper_belakang').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=fender_depan_kanan]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_fender_depan_kanan').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Fender Depan Kanan</label>' +
-                    '<input type="file" name="foto_fender_depan_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_fender_depan_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Depan Kanan"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_fender_depan_kanan').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=kaki_depan_kanan]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_kaki_depan_kanan').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Kaki Depan Kanan</label>' +
-                    '<input type="file" name="foto_kaki_depan_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaki_depan_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Depan Kanan"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_kaki_depan_kanan').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=kaki_belakang_kanan]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_kaki_belakang_kanan').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Kaki Belakang Kanan</label>' +
-                    '<input type="file" name="foto_kaki_belakang_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_kaki_belakang_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Kaki Belakang Kanan"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_kaki_belakang_kanan').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=pintu_depan_kanan]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_pintu_depan_kanan').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Pintu Depan Kanan</label>' +
-                    '<input type="file" name="foto_pintu_depan_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_depan_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Depan Kanan"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_pintu_depan_kanan').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=pintu_belakang_kanan]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_pintu_belakang_kanan').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Pintu Belakang Kanan</label>' +
-                    '<input type="file" name="foto_pintu_belakang_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_pintu_belakang_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Pintu Belakang Kanan"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_pintu_belakang_kanan').innerHTML = null;
-            }
-        });
-
-        $('input[type=radio][name=fender_belakang_kanan]').on('change', function() {
-            if (this.value == 'Rusak') {
-                document.getElementById('view_fender_belakang_kanan').innerHTML = '<div class="mt-2 mb-2">' +
-                    '<label>Bukti Foto Fender Belakang Kanan</label>' +
-                    '<input type="file" name="foto_fender_belakang_kanan" class="form-control">' +
-                    '<textarea id="" name="keterangan_fender_belakang_kanan" rows="2" cols="10" class="form-control" placeholder="Keterangan Fender Belakang Kanan"></textarea>' +
-                    '</div>';
-            } else {
-                document.getElementById('view_fender_belakang_kanan').innerHTML = null;
-            }
-        });
-
-        $('#upload-simpan-bagian-depan').submit(function(e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('cars.simpan_inspeksi_depan', ['id' => $car->id]) }}",
-                data: formData,
-                contentType: false,
-                processData: false,
-                beforeSend: () => {
-                    Swal.fire({
-                        icon: "info",
-                        title: "Data Sedang Diproses, Silahkan Tunggu",
-                        showConfirmButton: false,
-                    });
-                },
-                success: (result) => {
-                    if (result.success != false) {
+                    hide: function (deleteElement) {
                         Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            showConfirmButton: false,
-                        });
-                        setTimeout(function() {
-                            location.reload();
-                        }, 2000);
-                    } else {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            // showConfirmButton: false,
+                            icon: 'warning',
+                            title: 'Hapus item ini?',
+                            text: 'Data yang dihapus dari daftar ini tidak dapat dipulihkan sebelum disimpan.',
+                            showCancelButton: true,
+                            confirmButtonText: 'Hapus',
+                            cancelButtonText: 'Batal'
+                        }).then(result => {
+                            if (result.isConfirmed) {
+                                $(this).slideUp(deleteElement);
+                            }
                         });
                     }
-                },
-                error: function(request, status, error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: error,
-                        // showConfirmButton: false,
-                    });
+                });
+            }
+
+            /* -------------------------------------------------------------
+             * Radio inspection -> show evidence fields when damaged
+             * ----------------------------------------------------------- */
+            const damageFields = [
+                ['kaca_depan', 'view_kaca_depan', 'foto_kaca_depan', 'Kaca Depan'],
+                ['kap_mesin', 'view_kap_mesin', 'foto_kap_mesin', 'Kap Mesin'],
+                ['rangka_mobil', 'view_rangka_mobil', 'foto_rangka_mobil', 'Rangka Mobil'],
+                ['aki', 'view_aki', 'foto_aki', 'Aki Mobil'],
+                ['radiator', 'view_radiator', 'foto_radiator', 'Radiator'],
+                ['kondisi_mesin', 'view_kondisi_mesin', 'foto_kondisi_mesin', 'Kondisi Mesin'],
+                ['bumper_lampu', 'view_bumper_lampu', 'foto_bumper_lampu', 'Bumper & Lampu'],
+                ['fender_depan_kiri', 'view_fender_depan_kiri', 'foto_fender_depan_kiri', 'Fender Depan Kiri'],
+                ['kaki_depan_kiri', 'view_kaki_depan_kiri', 'foto_kaki_depan_kiri', 'Kaki Depan Kiri'],
+                ['kaki_belakang_kiri', 'view_kaki_belakang_kiri', 'foto_kaki_belakang_kiri', 'Kaki Belakang Kiri'],
+                ['pintu_depan_kiri', 'view_pintu_depan_kiri', 'foto_pintu_depan_kiri', 'Pintu Depan Kiri'],
+                ['pintu_belakang_kiri', 'view_pintu_belakang_kiri', 'foto_pintu_belakang_kiri', 'Pintu Belakang Kiri'],
+                ['fender_belakang_kiri', 'view_fender_belakang_kiri', 'foto_fender_belakang_kiri', 'Fender Belakang Kiri'],
+                ['lampu_belakang', 'view_lampu_belakang_kanan_kiri', 'foto_lampu_belakang', 'Lampu Belakang Kanan Kiri'],
+                ['pintu_bagasi_belakang', 'view_pintu_bagasi_belakang', 'foto_pintu_bagasi_belakang', 'Pintu Bagasi Belakang'],
+                ['bumper_belakang', 'view_bumper_belakang', 'foto_bumper_belakang', 'Bumper Belakang'],
+                ['fender_depan_kanan', 'view_fender_depan_kanan', 'foto_fender_depan_kanan', 'Fender Depan Kanan'],
+                ['kaki_depan_kanan', 'view_kaki_depan_kanan', 'foto_kaki_depan_kanan', 'Kaki Depan Kanan'],
+                ['kaki_belakang_kanan', 'view_kaki_belakang_kanan', 'foto_kaki_belakang_kanan', 'Kaki Belakang Kanan'],
+                ['pintu_depan_kanan', 'view_pintu_depan_kanan', 'foto_pintu_depan_kanan', 'Pintu Depan Kanan'],
+                ['pintu_belakang_kanan', 'view_pintu_belakang_kanan', 'foto_pintu_belakang_kanan', 'Pintu Belakang Kanan'],
+                ['fender_belakang_kanan', 'view_fender_belakang_kanan', 'foto_fender_belakang_kanan', 'Fender Belakang Kanan']
+            ];
+
+            const damageMap = Object.fromEntries(
+                damageFields.map(([radio, view, file, label]) => [radio, { view, file, label }])
+            );
+
+            function renderDamageEvidence(radioName, value) {
+                const config = damageMap[radioName];
+                const container = document.getElementById(config?.view);
+                if (!container) return;
+
+                if (value === 'Rusak') {
+                    const textareaName = `keterangan_${config.file.replace(/^foto_/, '')}`;
+                    container.innerHTML = `
+                        <div class="mt-2 mb-2">
+                            <label for="${config.file}">Bukti Foto ${config.label}</label>
+                            <input type="file"
+                                   id="${config.file}"
+                                   name="${config.file}"
+                                   class="form-control"
+                                   accept="image/jpeg,image/png,image/webp">
+                            <textarea name="${textareaName}"
+                                      rows="2"
+                                      class="form-control mt-2"
+                                      placeholder="Keterangan ${config.label}"></textarea>
+                        </div>`;
+                } else {
+                    container.innerHTML = '';
+                }
+            }
+
+            damageFields.forEach(([radioName]) => {
+                $(`input[type="radio"][name="${radioName}"]`).on('change', function () {
+                    const group = this.closest('.input-group-btn');
+                    if (group) {
+                        group.querySelectorAll('label.btn').forEach(label => {
+                            const radio = label.querySelector('input[type="radio"]');
+                            const active = !!radio?.checked;
+                            label.classList.toggle('active', active);
+                            label.classList.toggle('btn-primary', active);
+                            label.classList.toggle('btn-white', !active);
+                        });
+                    }
+                    renderDamageEvidence(radioName, this.value);
+                });
+
+                const checked = document.querySelector(`input[type="radio"][name="${radioName}"]:checked`);
+                if (checked) {
+                    renderDamageEvidence(radioName, checked.value);
                 }
             });
-        });
 
-        $('#upload-simpan-bagian-kiri').submit(function(e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('cars.simpan_inspeksi_kiri', ['id' => $car->id]) }}",
-                data: formData,
-                contentType: false,
-                processData: false,
-                beforeSend: () => {
-                    Swal.fire({
-                        icon: "info",
-                        title: "Data Sedang Diproses, Silahkan Tunggu",
-                        showConfirmButton: false,
+            /* -------------------------------------------------------------
+             * Form submission + realtime completeness
+             * ----------------------------------------------------------- */
+            const pendingInteriorUploads = new Map();
+            let interiorAutoProcessing = false;
+
+            const interiorUploadConfigs = [
+                ['foto_speedometer', 'keterangan_speedometer', 'progressBarSpeedometer', 'statusSpeedometer', 'loaded_n_totalSpeedometer', 'Speedometer', "{{ route('cars.upload_file_inspeksi_interior_speedometer', ['id' => $car->id]) }}"],
+                ['foto_setir', 'keterangan_setir', 'progressBarSetir', 'statusSetir', 'loaded_n_totalSetir', 'Setir', "{{ route('cars.upload_file_inspeksi_interior_setir', ['id' => $car->id]) }}"],
+                ['foto_dasboard', 'keterangan_dasboard', 'progressBarDasboard', 'statusDasboard', 'loaded_n_totalDasboard', 'Dashboard', "{{ route('cars.upload_file_inspeksi_interior_dasboard', ['id' => $car->id]) }}"],
+                ['foto_plafon', 'keterangan_plafon', 'progressBarPlafon', 'statusPlafon', 'loaded_n_totalPlafon', 'Plafon', "{{ route('cars.upload_file_inspeksi_interior_plafon', ['id' => $car->id]) }}"],
+                ['foto_ac', 'keterangan_ac', 'progressBarAc', 'statusAc', 'loaded_n_totalAc', 'AC', "{{ route('cars.upload_file_inspeksi_interior_ac', ['id' => $car->id]) }}"],
+                ['foto_audio', 'keterangan_audio', 'progressBarAudio', 'statusAudio', 'loaded_n_totalAudio', 'Audio', "{{ route('cars.upload_file_inspeksi_interior_audio', ['id' => $car->id]) }}"],
+                ['foto_jok', 'keterangan_jok', 'progressBarJok', 'statusJok', 'loaded_n_totalJok', 'Jok', "{{ route('cars.upload_file_inspeksi_interior_jok', ['id' => $car->id]) }}"],
+                ['foto_electric_spion', 'keterangan_electric_spion', 'progressBarElectricSpion', 'statusElectricSpion', 'loaded_n_totalElectricSpion', 'Electric Spion', "{{ route('cars.upload_file_inspeksi_interior_electric_spion', ['id' => $car->id]) }}"],
+                ['foto_power_window', 'keterangan_power_window', 'progressBarPowerWindow', 'statusPowerWindow', 'loaded_n_totalPowerWindow', 'Power Window', "{{ route('cars.upload_file_inspeksi_interior_power_window', ['id' => $car->id]) }}"],
+                ['foto_lain_lain', 'keterangan_lain_lain', 'progressBarLainLain', 'statusLainLain', 'loaded_n_totalLainLain', 'Lain-lain', "{{ route('cars.upload_file_inspeksi_interior_lain_lain', ['id' => $car->id]) }}"]
+            ];
+
+            function updateInteriorRealtimeStatus(title, detail, percent) {
+                const titleEl = document.getElementById('interior-realtime-title');
+                const detailEl = document.getElementById('interior-realtime-detail');
+                const percentEl = document.getElementById('interior-realtime-percent');
+                const progressEl = document.getElementById('interior-realtime-progress');
+
+                const safePercent = Math.max(0, Math.min(100, Math.round(Number(percent) || 0)));
+                if (titleEl) titleEl.textContent = title || '';
+                if (detailEl) detailEl.textContent = detail || '';
+                if (percentEl) percentEl.textContent = `${safePercent}%`;
+                if (progressEl) {
+                    progressEl.style.width = `${safePercent}%`;
+                    progressEl.setAttribute('aria-valuenow', String(safePercent));
+                    progressEl.classList.toggle('progress-bar-animated', interiorAutoProcessing);
+                }
+            }
+
+            function getInteriorForm() {
+                return document.getElementById('upload-simpan-bagian-interior');
+            }
+
+            function getInteriorCompletion(form) {
+                const missing = [];
+                let completed = 0;
+
+                interiorUploadConfigs.forEach(([fileName, noteName, , , , label]) => {
+                    const fileInput = form.querySelector(`[name="${fileName}"]`);
+                    const noteInput = form.querySelector(`[name="${noteName}"]`);
+                    const hasFile = !!fileInput?.files?.length;
+                    const hasNote = !!noteInput?.value?.trim();
+
+                    if (hasFile && hasNote) {
+                        completed += 1;
+                        return;
+                    }
+
+                    const parts = [];
+                    if (!hasFile) parts.push('foto');
+                    if (!hasNote) parts.push('keterangan');
+                    missing.push(`${label} (${parts.join(' + ')})`);
+                });
+
+                return {
+                    complete: missing.length === 0,
+                    completed,
+                    total: interiorUploadConfigs.length,
+                    missing
+                };
+            }
+
+            function updateInteriorCompletion() {
+                const form = getInteriorForm();
+                const submitButton = document.getElementById('btn-submit-interior');
+                if (!form) return { complete: false };
+
+                const state = getInteriorCompletion(form);
+                if (submitButton) submitButton.disabled = interiorAutoProcessing;
+
+                if (!state.complete) {
+                    updateInteriorRealtimeStatus(
+                        'Menunggu kelengkapan data...',
+                        `${state.completed}/${state.total} bagian lengkap. Belum lengkap: ${state.missing.slice(0, 3).join(', ')}${state.missing.length > 3 ? ', ...' : ''}`,
+                        (state.completed / state.total) * 100
+                    );
+                } else if (!interiorAutoProcessing) {
+                    updateInteriorRealtimeStatus(
+                        'Semua input sudah lengkap',
+                        'Data lengkap. Klik Submit untuk memulai proses upload dan penyimpanan.',
+                        0
+                    );
+                }
+
+                return state;
+            }
+
+            function setUploadStatus(progressId, statusId, totalId, percent, message) {
+                const progress = document.getElementById(progressId);
+                const status = document.getElementById(statusId);
+                const total = document.getElementById(totalId);
+                const safePercent = Math.max(0, Math.min(100, Math.round(Number(percent) || 0)));
+
+                if (progress) progress.value = safePercent;
+                if (status) status.textContent = message || '';
+                if (total) total.textContent = `${safePercent}%`;
+            }
+
+            function getUploadMessage(xhr) {
+                const data = getResponseData(xhr, {});
+                return data?.message_content || data?.message || data?.message_title || '';
+            }
+
+            function uploadInteriorFile(config, batch) {
+                const [fileName, , progressId, statusId, totalId, label, url] = config;
+                const form = getInteriorForm();
+                const input = form?.querySelector(`[name="${fileName}"]`);
+                const file = input?.files?.[0];
+
+                if (!file) return Promise.reject(new Error(`${label}: foto belum dipilih.`));
+                if (!file.type.startsWith('image/')) return Promise.reject(new Error(`${label}: file harus berupa gambar.`));
+
+                const xhr = new XMLHttpRequest();
+                let lastLoaded = 0;
+
+                const promise = new Promise((resolve, reject) => {
+                    xhr.upload.addEventListener('progress', event => {
+                        if (!event.lengthComputable) return;
+                        const percent = (event.loaded / event.total) * 100;
+                        setUploadStatus(progressId, statusId, totalId, percent, `${label}: ${Math.round(percent)}% terupload...`);
+
+                        const delta = Math.max(0, event.loaded - lastLoaded);
+                        lastLoaded = event.loaded;
+                        batch.loadedBytes += delta;
+                        const overall = batch.totalBytes ? (batch.loadedBytes / batch.totalBytes) * 100 : 0;
+                        updateInteriorRealtimeStatus(
+                            `Mengupload ${label}...`,
+                            `${batch.completed}/${batch.total} foto selesai`,
+                            overall
+                        );
                     });
-                },
-                success: (result) => {
-                    if (result.success != false) {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            showConfirmButton: false,
-                        });
-                        setTimeout(function() {
-                            location.reload();
-                        }, 2000);
-                    } else {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            // showConfirmButton: false,
+
+                    xhr.addEventListener('load', () => {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            setUploadStatus(progressId, statusId, totalId, 100, `${label}: upload berhasil.`);
+                            batch.loadedBytes += Math.max(0, file.size - lastLoaded);
+                            batch.completed += 1;
+                            updateInteriorRealtimeStatus(
+                                `Upload ${label} selesai`,
+                                `${batch.completed}/${batch.total} foto selesai`,
+                                batch.totalBytes ? (batch.loadedBytes / batch.totalBytes) * 100 : 0
+                            );
+                            resolve(getUploadMessage(xhr) || 'Upload berhasil.');
+                        } else {
+                            setUploadStatus(progressId, statusId, totalId, 0, `${label}: upload gagal (HTTP ${xhr.status}).`);
+                            reject(new Error(`${label}: upload gagal dengan HTTP ${xhr.status}.`));
+                        }
+                    });
+
+                    xhr.addEventListener('error', () => reject(new Error(`${label}: koneksi upload gagal.`)));
+                    xhr.addEventListener('timeout', () => reject(new Error(`${label}: upload timeout.`)));
+                    xhr.addEventListener('abort', () => reject(new Error(`${label}: upload dibatalkan.`)));
+                });
+
+                xhr.open('POST', url, true);
+                if (csrfToken) xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.timeout = 120000;
+
+                const data = new FormData();
+                data.append(input.name, file);
+                pendingInteriorUploads.set(fileName, { xhr, promise });
+                xhr.send(data);
+
+                promise.then(
+                    () => pendingInteriorUploads.delete(fileName),
+                    () => pendingInteriorUploads.delete(fileName)
+                );
+
+                return promise;
+            }
+
+            async function processInteriorAutomatically(form) {
+                if (interiorAutoProcessing) return;
+
+                const completion = getInteriorCompletion(form);
+                if (!completion.complete) {
+                    updateInteriorCompletion();
+                    return;
+                }
+
+                interiorAutoProcessing = true;
+                setFormBusy(form, true);
+                const submitButton = document.getElementById('btn-submit-interior');
+                if (submitButton) submitButton.disabled = true;
+
+                const files = interiorUploadConfigs.map(([fileName]) => form.querySelector(`[name="${fileName}"]`)?.files?.[0]);
+                const batch = {
+                    total: interiorUploadConfigs.length,
+                    completed: 0,
+                    loadedBytes: 0,
+                    totalBytes: files.reduce((sum, file) => sum + (file?.size || 0), 0)
+                };
+
+                try {
+                    showLoading('Memproses inspeksi interior...');
+                    updateInteriorRealtimeStatus(
+                        'Memulai upload foto...',
+                        `0/${batch.total} foto selesai`,
+                        0
+                    );
+
+                    for (const config of interiorUploadConfigs) {
+                        await uploadInteriorFile(config, batch);
+                    }
+
+                    updateInteriorRealtimeStatus(
+                        'Semua foto berhasil diupload',
+                        'Menyimpan foto dan seluruh keterangan inspeksi...',
+                        100
+                    );
+                    if (Swal.isVisible()) {
+                        Swal.update({
+                            title: 'Menyimpan inspeksi interior...',
+                            html: '<div class="small text-muted">Semua input lengkap dan sedang disimpan ke server.</div>'
                         });
                     }
-                },
-                error: function(request, status, error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: error,
-                        // showConfirmButton: false,
-                    });
-                }
-            });
-        });
 
-        $('#upload-simpan-bagian-belakang').submit(function(e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('cars.simpan_inspeksi_belakang', ['id' => $car->id]) }}",
-                data: formData,
-                contentType: false,
-                processData: false,
-                beforeSend: () => {
-                    Swal.fire({
-                        icon: "info",
-                        title: "Data Sedang Diproses, Silahkan Tunggu",
-                        showConfirmButton: false,
+                    const result = await $.ajax({
+                        type: 'POST',
+                        url: inspectionForms['#upload-simpan-bagian-interior'].url,
+                        data: new FormData(form),
+                        contentType: false,
+                        processData: false,
+                        cache: false,
+                        timeout: 120000
                     });
-                },
-                success: (result) => {
-                    if (result.success != false) {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            showConfirmButton: false,
-                        });
-                        setTimeout(function() {
-                            location.reload();
-                        }, 2000);
-                    } else {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            // showConfirmButton: false,
-                        });
+
+                    const data = typeof result === 'object' ? result : (safeJson(result) || {});
+                    if (data.success === false) {
+                        throw new Error(data.message_content || data.error || 'Data inspeksi interior tidak dapat disimpan.');
                     }
-                },
-                error: function(request, status, error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: error,
-                        // showConfirmButton: false,
-                    });
-                }
-            });
-        });
 
-        $('#upload-simpan-bagian-kanan').submit(function(e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('cars.simpan_inspeksi_kanan', ['id' => $car->id]) }}",
-                data: formData,
-                contentType: false,
-                processData: false,
-                beforeSend: () => {
+                    updateInteriorRealtimeStatus(
+                        'Inspeksi interior berhasil disimpan',
+                        'Semua foto dan keterangan telah tersimpan.',
+                        100
+                    );
+
                     Swal.fire({
-                        icon: "info",
-                        title: "Data Sedang Diproses, Silahkan Tunggu",
-                        showConfirmButton: false,
+                        icon: data.message_type || 'success',
+                        title: data.message_title || 'Berhasil',
+                        text: data.message_content || 'Data inspeksi interior berhasil disimpan.',
+                        timer: 1400,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = inspectionForms['#upload-simpan-bagian-interior'].redirect;
                     });
-                },
-                success: (result) => {
-                    if (result.success != false) {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            showConfirmButton: false,
-                        });
-                        setTimeout(function() {
-                            location.reload();
-                        }, 2000);
-                    } else {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            // showConfirmButton: false,
-                        });
+                } catch (error) {
+                    if (Swal.isVisible()) Swal.close();
+                    showAlert({
+                        icon: 'error',
+                        title: 'Proses dihentikan',
+                        text: error?.message || 'Upload atau penyimpanan inspeksi interior gagal.'
+                    });
+                    updateInteriorRealtimeStatus(
+                        'Proses belum selesai',
+                        error?.message || 'Periksa data dan coba lagi.',
+                        0
+                    );
+                } finally {
+                    interiorAutoProcessing = false;
+                    setFormBusy(form, false);
+                    updateInteriorCompletion();
+                }
+            }
+
+            /* Submit bagian lain tetap menggunakan flow umum. Interior akan diproses otomatis. */
+            Object.entries(inspectionForms).forEach(([selector, config]) => {
+                $(selector).on('submit', function (event) {
+                    event.preventDefault();
+                    const form = this;
+
+                    if (config.waitForUploads) {
+                        const completion = getInteriorCompletion(form);
+                        if (!completion.complete) {
+                            showAlert({
+                                icon: 'warning',
+                                title: 'Data belum lengkap',
+                                text: `Lengkapi semua foto dan keterangan terlebih dahulu. Bagian yang belum lengkap: ${completion.missing.join(', ')}.`
+                            });
+                            updateInteriorCompletion();
+                            return;
+                        }
+                        processInteriorAutomatically(form);
+                        return;
                     }
-                },
-                error: function(request, status, error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: error,
-                        // showConfirmButton: false,
+
+                    if (form.dataset.submitting === '1') return;
+                    setFormBusy(form, true);
+                    showLoading();
+
+                    const formData = new FormData(form);
+                    $.ajax({
+                        type: 'POST',
+                        url: config.url,
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        cache: false,
+                        timeout: 120000,
+                        success: function (result) {
+                            const data = typeof result === 'object' ? result : (safeJson(result) || {});
+                            if (data.success === false) {
+                                showAlert({
+                                    icon: data.message_type || 'error',
+                                    title: data.message_title || 'Gagal',
+                                    text: data.message_content || data.error || 'Data tidak dapat disimpan.'
+                                });
+                                return;
+                            }
+
+                            showAlert({
+                                icon: data.message_type || 'success',
+                                title: data.message_title || 'Berhasil',
+                                text: data.message_content || 'Data inspeksi berhasil disimpan.',
+                                timer: 1400
+                            }).then(() => {
+                                if (config.redirect === 'reload') window.location.reload();
+                                else window.location.href = config.redirect;
+                            });
+                        },
+                        error: function (request) {
+                            const data = getResponseData(request, {});
+                            showAlert({
+                                icon: 'error',
+                                title: request.status === 422 ? 'Validasi gagal' : 'Terjadi kesalahan',
+                                text: getFirstValidationError(data.errors) || data.message || data.error || `Gagal menyimpan data (HTTP ${request.status || 'unknown'}).`
+                            });
+                        },
+                        complete: function () {
+                            setFormBusy(form, false);
+                        }
                     });
-                }
+                });
             });
-        });
 
-        $('#upload-simpan-bagian-interior').submit(function(e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('cars.simpan_inspeksi_interior', ['id' => $car->id]) }}",
-                data: formData,
-                contentType: false,
-                processData: false,
-                beforeSend: () => {
-                    Swal.fire({
-                        icon: "info",
-                        title: "Data Sedang Diproses, Silahkan Tunggu",
-                        showConfirmButton: false,
+            const interiorForm = getInteriorForm();
+            if (interiorForm) {
+                // Hanya memantau perubahan. TIDAK ada upload saat satu field berubah.
+                interiorUploadConfigs.forEach(([fileName, noteName]) => {
+                    const fileInput = interiorForm.querySelector(`[name="${fileName}"]`);
+                    const noteInput = interiorForm.querySelector(`[name="${noteName}"]`);
+                    [fileInput, noteInput].forEach(input => {
+                        if (!input) return;
+                        input.addEventListener('input', updateInteriorCompletion);
+                        input.addEventListener('change', updateInteriorCompletion);
                     });
-                },
-                success: (result) => {
-                    if (result.success != false) {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            showConfirmButton: false,
-                        });
-                        setTimeout(function() {
-                            // location.reload();
-                            window.location.href = "{{ route('cars') }}";
-                        }, 2000);
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal',
-                            text: result.error,
-                            // showConfirmButton: false,
-                        });
-                    }
-                },
-                error: function(request, status, error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        // showConfirmButton: false,
-                    });
-                }
-            });
+                });
+
+                updateInteriorCompletion();
+
+                // Tidak ada proses otomatis saat input berubah. Proses hanya dimulai setelah tombol Submit diklik.
+            }
         });
-
-        $('#upload-simpan-bagian-lain').submit(function(e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('cars.simpan_inspeksi_lain', ['id' => $car->id]) }}",
-                data: formData,
-                contentType: false,
-                processData: false,
-                beforeSend: () => {
-                    Swal.fire({
-                        icon: "info",
-                        title: "Data Sedang Diproses, Silahkan Tunggu",
-                        showConfirmButton: false,
-                    });
-                },
-                success: (result) => {
-                    if (result.success != false) {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            showConfirmButton: false,
-                        });
-                        setTimeout(function() {
-                            // location.reload();
-                            window.location.href = "{{ route('cars') }}";
-                        }, 2000);
-                    } else {
-                        Swal.fire({
-                            icon: result.message_type,
-                            title: result.message_title,
-                            text: result.message_content,
-                            // showConfirmButton: false,
-                        });
-                    }
-                },
-                error: function(request, status, error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: error,
-                        // showConfirmButton: false,
-                    });
-                }
-            });
-        });
-    </script>
-    <script>
-        function _(el) {
-            return document.getElementById(el);
-        }
-
-        $('#foto_speedometer').on('change', function() {
-            var file = _("foto_speedometer").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_speedometer", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerSpeedometer, false);
-            ajax.addEventListener("load", completeHandlerSpeedometer, false);
-            ajax.addEventListener("error", errorHandlerSpeedometer, false);
-            ajax.addEventListener("abort", abortHandlerSpeedometer, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_speedometer', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerSpeedometer(event) {
-            _("loaded_n_totalSpeedometer").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarSpeedometer").value = Math.round(percent);
-            _("statusSpeedometer").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerSpeedometer(event) {
-            _("statusSpeedometer").innerHTML = event.target.responseText;
-            _("progressBarSpeedometer").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerSpeedometer(event) {
-            _("statusSpeedometer").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerSpeedometer(event) {
-            _("statusSpeedometer").innerHTML = "Upload Aborted";
-        }
-
-
-        $('#foto_setir').on('change', function() {
-            var file = _("foto_setir").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_setir", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerSetir, false);
-            ajax.addEventListener("load", completeHandlerSetir, false);
-            ajax.addEventListener("error", errorHandlerSetir, false);
-            ajax.addEventListener("abort", abortHandlerSetir, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_setir', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerSetir(event) {
-            _("loaded_n_totalSetir").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarSetir").value = Math.round(percent);
-            _("statusSetir").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerSetir(event) {
-            _("statusSetir").innerHTML = event.target.responseText;
-            _("progressBarSetir").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerSetir(event) {
-            _("statusSetir").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerSetir(event) {
-            _("statusSetir").innerHTML = "Upload Aborted";
-        }
-
-
-        $('#foto_dasboard').on('change', function() {
-            var file = _("foto_dasboard").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_dasboard", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerDasboard, false);
-            ajax.addEventListener("load", completeHandlerDasboard, false);
-            ajax.addEventListener("error", errorHandlerDasboard, false);
-            ajax.addEventListener("abort", abortHandlerDasboard, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_dasboard', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerDasboard(event) {
-            _("loaded_n_totalDasboard").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarDasboard").value = Math.round(percent);
-            _("statusDasboard").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerDasboard(event) {
-            _("statusDasboard").innerHTML = event.target.responseText;
-            _("progressBarDasboard").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerDasboard(event) {
-            _("statusDasboard").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerDasboard(event) {
-            _("statusDasboard").innerHTML = "Upload Aborted";
-        }
-
-
-        $('#foto_plafon').on('change', function() {
-            var file = _("foto_plafon").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_plafon", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerPlafon, false);
-            ajax.addEventListener("load", completeHandlerPlafon, false);
-            ajax.addEventListener("error", errorHandlerPlafon, false);
-            ajax.addEventListener("abort", abortHandlerPlafon, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_plafon', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerPlafon(event) {
-            _("loaded_n_totalPlafon").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarPlafon").value = Math.round(percent);
-            _("statusPlafon").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerPlafon(event) {
-            _("statusPlafon").innerHTML = event.target.responseText;
-            _("progressBarPlafon").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerPlafon(event) {
-            _("statusPlafon").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerPlafon(event) {
-            _("statusPlafon").innerHTML = "Upload Aborted";
-        }
-
-
-        $('#foto_ac').on('change', function() {
-            var file = _("foto_ac").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_ac", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerAc, false);
-            ajax.addEventListener("load", completeHandlerAc, false);
-            ajax.addEventListener("error", errorHandlerAc, false);
-            ajax.addEventListener("abort", abortHandlerAc, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_ac', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerAc(event) {
-            _("loaded_n_totalAc").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarAc").value = Math.round(percent);
-            _("statusAc").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerAc(event) {
-            _("statusAc").innerHTML = event.target.responseText;
-            _("progressBarAc").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerAc(event) {
-            _("statusAc").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerAc(event) {
-            _("statusAc").innerHTML = "Upload Aborted";
-        }
-
-
-        $('#foto_audio').on('change', function() {
-            var file = _("foto_audio").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_audio", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerAudio, false);
-            ajax.addEventListener("load", completeHandlerAudio, false);
-            ajax.addEventListener("error", errorHandlerAudio, false);
-            ajax.addEventListener("abort", abortHandlerAudio, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_audio', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerAudio(event) {
-            _("loaded_n_totalAudio").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarAudio").value = Math.round(percent);
-            _("statusAudio").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerAudio(event) {
-            _("statusAudio").innerHTML = event.target.responseText;
-            _("progressBarAudio").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerAudio(event) {
-            _("statusAudio").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerAudio(event) {
-            _("statusAudio").innerHTML = "Upload Aborted";
-        }
-
-
-        $('#foto_jok').on('change', function() {
-            var file = _("foto_jok").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_jok", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerJok, false);
-            ajax.addEventListener("load", completeHandlerJok, false);
-            ajax.addEventListener("error", errorHandlerJok, false);
-            ajax.addEventListener("abort", abortHandlerJok, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_jok', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerJok(event) {
-            _("loaded_n_totalJok").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarJok").value = Math.round(percent);
-            _("statusJok").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerJok(event) {
-            _("statusJok").innerHTML = event.target.responseText;
-            _("progressBarJok").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerJok(event) {
-            _("statusJok").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerJok(event) {
-            _("statusJok").innerHTML = "Upload Aborted";
-        }
-
-
-        $('#foto_electric_spion').on('change', function() {
-            var file = _("foto_electric_spion").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_electric_spion", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerElectricSpion, false);
-            ajax.addEventListener("load", completeHandlerElectricSpion, false);
-            ajax.addEventListener("error", errorHandlerElectricSpion, false);
-            ajax.addEventListener("abort", abortHandlerElectricSpion, false);
-            ajax.open("POST",
-                "{{ route('cars.upload_file_inspeksi_interior_electric_spion', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerElectricSpion(event) {
-            _("loaded_n_totalElectricSpion").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarElectricSpion").value = Math.round(percent);
-            _("statusElectricSpion").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerElectricSpion(event) {
-            _("statusElectricSpion").innerHTML = event.target.responseText;
-            _("progressBarElectricSpion").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerElectricSpion(event) {
-            _("statusElectricSpion").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerElectricSpion(event) {
-            _("statusElectricSpion").innerHTML = "Upload Aborted";
-        }
-
-
-        $('#foto_power_window').on('change', function() {
-            var file = _("foto_power_window").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_power_window", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerPowerWindow, false);
-            ajax.addEventListener("load", completeHandlerPowerWindow, false);
-            ajax.addEventListener("error", errorHandlerPowerWindow, false);
-            ajax.addEventListener("abort", abortHandlerPowerWindow, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_power_window', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerPowerWindow(event) {
-            _("loaded_n_totalPowerWindow").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarPowerWindow").value = Math.round(percent);
-            _("statusPowerWindow").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerPowerWindow(event) {
-            _("statusPowerWindow").innerHTML = event.target.responseText;
-            _("progressBarPowerWindow").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerPowerWindow(event) {
-            _("statusPowerWindow").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerPowerWindow(event) {
-            _("statusPowerWindow").innerHTML = "Upload Aborted";
-        }
-
-
-        $('#foto_lain_lain').on('change', function() {
-            var file = _("foto_lain_lain").files[0];
-            var formdata = new FormData();
-            formdata.append("foto_lain_lain", file);
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandlerLainLain, false);
-            ajax.addEventListener("load", completeHandlerLainLain, false);
-            ajax.addEventListener("error", errorHandlerLainLain, false);
-            ajax.addEventListener("abort", abortHandlerLainLain, false);
-            ajax.open("POST", "{{ route('cars.upload_file_inspeksi_interior_lain_lain', ['id' => $car->id]) }}");
-            ajax.setRequestHeader('X-CSRF-TOKEN', $('meta[name="_token"]').attr('content'));
-
-            ajax.send(formdata);
-        });
-
-        function progressHandlerLainLain(event) {
-            _("loaded_n_totalLainLain").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBarLainLain").value = Math.round(percent);
-            _("statusLainLain").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandlerLainLain(event) {
-            _("statusLainLain").innerHTML = event.target.responseText;
-            _("progressBarLainLain").value = 100; //wil clear progress bar after successful upload
-        }
-
-        function errorHandlerLainLain(event) {
-            _("statusLainLain").innerHTML = "Upload Failed";
-        }
-
-        function abortHandlerLainLain(event) {
-            _("statusLainLain").innerHTML = "Upload Aborted";
-        }
     </script>
 @endsection

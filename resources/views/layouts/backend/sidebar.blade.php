@@ -53,22 +53,93 @@
                         <span>Mobil</span>
                     </a>
                 </li>
+                @can('Finance BiayaJasa')
+                <li class="{{ request()->is('jasa/biaya_jasa/*') ? 'menuitem-active' : null }}">
+                    <a href="{{ route('jasa.biayaJasa') }}">
+                        <i data-feather="truck"></i>
+                        <span>Biaya Jasa</span>
+                    </a>
+                </li>
+                @endcan
+                <li class="menu-title">Finance</li>
+                @can('Finance PPN')
+                <li class="{{ request()->is('jurnal/keuangan/*') ? 'menuitem-active' : null }}">
+                    <a href="#">
+                        <i data-feather="truck"></i>
+                        <span>PPN</span>
+                    </a>
+                </li>
+                @endcan
+                {{-- <li class="{{ request()->is('jurnal/keuangan/*') ? 'menuitem-active' : null }}">
+                    <a href="#">
+                        <i data-feather="truck"></i>
+                        <span>Kode COA</span>
+                    </a>
+                </li> --}}
+                @can('Finance COA')
+                <li class="{{ request()->is('finance/coa/*') ? 'menuitem-active' : null }}">
+                    <a href="{{ route('finance.coa') }}">
+                        <i data-feather="truck"></i>
+                        <span>Chart of Account</span>
+                    </a>
+                </li>
+                @endcan
+                @can('Finance Journal')
+                <li class="{{ request()->is('finance/journal/*') ? 'menuitem-active' : null }}">
+                    <a href="{{ route('finance.journal') }}">
+                        <i data-feather="truck"></i>
+                        <span>Jurnal</span>
+                    </a>
+                </li>
+                @endcan
+                @can('Finance BukuBesar')
+                <li class="{{ request()->is('finance/buku_besar/*') ? 'menuitem-active' : null }}">
+                    <a href="{{ route('finance.buku_besar') }}">
+                        <i data-feather="truck"></i>
+                        <span>Buku Besar</span>
+                    </a>
+                </li>
+                @endcan
+                @can('Finance LajurBuku')
+                <li class="{{ request()->is('finance/lajur/*') ? 'menuitem-active' : null }}">
+                    <a href="{{ route('finance.lajur') }}">
+                        <i data-feather="truck"></i>
+                        <span>Lajur Buku</span>
+                    </a>
+                </li>
+                @endcan
+                @can('Finance LabaRugi')
+                <li class="{{ request()->is('finance/laba_rugi/*') ? 'menuitem-active' : null }}">
+                    <a href="{{ route('finance.laba_rugi') }}">
+                        <i data-feather="truck"></i>
+                        <span>Laba / Rugi</span>
+                    </a>
+                </li>
+                @endcan
+                @can('Finance Neraca')
+                <li class="{{ request()->is('finance/neraca/*') ? 'menuitem-active' : null }}">
+                    <a href="{{ route('finance.neraca') }}">
+                        <i data-feather="truck"></i>
+                        <span>Neraca</span>
+                    </a>
+                </li>
+                @endcan
 
-                {{-- @can('Keuangan List') --}}
-                {{-- <li class="menu-title">Laporan</li>
-                <li class="{{ request()->is('laporan/keuangan/*') ? 'menuitem-active' : null }}">
+                @can('Keuangan List')
+                <li class="menu-title">Laporan</li>
+                {{-- <li class="{{ request()->is('laporan/keuangan/*') ? 'menuitem-active' : null }}">
                     <a href="{{ route('lap_keuangan.index') }}">
                         <i data-feather="truck"></i>
                         <span>Keuangan</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="{{ request()->is('laporan/inspeksi/*') ? 'menuitem-active' : null }}">
                     <a href="{{ route('lap_inspeksi.index') }}">
                         <i data-feather="truck"></i>
                         <span>Inspeksi</span>
                     </a>
-                </li> --}}
-                {{-- @endcan --}}
+                </li>
+                @endcan
 
                 @can('User List')
                 <li class="menu-title">User Management</li>

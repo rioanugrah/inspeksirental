@@ -14,6 +14,43 @@
                 @csrf
                 <div class="card">
                     <div class="card-body">
+                        <div class="mb-3">
+                            <h4>Data Customer</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="">Nama Customer</label>
+                                    <input type="text" name="customer_name" class="form-control"
+                                        placeholder="Nama Customer" id="">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="">Lokasi Inspeksi</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="">Provinsi</label>
+                                            <select class="form-control" id="provinsi">
+                                                <option value="">-- Pilih Lokasi Inspeksi --</option>
+                                                @foreach ($provinces as $province)
+                                                    <option value="{{ $province->id }}" {{ $province->id == 35 ? 'selected' : null }}>{{ $province->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="">Kab. / Kota</label>
+                                            <select name="kab_kota" class="form-control" id="kabkota">
+                                                <option value="">-- Pilih Kab / Kota --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
@@ -75,7 +112,8 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label>Foto Kendaraan</label>
-                                    <input type="file" name="foto_kendaraan" class="form-control" placeholder="Foto Kendaraan">
+                                    <input type="file" name="foto_kendaraan" class="form-control"
+                                        placeholder="Foto Kendaraan">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -149,6 +187,9 @@
 @section('script')
     <script src="{{ asset('backend/assets/js/pages/sweetalert2@11.js') }}"></script>
     <script src="{{ asset('backend/assets/js/pages/jquery.SimpleMask.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+        integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <script>
         $('#plat_nomor_tengah').simpleMask({
@@ -159,6 +200,33 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        // $('#provinsi').on('change', function() {
+        //     axios.post('{{ route('get_regencies') }}', {
+        //             id: $(this).val()
+        //         })
+        //         .then(function(response) {
+        //             $('#kabkota').empty();
+
+        //             $.each(response.data, function(id, name) {
+        //                 // alert(nama);
+        //                 $('#kabkota').append(new Option(name, name));
+        //             })
+        //         });
+        // });
+        $(document).ready(function(){
+            axios.post('{{ route('get_regencies') }}', {
+                id: 35
+            })
+            .then(function(response) {
+                $('#kabkota').empty();
+
+                $.each(response.data, function(id, name) {
+                    // alert(nama);
+                    $('#kabkota').append(new Option(name, name));
+                })
+            });
         });
 
         $('#upload-simpan').submit(function(e) {
@@ -203,7 +271,7 @@
                             cancelButtonColor: "#d33",
                             confirmButtonText: "Ya, Lanjut Inspeksi.",
                             cancelButtonText: "Nanti Saja",
-                            }).then((results) => {
+                        }).then((results) => {
                             if (results.isConfirmed) {
                                 Swal.fire({
                                     title: "Okay",
@@ -211,11 +279,12 @@
                                     icon: "success",
                                     showConfirmButton: false,
                                 });
-                                setTimeout(function(){
-                                    window.location.href="{{ url('cars/') }}"+'/'+result.id+'/'+'inspeksi';
+                                setTimeout(function() {
+                                    window.location.href = "{{ url('cars/') }}" + '/' +
+                                        result.id + '/' + 'inspeksi';
                                 }, 2000);
-                            }else{
-                                window.location.href="{{ route('cars') }}";
+                            } else {
+                                window.location.href = "{{ route('cars') }}";
                             }
                         });
                     } else {

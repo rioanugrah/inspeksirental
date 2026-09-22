@@ -56,6 +56,9 @@ class UserController extends Controller
                                     case 'Admin':
                                         return '<span class="badge bg-info">'.$v.'</span>';
                                         break;
+                                    case 'Finance':
+                                        return '<span class="badge bg-success">'.$v.'</span>';
+                                        break;
                                     case 'User':
                                         return '<span class="badge bg-info">'.$v.'</span>';
                                         break;

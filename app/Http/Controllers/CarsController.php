@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+// use Intervention\Image\Laravel\Facades\Image as Image;
 use App\Models\Cars; // ini import Modelsnya Cars
 use App\Models\InspeksiDepan;
 use App\Models\InspeksiKiri;
@@ -12,6 +13,8 @@ use App\Models\InspeksiBelakang;
 use App\Models\InspeksiInterior;
 use App\Models\InspeksiLain;
 use App\Models\PriceInspeksi;
+
+use App\Models\FinanceBiayaJasa;
 
 use App\Mail\InvoiceInspeksi;
 
@@ -39,7 +42,8 @@ class CarsController extends Controller
         InspeksiInterior $inspeksi_interior,
         InspeksiLain $inspeksi_lain,
         InvoiceInspeksi $invoiceInspeksi,
-        PriceInspeksi $priceInspeksi
+        PriceInspeksi $priceInspeksi,
+        FinanceBiayaJasa $financeBiayaJasa,
     ){
         $this->cars = $cars; //Ini cara manggil parameters
         $this->inspeksi_depan = $inspeksi_depan;
@@ -48,6 +52,8 @@ class CarsController extends Controller
         $this->inspeksi_belakang = $inspeksi_belakang;
         $this->inspeksi_interior = $inspeksi_interior;
         $this->inspeksi_lain = $inspeksi_lain;
+        $this->financeBiayaJasa = $financeBiayaJasa;
+
         $this->priceInspeksi = $priceInspeksi;
 
         $this->invoiceInspeksi = $invoiceInspeksi;
@@ -81,7 +87,38 @@ class CarsController extends Controller
         // }elseif(auth()->user()->getRoleNames()->first() == 'Admin'){
         //     return view('backend.cars.admin.index',$data);
         // }
+        // $data = $this->cars->select(
+        //                             'cars.id as id',
+        //                             'cars.no_reference as no_reference',
+        //                             'cars.plat_nomor as plat_nomor',
+        //                             'cars.warna as warna',
+        //                             'cars.merk as merk',
+        //                             'cars.foto_kendaraan as foto_kendaraan',
+        //                             'cars.status as status',
+        //                         )
+        //                         ->leftJoin('finance_biaya_jasa','cars.id','=','finance_biaya_jasa.car_id')
+        //                         ->get();
+        //                         dd($data);
         if ($request->ajax()) {
+            // $data = $this->cars->select(
+            //                         'cars.id as id',
+            //                         'cars.no_reference as no_reference',
+            //                         'cars.plat_nomor as plat_nomor',
+            //                         'cars.warna as warna',
+            //                         'cars.merk as merk',
+            //                         'cars.foto_kendaraan as foto_kendaraan',
+            //                         'cars.status as status',
+            //                         'finance_biaya_jasa.customer as customer',
+            //                         'finance_biaya_jasa.lokasi as lokasi',
+            //                         'finance_biaya_jasa.biaya_jasa as biaya_jasa',
+            //                         'finance_biaya_jasa.biaya_transport as biaya_transport',
+            //                         'finance_biaya_jasa.total as total',
+            //                         'finance_biaya_jasa.pembayaran as pembayaran',
+            //                         'finance_biaya_jasa.status as status_pembayaran',
+            //                         'cars.created_at as created_at',
+            //                     )
+            //                     ->leftJoin('finance_biaya_jasa','cars.id','=','finance_biaya_jasa.car_id')
+            //                     ->get();
             $data = $this->cars->all();
             return DataTables::of($data)
                                 ->addIndexColumn()
@@ -132,8 +169,10 @@ class CarsController extends Controller
                                         if (auth()->user()->can('Mobil Cetak') == true) {
                                             $btn = $btn.'<a href='.route('cars.download',['id' => $row->id]).' class="btn btn-primary btn-xs" target="_blank"><i class="bi-printer"></i> Cetak Hasil</a>';
                                         }
-                                        // if (!$row->detail_price_inspeksi) {
-                                        //     $btn = $btn.'<a onclick="inputHarga(`'.$row->id.'`)" class="btn btn-warning btn-xs text-dark" target="_blank"><i class="bi-plus"></i> Input Harga Inspeksi</a>';
+                                        // if (empty($row->status_pembayaran)) {
+                                        //     $btn = $btn.'<a onclick="inputHarga(`'.$row->id.'`)" class="btn btn-warning btn-xs text-dark"><i class="bi-plus"></i> Input Harga Inspeksi</a>';
+                                        // }elseif($row->status_pembayaran == 'Waiting'){
+                                        //     $btn = $btn.'<a onclick="inputHarga(`'.$row->id.'`)" class="btn btn-info btn-xs"><i class="bi-plus"></i> Status Pembayaran</a>';
                                         // }
                                         // $btn = $btn.'<a href="javascript:void(0)" onclick="sendEmailInspeksi(`'.$row->id.'`)" class="btn btn-info"><i class="bi-envelope"></i> Kirim Email</a>';
                                         // $btn = $btn.'<a href="javascript:void(0)" onclick="sendEmailInspeksi(`'.$row->id.'`)" class="btn btn-info"><i class="bi-envelope"></i> Kirim Email</a>';
@@ -149,12 +188,16 @@ class CarsController extends Controller
 
     public function create() // Ini buat view create
     {
-        return view('backend.cars.create');
+        $data['provinces'] = \DB::table('province')->where('id',35)->get();
+
+        return view('backend.cars.create',$data);
     }
 
     public function store(Request $request) // Ini buat simpan data
     {
         $rules = [
+            'customer_name'  => 'required',
+            'kab_kota'  => 'required',
             'plat_nomor_tengah'  => 'required',
             'warna'  => 'required',
             'merk'  => 'required',
@@ -172,6 +215,8 @@ class CarsController extends Controller
         ]; // Ini buat validasi inputan
 
         $messages = [
+            'customer_name.required'  => 'Nama Customer wajib diisi lengkap.',
+            'kab_kota.required'  => 'Kota / Kabupaten wajib diisi lengkap.',
             'plat_nomor_tengah.required'  => 'Plat Nomor wajib diisi lengkap.',
             'warna.required'  => 'Warna Mobil wajib diisi.',
             'merk.required'  => 'Merek Mobil wajib diisi.',
@@ -261,6 +306,13 @@ class CarsController extends Controller
             $input['status'] = 'Waiting';
             $save_cars = $this->cars->create($input);
             if ($save_cars) {
+                $this->financeBiayaJasa->create([
+                    'cars_id' => $input['id'],
+                    'customer' => $request->customer_name,
+                    'lokasi' => $request->kab_kota,
+                    'inspector' => auth()->user()->name,
+                    'status' => 'Waiting Finance'
+                ]);
                 $message_title="Berhasil !";
                 $message_content= $request->plat_nomor_depan.' '.$request->plat_nomor_tengah.' '.$request->plat_nomor_belakang." Berhasil Disimpan";
                 $message_type="success";
@@ -934,6 +986,8 @@ class CarsController extends Controller
             'keterangan_dasboard'  => 'required',
             'foto_ac'  => 'required',
             'keterangan_ac'  => 'required',
+            'foto_plafon'  => 'required',
+            'keterangan_plafon'  => 'required',
             'foto_jok'  => 'required',
             'keterangan_jok'  => 'required',
             'foto_electric_spion'  => 'required',
@@ -951,6 +1005,8 @@ class CarsController extends Controller
             'keterangan_dasboard.required'  => 'Keterangan Dasboard Mobil wajib diisi.',
             'foto_ac.required'  => 'Foto AC Mobil wajib diisi.',
             'keterangan_ac.required'  => 'Keterangan AC Mobil wajib diisi.',
+            'foto_plafon.required'  => 'Foto Plafon Mobil wajib diisi.',
+            'keterangan_plafon.required'  => 'Keterangan Plafon Mobil wajib diisi.',
             'foto_jok.required'  => 'Foto Jok Mobil wajib diisi.',
             'keterangan_jok.required'  => 'Keterangan Jok Mobil wajib diisi.',
             'foto_electric_spion.required'  => 'Foto Electric Spion Mobil wajib diisi.',
@@ -977,6 +1033,7 @@ class CarsController extends Controller
             $inputBagianInterior['keterangan_setir'] = $request->keterangan_setir;
             $inputBagianInterior['keterangan_dasboard'] = $request->keterangan_dasboard;
             $inputBagianInterior['keterangan_ac'] = $request->keterangan_ac;
+            $inputBagianInterior['keterangan_plafon'] = $request->keterangan_plafon;
             $inputBagianInterior['keterangan_audio'] = $request->keterangan_audio;
             $inputBagianInterior['keterangan_jok'] = $request->keterangan_jok;
             $inputBagianInterior['keterangan_electric_spion'] = $request->keterangan_electric_spion;
@@ -1001,6 +1058,9 @@ class CarsController extends Controller
             // }
             $imageAc = 'ACInterior'.$plat_mobil.'.webp';
             $inputBagianInterior['foto_ac'] = $imageAc;
+
+            $imagePlafon = 'PlafonInterior'.$plat_mobil.'.webp';
+            $inputBagianInterior['foto_plafon'] = $imagePlafon;
             // if ($request->foto_ac) {
             // }
             $imageAudio = 'AudioInterior'.$plat_mobil.'.webp';
@@ -2078,6 +2138,68 @@ class CarsController extends Controller
         return view('backend.cars.edit.inspeksi_lain',$data);
     }
 
+    public function tambah_inspeksi_lain($id,$inspeksi_lain)
+    {
+        $data['inspeksi_lain'] = $this->inspeksi_lain->where('id',$inspeksi_lain)->where('cars_id',$id)->first();
+        if (empty($data['inspeksi_lain'])) {
+            return redirect()->back()->with('error','Data Tidak Ditemukan');
+        }
+        return view('backend.cars.tambah_inspeksi_bagian_lain.create',$data);
+    }
+
+    public function tambah_inspeksi_lain_simpan(Request $request, $id,$inspeksi_lain)
+    {
+        $check_cars = $this->cars->find($id);
+
+        if (empty($check_cars)) {
+            return response()->json([
+                'success' => false,
+                'message_title' => 'Gagal',
+                'message_content' => 'Data Inspeksi Tidak Ditemukan'
+            ]);
+        }
+
+        $plat_mobil = $check_cars->plat_nomor;
+
+        $path = public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain');
+
+        if(!File::isDirectory($path)){
+            File::makeDirectory($path, 0777, true, true);
+        }
+
+        // foreach ($request['group-a'] as $key => $value) {
+        //     $image_foto_lain_lain = $value['foto_lain_lain'];
+
+        //     $img_foto_lain_lain = \Image::make($image_foto_lain_lain->path());
+
+        //     $img_foto_lain_lain->resize(800, null, function ($constraint) {
+        //         $constraint->aspectRatio();
+        //         $constraint->upsize(); // Prevent upsizing
+        //     });
+
+        //     $img_foto_lain_lain = $img_foto_lain_lain->encode('webp', 75);
+        //     $input_lain['foto_lain_lain'] = 'LainLain_'.$plat_mobil.'_'.rand(100,999).'.webp';
+        //     $img_foto_lain_lain->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/').$input_lain['foto_lain_lain']);
+        //     $input_lain['keterangan_lain_lain'] = $value['keterangan_lain_lain'];
+        //     $inputBody[$key] = $check_cars['body'].$input_lain;
+        // }
+        foreach (json_decode($check_cars->body) as $key => $value) {
+            $image_foto_lain_lain = $value['foto_lain_lain'];
+            $img_foto_lain_lain = \Image::make($image_foto_lain_lain->path());
+
+            $img_foto_lain_lain->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize(); // Prevent upsizing
+            });
+
+            $img_foto_lain_lain = $img_foto_lain_lain->encode('webp', 75);
+            $input_lain['foto_lain_lain'] = 'LainLain_'.$plat_mobil.'_'.rand(100,999).'.webp';
+            $img_foto_lain_lain->save(public_path('backend/mobil/'.$plat_mobil.'/berkas/pengecekkan_bagian_lain/').$input_lain['foto_lain_lain']);
+            $input_lain['keterangan_lain_lain'] = $value['keterangan_lain_lain'];
+        }
+
+    }
+
     public function update_inspeksi_lain(Request $request,$id,$inspeksi_lain)
     {
         // $rules = [
@@ -2142,6 +2264,9 @@ class CarsController extends Controller
                 $inputBody[$key] = $input_lain;
             }
         }
+
+        // dd($request->all());
+
         $input['body'] = json_encode($inputBody);
         $inspeksi_lain->update($input);
 
@@ -2508,11 +2633,13 @@ class CarsController extends Controller
     public function inputHargaInspeksiSimpan(Request $request)
     {
         $rules = [
-            'modalPrice' => 'required',
+            'price' => 'required',
+            'priceJasaInspeksi' => 'required',
         ]; // Ini buat validasi inputan
 
         $messages = [
-            'modalPrice.required'  => 'Harga Inspeksi wajib diisi lengkap.',
+            'price.required'  => 'Harga Inspeksi wajib diisi.',
+            'priceJasaInspeksi.required'  => 'Harga Jasa Inspeksi wajib diisi.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages); // Ini buat cek validasi
@@ -2523,9 +2650,19 @@ class CarsController extends Controller
                 // dd('ok');
                 $input['id'] = Str::uuid()->toString();
                 $input['cars_id'] = $request->modalId;
-                $input['price'] = $request->modalPrice;
+                $input['price'] = $request->price+$request->priceJasaInspeksi;
                 // dd($input);
                 $savePrice = $this->priceInspeksi->create($input);
+                $this->financeBiayaJasa->create([
+                    'car_id' => $request->modalId,
+                    'customer' => $request->customer,
+                    'lokasi' => $request->lokasi,
+                    'biaya_jasa' => $request->price,
+                    'biaya_transport' => $request->priceJasaInspeksi,
+                    'total' => $request->price+$request->priceJasaInspeksi,
+                    'pembayaran' => $request->metode_pembayaran,
+                    'status' => $request->metode_pembayaran == 'Cash' ? 'Paid' : 'Waiting'
+                ]);
 
                 if ($savePrice){
                     $message_title="Berhasil !";

@@ -90,6 +90,8 @@ Route::domain(parse_url(env('APP_URL'), PHP_URL_HOST))->group(function () {
             Route::get('{id}/inspeksi/{inspeksi_lain}/inspeksi_lain', [App\Http\Controllers\CarsController::class, 'edit_inspeksi_lain'])->name('cars.edit_inspeksi_lain')->middleware('verified');
             Route::post('{id}/inspeksi/{inspeksi_lain}/inspeksi_lain/update', [App\Http\Controllers\CarsController::class, 'update_inspeksi_lain'])->name('cars.update_inspeksi_lain')->middleware('verified');
 
+            Route::get('{id}/inspeksi/{inspeksi_lain}/inspeksi_lain/tambah', [App\Http\Controllers\CarsController::class, 'tambah_inspeksi_lain'])->name('cars.tambah_inspeksi_lain')->middleware('verified');
+
         });
         Route::prefix('inspeksi')->group(function(){
             Route::prefix('interior')->group(function(){
@@ -106,6 +108,55 @@ Route::domain(parse_url(env('APP_URL'), PHP_URL_HOST))->group(function () {
             });
         });
 
+        Route::prefix('jasa')->group(function(){
+            Route::prefix('biaya_jasa')->group(function(){
+                Route::get('/', [App\Http\Controllers\JasaController::class, 'biaya_jasa'])->name('jasa.biayaJasa')->middleware('verified');
+                Route::post('simpan', [App\Http\Controllers\JasaController::class, 'biaya_jasa_simpan'])->name('jasa.biayaJasa.simpan')->middleware('verified');
+                Route::post('pembayaran/simpan', [App\Http\Controllers\JasaController::class, 'biaya_jasa_metodePembayaran_simpan'])->name('jasa.biayaJasa.pembayaran.simpan')->middleware('verified');
+                Route::post('pembayaranFinance/simpan', [App\Http\Controllers\JasaController::class, 'biaya_jasa_finance_simpan'])->name('jasa.biayaJasa.pembayaranFinance.simpan')->middleware('verified');
+                Route::get('{id}', [App\Http\Controllers\JasaController::class, 'biaya_jasa_detail'])->name('jasa.biayaJasa.detail')->middleware('verified');
+            });
+        });
+        
+        Route::prefix('finance')->group(function(){
+            Route::prefix('coa')->group(function(){
+                Route::get('/', [App\Http\Controllers\FinanceCoaController::class, 'index'])->name('finance.coa')->middleware('verified');
+                Route::post('simpan', [App\Http\Controllers\FinanceCoaController::class, 'simpan'])->name('finance.coa.simpan')->middleware('verified');
+                Route::get('{id}', [App\Http\Controllers\FinanceCoaController::class, 'detail'])->name('finance.coa.detail')->middleware('verified');
+            });
+            Route::prefix('journal')->group(function(){
+                Route::get('/', [App\Http\Controllers\FinanceJournalController::class, 'index'])->name('finance.journal')->middleware('verified');
+                Route::post('simpan', [App\Http\Controllers\FinanceJournalController::class, 'simpan'])->name('finance.journal.simpan')->middleware('verified');
+                Route::post('update', [App\Http\Controllers\FinanceJournalController::class, 'update'])->name('finance.journal.update')->middleware('verified');
+                Route::get('downloadLaporanBulanan', [App\Http\Controllers\FinanceJournalController::class, 'downloadLaporanBulanan'])->name('finance.journal.downloadLaporanBulanan')->middleware('verified');
+                Route::get('downloadLaporanTahunan', [App\Http\Controllers\FinanceJournalController::class, 'downloadLaporanTahunan'])->name('finance.journal.downloadLaporanTahunan')->middleware('verified');
+                Route::get('{id}', [App\Http\Controllers\FinanceJournalController::class, 'detail'])->name('finance.journal.detail')->middleware('verified');
+                Route::delete('{id}/delete', [App\Http\Controllers\FinanceJournalController::class, 'delete'])->name('finance.journal.delete')->middleware('verified');
+            });
+            Route::prefix('buku_besar')->group(function(){
+                Route::get('/', [App\Http\Controllers\FinanceBukuBesarController::class, 'index'])->name('finance.buku_besar')->middleware('verified');
+                Route::get('downloadLaporanBulanan', [App\Http\Controllers\FinanceBukuBesarController::class, 'downloadLaporanBulanan'])->name('finance.buku_besar.downloadLaporanBulanan')->middleware('verified');
+                Route::get('downloadLaporanTahunan', [App\Http\Controllers\FinanceBukuBesarController::class, 'downloadLaporanTahunan'])->name('finance.buku_besar.downloadLaporanTahunan')->middleware('verified');
+            });
+            Route::prefix('lajur')->group(function(){
+                Route::get('/', [App\Http\Controllers\FinanceLajurController::class, 'index'])->name('finance.lajur')->middleware('verified');
+                Route::get('downloadLaporanBulanan', [App\Http\Controllers\FinanceLajurController::class, 'downloadLaporanBulanan'])->name('finance.lajur.downloadLaporanBulanan')->middleware('verified');
+                Route::get('downloadLaporanTahunan', [App\Http\Controllers\FinanceLajurController::class, 'downloadLaporanTahunan'])->name('finance.lajur.downloadLaporanTahunan')->middleware('verified');
+            });
+            Route::prefix('laba_rugi')->group(function(){
+                Route::get('/', [App\Http\Controllers\FinanceLabaRugiController::class, 'index'])->name('finance.laba_rugi')->middleware('verified');
+                Route::get('periode', [App\Http\Controllers\FinanceLabaRugiController::class, 'report_period'])->name('finance.laba_rugi.report_period')->middleware('verified');
+                Route::get('downloadLaporanBulanan', [App\Http\Controllers\FinanceLabaRugiController::class, 'downloadLaporanBulanan'])->name('finance.laba_rugi.downloadLaporanBulanan')->middleware('verified');
+                Route::get('downloadLaporanTahunan', [App\Http\Controllers\FinanceLabaRugiController::class, 'downloadLaporanTahunan'])->name('finance.laba_rugi.downloadLaporanTahunan')->middleware('verified');
+            });
+            Route::prefix('neraca')->group(function(){
+                Route::get('/', [App\Http\Controllers\FinanceNeracaController::class, 'index'])->name('finance.neraca')->middleware('verified');
+                Route::get('periode', [App\Http\Controllers\FinanceNeracaController::class, 'report_period'])->name('finance.neraca.report_period')->middleware('verified');
+                Route::get('downloadLaporanBulanan', [App\Http\Controllers\FinanceNeracaController::class, 'downloadLaporanBulanan'])->name('finance.neraca.downloadLaporanBulanan')->middleware('verified');
+                Route::get('downloadLaporanTahunan', [App\Http\Controllers\FinanceNeracaController::class, 'downloadLaporanTahunan'])->name('finance.neraca.downloadLaporanTahunan')->middleware('verified');
+            });
+        });
+
         Route::prefix('laporan')->group(function(){
             Route::prefix('keuangan')->group(function(){
                 Route::get('/', [App\Http\Controllers\LaporanKeuanganController::class, 'index'])->name('lap_keuangan.index')->middleware('verified');
@@ -116,11 +167,120 @@ Route::domain(parse_url(env('APP_URL'), PHP_URL_HOST))->group(function () {
             Route::prefix('inspeksi')->group(function(){
                 Route::get('/', [App\Http\Controllers\LaporanInspeksiController::class, 'index'])->name('lap_inspeksi.index')->middleware('verified');
                 Route::get('cari', [App\Http\Controllers\LaporanInspeksiController::class, 'cari_data'])->name('lap_inspeksi.cari_data')->middleware('verified');
+                Route::get('{date}/download_rekap_inspeksi', [App\Http\Controllers\LaporanInspeksiController::class, 'download_rekap_inspeksi'])->name('lap_inspeksi.rekap_inspeksi')->middleware('verified');
 
             });
         });
 
+        Route::post('get_regencies', function(){
+            // dd(request()->all());
+            $get_id = (int)request()->id;
+            $data = \DB::table('regencies')->where('province_id',$get_id)->pluck('name','name');
+            return response()->json($data);
+            // dd($province_id);
+        })->name('get_regencies');
+
     });
+
+    // Route::get('testingProvince', function(){
+    //     $curl = curl_init();
+
+    //     curl_setopt_array($curl, array(
+    //         CURLOPT_FRESH_CONNECT  => true,
+    //         CURLOPT_URL            => 'https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json',
+    //         CURLOPT_RETURNTRANSFER => true,
+    //         CURLOPT_HEADER         => false,
+    //         // CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],
+    //         CURLOPT_FAILONERROR    => false,
+    //         CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4
+    //     ));
+
+    //     $response = curl_exec($curl);
+    //     // dd($response);
+    //     $error = curl_error($curl);
+
+    //     curl_close($curl);
+
+    //     foreach (json_decode($response) as $key => $province) {
+    //         // dd($province->name);
+    //         \DB::table('province')->insert([
+    //             'id' => $province->id,
+    //             'name' => $province->name,
+    //         ]);
+
+    //         curl_setopt_array($curl, array(
+    //             CURLOPT_FRESH_CONNECT  => true,
+    //             CURLOPT_URL            => 'https://www.emsifa.com/api-wilayah-indonesia/api/regencies/'.$province->id.'.json',
+    //             CURLOPT_RETURNTRANSFER => true,
+    //             CURLOPT_HEADER         => false,
+    //             // CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],
+    //             CURLOPT_FAILONERROR    => false,
+    //             CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4
+    //         ));
+
+    //         $response_regencies = curl_exec($curl);
+    //         // dd($response);
+    //         $error_regencies = curl_error($curl);
+
+    //         curl_close($curl);
+
+    //         foreach (json_decode($response_regencies) as $regencies) {
+    //             \DB::table('regencies')->insert([
+    //                 'province_id' => $regencies->province_id,
+    //                 'name' => $regencies->name
+    //             ]);
+
+    //             // curl_setopt_array($curl, array(
+    //             //     CURLOPT_FRESH_CONNECT  => true,
+    //             //     CURLOPT_URL            => 'https://www.emsifa.com/api-wilayah-indonesia/api/districts/'.$regencies->id.'.json',
+    //             //     CURLOPT_RETURNTRANSFER => true,
+    //             //     CURLOPT_HEADER         => false,
+    //             //     // CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],
+    //             //     CURLOPT_FAILONERROR    => false,
+    //             //     CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4
+    //             // ));
+
+    //             // $response_districts = curl_exec($curl);
+    //             // // dd($response);
+    //             // $error_districts = curl_error($curl);
+
+    //             // curl_close($curl);
+
+    //             // foreach (json_decode($response_districts) as $districts) {
+    //             //     \DB::table('districts')->insert([
+    //             //         'regency_id' => $districts->regency_id,
+    //             //         'name' => $districts->name
+    //             //     ]);
+
+    //             //     curl_setopt_array($curl, array(
+    //             //         CURLOPT_FRESH_CONNECT  => true,
+    //             //         CURLOPT_URL            => 'https://www.emsifa.com/api-wilayah-indonesia/api/villages/'.$districts->id.'.json',
+    //             //         CURLOPT_RETURNTRANSFER => true,
+    //             //         CURLOPT_HEADER         => false,
+    //             //         // CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],
+    //             //         CURLOPT_FAILONERROR    => false,
+    //             //         CURLOPT_IPRESOLVE      => CURL_IPRESOLVE_V4
+    //             //     ));
+
+    //             //     $response_villages = curl_exec($curl);
+    //             //     // dd($response);
+    //             //     $error_villages = curl_error($curl);
+
+    //             //     curl_close($curl);
+
+    //             //     foreach (json_decode($response_villages) as $villages) {
+    //             //         \DB::table('villages')->insert([
+    //             //             'district_id' => $villages->district_id,
+    //             //             'name' => $villages->name
+    //             //         ]);
+    //             //     }
+    //             // }
+    //         }
+    //     }
+
+    //     // return $response;
+    // });
+
     Route::get('testinghome', function(){
     //    return ini_set('post_max_size', '50M');
        return ini_get('post_max_size');

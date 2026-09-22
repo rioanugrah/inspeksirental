@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalPriceLabel">Harga Inspeksi</h5>
+                <h5 class="modal-title" id="modalPriceLabel">Input Harga Inspeksi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="submit-modal-price" method="post" enctype="multipart/form-data">
@@ -59,12 +59,49 @@
                                 <div id="modalStatus"></div>
                             </div>
                         </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="">Nama Pelanggan</label>
+                                <div>
+                                    <input type="text" name="customer" class="form-control" placeholder="Nama Pelanggan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="">Lokasi Pelanggan</label>
+                                <div>
+                                    <input type="text" name="lokasi" class="form-control" placeholder="Lokasi Pelanggan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="">Total Biaya Inspeksi</label>
+                                <div>
+                                    <input type="number" name="price" min="0" class="form-control" placeholder="Harga Inspeksi" id="modalPrice">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="">Harga Jasa Inspeksi</label>
+                                <div>
+                                    <input type="number" name="priceJasaInspeksi" min="0" class="form-control" placeholder="Harga Jasa Inspeksi">
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="">Harga Inspeksi</label>
-                                <div>
-                                    <input type="number" name="modalPrice" min="0" class="form-control" placeholder="Harga Inspeksi" id="modalPrice">
-                                </div>
+                                <label for="">Metode Pembayaran</label>
+                                <select name="metode_pembayaran" class="form-control" id="">
+                                    <option value="">-- Pilih Metode Pembayaran --</option>
+                                    <option value="Transfer">Transfer</option>
+                                    <option value="Cash">Cash</option>
+                                </select>
                             </div>
                         </div>
                     </div>
